@@ -10,6 +10,8 @@ def is_admin():
     except:
         return False
 
+version = "1.0.1"
+
 def main():
     if is_admin() == False: # Get admin rights
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
@@ -33,8 +35,7 @@ def main():
         if event is None:
             quit()
         window.Close()
-        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd())
-        #os.remove("platform-tools-latest-windows.zip")
+        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd(),delete_after=True)
 
     layout = [[gui.Text('Choose APK file to install:')],
             [gui.Input(),gui.FileBrowse()],
@@ -42,7 +43,7 @@ def main():
             [gui.Input('127.0.0.1:58526')],
             [gui.Button('Install')]]
 
-    window = gui.Window('WSA Sideloader 1.0.0', layout)
+    window = gui.Window('WSA Sideloader '+version, layout)
 
     event, values = window.Read()
     if event is None:
