@@ -13,8 +13,3 @@ In order to use this program properly, make sure you enabled Developer mode in W
 [Download latest release](https://github.com/infinitepower18/WSA-Sideloader/releases/latest)
 
 Currently, selecting "Install for anyone using this computer" during the install process is known to cause some issues. To avoid problems, please choose "Install just for me".
-
-## Generating installer
-Clone the repo, install [NSIS](https://nsis.sourceforge.io/Download) and [pynsist](https://pypi.org/project/pynsist/) and type `pynsist pynsist.cfg` to generate the installer.
-
-Note that you need to [include some files](https://pynsist.readthedocs.io/en/latest/faq.html#packaging-with-tkinter) before it can generate.
