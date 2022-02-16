@@ -1,3 +1,7 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
+![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/wsa-sideloader/total)
+![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
+
 # WSA Sideloader
 Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
