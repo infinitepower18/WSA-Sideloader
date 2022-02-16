@@ -2,20 +2,10 @@ import dload
 import os
 import PySimpleGUI27 as gui
 import platform
-import ctypes, sys
 
-def is_admin():
-    try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
-
-version = "1.0.1"
+version = "1.0.2"
 
 def main():
-    if is_admin() == False: # Get admin rights
-        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('Sorry! WSA Sideloader will only run on Windows 11.')],
