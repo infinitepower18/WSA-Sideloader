@@ -1,6 +1,6 @@
 import dload
 import os
-import PySimpleGUI27 as gui
+import PySimpleGUI as gui
 import platform
 
 version = "1.0.3"
