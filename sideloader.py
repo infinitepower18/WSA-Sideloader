@@ -3,7 +3,7 @@ import os
 import PySimpleGUI as gui
 import platform
 
-version = "1.0.4"
+version = "1.0.5"
 
 def main():
     # Check if OS is Windows 11
@@ -18,14 +18,18 @@ def main():
         window.Close()
 
     if os.path.isdir('platform-tools') == False: # Check if platform tools present
-        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the SDK platform tools. Once downloaded, the application will launch automatically.')],
+        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the SDK platform tools.')],
                 [gui.Button('Continue')]]
         window = gui.Window('Information', layout)
         event, values = window.Read()
         if event is None:
             quit()
         window.Close()
+        layout = [[gui.Text('Downloading SDK platform tools, please wait...')]]
+        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
+        event, values = window.Read(timeout=0)
         dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd(),delete_after=True)
+        window.Close()
 
     layout = [[gui.Text('Choose APK file to install:')],
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
@@ -44,9 +48,13 @@ def main():
 
     window.Close()
 
+    layout = [[gui.Text('Installing application, please wait...')]]
+    window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
+    event, values = window.Read(timeout=0)
     command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb install '+source_filename+'"')
     output = command.readlines()
     check = str(output[len(output)-1])
+    window.Close()
     if check.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.')],
                 [gui.Exit()]]
