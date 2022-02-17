@@ -3,7 +3,7 @@ import os
 import PySimpleGUI as gui
 import platform
 
-version = "1.0.3"
+version = "1.0.4"
 
 def main():
     # Check if OS is Windows 11
