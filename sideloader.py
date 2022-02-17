@@ -3,7 +3,7 @@ import os
 import PySimpleGUI27 as gui
 import platform
 
-version = "1.0.2"
+version = "1.0.3"
 
 def main():
     # Check if OS is Windows 11
@@ -28,7 +28,7 @@ def main():
         dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd(),delete_after=True)
 
     layout = [[gui.Text('Choose APK file to install:')],
-            [gui.Input(),gui.FileBrowse()],
+            [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
             [gui.Text('ADB address:')],
             [gui.Input('127.0.0.1:58526')],
             [gui.Button('Install')]]
