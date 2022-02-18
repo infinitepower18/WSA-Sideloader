@@ -2,15 +2,24 @@ import dload
 import os
 import PySimpleGUI as gui
 import platform
+import webbrowser
+import shutil
 
-version = "1.1.0"
+version = "1.1.1"
+
+def updatedir():
+    oldpath = os.environ['USERPROFILE'] + "\platform-tools"
+    newpath = os.getcwd() + "\\platform-tools"
+    if os.path.isdir(oldpath):
+        shutil.move(oldpath,newpath)
 
 def main():
+    updatedir()
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('Sorry! WSA Sideloader will only run on Windows 11.')],
                 [gui.Exit()]]
-        window = gui.Window('Unsupported OS', layout)
+        window = gui.Window('Unsupported OS', layout,icon="icon.ico")
 
         event, values = window.Read()
         if event is None or "Exit":
@@ -20,7 +29,7 @@ def main():
     if os.path.isdir('platform-tools') == False: # Check if platform tools present
         layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the SDK platform tools.')],
                 [gui.Button('Continue')]]
-        window = gui.Window('Information', layout)
+        window = gui.Window('Information', layout,icon="icon.ico")
         event, values = window.Read()
         if event is None:
             quit()
@@ -35,9 +44,9 @@ def main():
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
             [gui.Text('ADB address:')],
             [gui.Input('127.0.0.1:58526')],
-            [gui.Button('Install'),gui.Button('Installed apps')]]
+            [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('GitHub')]]
 
-    window = gui.Window('WSA Sideloader '+version, layout)
+    window = gui.Window('WSA Sideloader '+version, layout,icon="icon.ico")
 
     while True:
         event, values = window.Read()
@@ -54,6 +63,8 @@ def main():
                 gui.SystemTray.notify('Unable to perform this operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon=None)
         if event == "Install":
             break
+        if event == "GitHub":
+            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
 
     source_filename = values[0]
     address = values[1]
@@ -70,7 +81,7 @@ def main():
     if check.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.')],
                 [gui.Exit(),gui.Button('Install another APK')]]
-        window = gui.Window('Information', layout)
+        window = gui.Window('Information', layout,icon="icon.ico")
 
         event, values = window.Read()
         if event == "Install another APK":
@@ -80,12 +91,15 @@ def main():
             quit()
     else:
         layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered')],
-                [gui.Button('OK')]]
-        window = gui.Window('Error', layout)
+                [gui.Button('OK'),gui.Button('Bug report')]]
+        window = gui.Window('Error', layout,icon="icon.ico")
 
         event, values = window.Read()
         if event == "OK":
             window.Close()
             main()
+        if event == "Bug report":
+            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
+            quit()
         else:
             quit()
