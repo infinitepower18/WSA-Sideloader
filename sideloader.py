@@ -7,14 +7,7 @@ import shutil
 
 version = "1.1.1"
 
-def updatedir():
-    oldpath = os.environ['USERPROFILE'] + "\platform-tools"
-    newpath = os.getcwd() + "\\platform-tools"
-    if os.path.isdir(oldpath):
-        shutil.copy(oldpath,newpath)
-
 def main():
-    updatedir()
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('Sorry! WSA Sideloader will only run on Windows 11.')],
