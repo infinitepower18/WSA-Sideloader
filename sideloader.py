@@ -11,7 +11,7 @@ def updatedir():
     oldpath = os.environ['USERPROFILE'] + "\platform-tools"
     newpath = os.getcwd() + "\\platform-tools"
     if os.path.isdir(oldpath):
-        shutil.move(oldpath,newpath)
+        shutil.copy(oldpath,newpath)
 
 def main():
     updatedir()
