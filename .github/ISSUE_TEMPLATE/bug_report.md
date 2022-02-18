@@ -1,22 +1,58 @@
----
 name: Bug report
 about: Create a report to help improve WSA Sideloader
 title: "[BUG]"
 labels: bug
 assignees: ''
 
----
-
-**Describe the bug** <!-- A clear and concise description of what the bug is. -->
-
-**To Reproduce** <!-- Include steps to reproduce the behavior -->
-
-**Expected behavior** <!-- A clear and concise description of what you expected to happen. -->
-
-**Screenshots** <!-- If applicable, add screenshots to help explain your problem. -->
-
-**Application version**
-
-**Log file** <!-- If available, please attach the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.txt -->
-
-**Additional context** <!-- Add any other context about the problem here. -->
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is. Include screenshots if possible.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include steps to reproduce the behaviour.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Application version
+      description: What version of our software are you running?
+      options:
+        - 1.1.1 (latest)
+        - 1.1.0
+        - 1.0.5
+        - 1.0.4
+        - 1.0.3
+        - 1.0.2
+        - 1.0.1
+        - 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log output
+      description: If available, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.txt
+    validations:
+      required: false
+  - type: textarea
+    id: other
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+    validations:
+      required: false
