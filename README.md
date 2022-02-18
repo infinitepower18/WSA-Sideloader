@@ -8,6 +8,6 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 In order to use this program properly, make sure you enabled Developer mode in WSA settings and that WSA is running when using this.
 
-![Screenshot 2022-02-17 131309](https://user-images.githubusercontent.com/44692189/154488969-1d8b74e8-93d9-4833-8d63-efe2dd08662a.jpg)
+![image](https://user-images.githubusercontent.com/44692189/154737494-c7166ef0-6863-4d55-9a32-3c7cc0a2288e.png)
 
 [Download latest release](https://github.com/infinitepower18/WSA-Sideloader/releases/latest)
