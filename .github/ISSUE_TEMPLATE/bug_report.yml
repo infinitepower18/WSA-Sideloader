@@ -31,7 +31,7 @@ body:
       label: Application version
       description:
       options:
-        - 1.1.1 (latest)
+        - 1.1.1
         - 1.1.0
         - 1.0.5
         - 1.0.4
