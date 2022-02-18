@@ -1,10 +1,11 @@
 name: Feature request
 description: Suggest an idea for this project
 title: "[REQUEST]"
-labels: enhancement
-  - type: textarea
-    id: description
-    attributes:
-      label: Describe your request
-    validations:
-      required: true
+body:
+  labels: enhancement
+    - type: textarea
+      id: description
+      attributes:
+        label: Describe your request
+      validations:
+        required: true
