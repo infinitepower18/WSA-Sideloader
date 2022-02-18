@@ -1,0 +1,11 @@
+name: Documentation
+description: Report an issue with the project's documentation
+title: "[DOC]"
+labels: documentation
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of documentation changes:
+    validations:
+      required: true
