@@ -34,7 +34,7 @@ def start():
                 main()
         else:
             main()
-    except (urllib.error.URLError,urllib.error.HTTPError) as error:
+    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error:
         main()
     
 
