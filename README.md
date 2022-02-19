@@ -6,7 +6,7 @@
 # WSA Sideloader
 Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
-![image](https://user-images.githubusercontent.com/44692189/154756555-4eeb02a1-cc41-48a4-9577-1a6eea8aad87.png)
+![Screenshot 2022-02-19 135951](https://user-images.githubusercontent.com/44692189/154803964-bbab9057-6201-4b24-9831-d18f6b212544.jpg)
 
 ## Getting started
 
