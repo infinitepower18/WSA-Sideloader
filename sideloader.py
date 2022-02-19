@@ -1,10 +1,42 @@
-import dload
+#import dload
 import os
 import PySimpleGUI as gui
 import platform
 import webbrowser
+import sys
+import urllib
+import urllib.error
 
-version = "1.1.2"
+version = "1.1.3"
+appver = 113
+pyversion = "3.9.10 64 bit"
+sdkversion = "32.0.0"
+guiversion = "4.57.0"
+
+def start():
+    try:
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver.txt")
+        for line in file:
+            latestver = int(line.decode("utf-8"))
+        if latestver > appver:
+            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?')],
+                [gui.Yes(),gui.No()]]
+            window = gui.Window('Update available', layout,icon="icon.ico")
+            event, values = window.Read()
+            if event is None:
+                sys.exit(0)
+            elif event == "Yes":
+                window.Close()
+                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
+                sys.exit(0)
+            elif event == "No":
+                window.Close()
+                main()
+        else:
+            main()
+    except (urllib.error.URLError,urllib.error.HTTPError) as error:
+        main()
+    
 
 def main():
     # Check if OS is Windows 11
@@ -15,35 +47,35 @@ def main():
 
         event, values = window.Read()
         if event is None or "Exit":
-            quit()
+            sys.exit(0)
         window.Close()
 
-    if os.path.isdir('platform-tools') == False: # Check if platform tools present
-        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the SDK platform tools.')],
-                [gui.Button('Continue')]]
-        window = gui.Window('Information', layout,icon="icon.ico")
-        event, values = window.Read()
-        if event is None:
-            quit()
-        window.Close()
-        layout = [[gui.Text('Downloading SDK platform tools, please wait...')]]
-        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
-        event, values = window.Read(timeout=0)
-        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd(),delete_after=True)
-        window.Close()
+#    if os.path.isdir('platform-tools') == False: # Check if platform tools present
+#        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the SDK platform tools.')],
+#                [gui.Button('Continue')]]
+#        window = gui.Window('Information', layout,icon="icon.ico")
+#        event, values = window.Read()
+#        if event is None:
+#            sys.exit(0)
+#        window.Close()
+#        layout = [[gui.Text('Downloading SDK platform tools, please wait...')]]
+#        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
+#        event, values = window.Read(timeout=0)
+#        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd(),delete_after=True)
+#        window.Close()
 
     layout = [[gui.Text('Choose APK file to install:')],
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
             [gui.Text('ADB address:')],
             [gui.Input('127.0.0.1:58526')],
-            [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('GitHub')]]
+            [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('About WSA Sideloader')]]
 
     window = gui.Window('WSA Sideloader '+version, layout,icon="icon.ico")
 
     while True:
         event, values = window.Read()
         if event is None:
-            quit()
+            sys.exit(0)
         if event == "Installed apps":
             address = values[1]
             command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
@@ -52,11 +84,23 @@ def main():
             if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                 pass
             else:
-                gui.SystemTray.notify('Unable to perform this operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png")
+                gui.SystemTray.notify('Failed to perform operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png")
         if event == "Install":
             break
-        if event == "GitHub":
-            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
+        if event == "About WSA Sideloader":
+            window.Hide()
+            abtLayout = [[gui.Text('WSA Sideloader')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+pyversion)],[gui.Text("PySimpleGUI version: "+guiversion)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Button("Back"),gui.Button("GitHub")]]
+            abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
+            while True:
+                event,values = abtWindow.Read()
+                if event is None:
+                    sys.exit(0)
+                elif event == "Back":
+                    abtWindow.Close()
+                    window.UnHide()
+                    break
+                elif event == "GitHub":
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
 
     source_filename = values[0]
     address = values[1]
@@ -80,7 +124,7 @@ def main():
             window.Close()
             main()
         else:
-            quit()
+            sys.exit(0)
     else:
         layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered')],
                 [gui.Button('OK'),gui.Button('Bug report')]]
@@ -90,8 +134,9 @@ def main():
         if event == "OK":
             window.Close()
             main()
-        if event == "Bug report":
+        elif event == "Bug report":
+            window.Close()
             webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
-            quit()
+            sys.exit(0)
         else:
-            quit()
+            sys.exit(0)
