@@ -1,6 +1,5 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/wsa-sideloader/total)
-![GitHub top language](https://img.shields.io/github/languages/top/infinitepower18/wsa-sideloader)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
 
 # WSA Sideloader
@@ -18,9 +17,7 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 3. [Download the latest release of WSA Sideloader](https://github.com/infinitepower18/WSA-Sideloader/releases/latest). If you get a warning that the file might be unsafe, select keep anyway. The program is completely safe and the source code is available if you want to take a look at what it does.
 
-4. After installing WSA Sideloader, you may need to download the SDK platform tools, as the program depends on it to do its magic. This is a one time process and the download size is about 11.5 MB.
-
-5. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
+4. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
 
 ## FAQ
 
