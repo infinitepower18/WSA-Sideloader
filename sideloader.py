@@ -3,9 +3,8 @@ import os
 import PySimpleGUI as gui
 import platform
 import webbrowser
-import shutil
 
-version = "1.1.1"
+version = "1.1.2"
 
 def main():
     # Check if OS is Windows 11
@@ -47,13 +46,13 @@ def main():
             quit()
         if event == "Installed apps":
             address = values[1]
-            command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb shell am start -n "com.android.settings/.applications.ManageApplications""')
+            command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
             output = command.readlines()
             check = str(output[len(output)-1])
             if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                 pass
             else:
-                gui.SystemTray.notify('Unable to perform this operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon=None)
+                gui.SystemTray.notify('Unable to perform this operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png")
         if event == "Install":
             break
         if event == "GitHub":
@@ -67,7 +66,7 @@ def main():
     layout = [[gui.Text('Installing application, please wait...')]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
     event, values = window.Read(timeout=0)
-    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb install '+source_filename+'"')
+    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""')
     output = command.readlines()
     check = str(output[len(output)-1])
     window.Close()
