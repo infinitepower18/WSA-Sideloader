@@ -41,3 +41,6 @@ You can press the "Installed apps" button to bring up a list of apps installed o
 
 ### What's the best place to download APK files?
 My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run by Android Police founder Artem Russakovskii.
+
+## Disclaimer
+This project is not affiliated with Microsoft or Google in any way.
