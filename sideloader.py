@@ -88,13 +88,13 @@ def main():
                 else:
                     gui.SystemTray.notify('Failed to perform operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
             except IndexError:
-                gui.SystemTray.notify('Invalid ADB address', 'Please enter a valid ADB address.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+                gui.SystemTray.notify('Please enter an ADB address', 'ADB address cannot be empty.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
         if event == "Install":
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
             if address == "":
-                gui.SystemTray.notify('Invalid ADB address', 'Please enter a valid ADB address.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+                gui.SystemTray.notify('Please enter an ADB address', 'ADB address cannot be empty.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
             else:
                 break
         if event == "About WSA Sideloader":
