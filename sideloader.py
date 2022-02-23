@@ -7,8 +7,8 @@ import sys
 import urllib
 import urllib.error
 
-version = "1.1.3"
-appver = 113
+version = "1.1.4"
+appver = 114
 pyversion = "3.9.10 64 bit"
 sdkversion = "32.0.0"
 guiversion = "4.57.0"
@@ -77,16 +77,26 @@ def main():
         if event is None:
             sys.exit(0)
         if event == "Installed apps":
-            address = values[1]
-            command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
-            output = command.readlines()
-            check = str(output[len(output)-1])
-            if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
-                pass
-            else:
-                gui.SystemTray.notify('Failed to perform operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png")
+            try:
+                address = values[1]
+                address = address.replace(" ", "")
+                command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
+                output = command.readlines()
+                check = str(output[len(output)-1])
+                if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
+                    pass
+                else:
+                    gui.SystemTray.notify('Failed to perform operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+            except IndexError:
+                gui.SystemTray.notify('Invalid ADB address', 'Please enter a valid ADB address.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
         if event == "Install":
-            break
+            source_filename = values[0]
+            address = values[1]
+            address = address.replace(" ", "")
+            if address == "":
+                gui.SystemTray.notify('Invalid ADB address', 'Please enter a valid ADB address.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+            else:
+                break
         if event == "About WSA Sideloader":
             window.Hide()
             abtLayout = [[gui.Text('WSA Sideloader')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+pyversion)],[gui.Text("PySimpleGUI version: "+guiversion)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Button("Back"),gui.Button("GitHub")]]
@@ -102,8 +112,7 @@ def main():
                 elif event == "GitHub":
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
 
-    source_filename = values[0]
-    address = values[1]
+    
 
     window.Close()
 
