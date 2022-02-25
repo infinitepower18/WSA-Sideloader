@@ -13,6 +13,28 @@ pyversion = "3.9.10 64 bit"
 sdkversion = "32.0.0"
 guiversion = "4.57.0"
 
+
+def startstore():
+    try:
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver-store.txt")
+        for line in file:
+            latestver = int(line.decode("utf-8"))
+        if latestver > appver:
+            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.')],
+                [gui.Button('OK')]]
+            window = gui.Window('Update available', layout,icon="icon.ico")
+            event, values = window.Read()
+            if event is None:
+                sys.exit(0)
+            elif event == "OK":
+                window.Close()
+                main()
+        else:
+            main()
+    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error:
+        main()
+
+
 def start():
     try:
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver.txt")
