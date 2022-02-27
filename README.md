@@ -39,6 +39,9 @@ Currently only .apk files are supported.
 ### Where can I see a list of installed WSA apps?
 You can press the "Installed apps" button to bring up a list of apps installed on the WSA. You can also launch and uninstall apps through it. WSA apps are also present on the start menu and you can right click to uninstall just like any other Windows program.
 
+### The "Installed apps" button is really convenient, is it possible to put that on my Start Menu?
+I have created an app which does exactly that, you can download it [here](https://github.com/infinitepower18/WSA-InstalledApps).
+
 ### What's the best place to download APK files?
 My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run by Android Police founder Artem Russakovskii.
 
