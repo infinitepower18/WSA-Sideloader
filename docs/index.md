@@ -41,3 +41,6 @@ My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run 
 ### Support
 
 Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug or want to make a feature request? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
+
+## Disclaimer
+This project is not affiliated with Microsoft or Google in any way.
