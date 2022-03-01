@@ -8,3 +8,4 @@ buttons:
       tar_url: ms-windows-store://pdp/?productid=XP8K140DLVSC0L
       tar_title: Download from MS Store
       tar_hide: false
+      github_hide: true
