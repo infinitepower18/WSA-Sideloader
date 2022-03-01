@@ -1,3 +1,10 @@
 theme: jekyll-theme-cayman
 title: WSA Sideloader
 description: Easily sideload Android apps on Windows Subsystem for Android on Windows 11
+buttons:
+      zip_url: https://github.com/infinitepower18/WSA-Sideloader/releases/latest
+      zip_title: Download latest release
+      zip_hide: false
+      tar_url: ms-windows-store://pdp/?productid=XP8K140DLVSC0L
+      tar_title: Download from MS Store
+      tar_hide: false
