@@ -1,4 +1,4 @@
-theme: jekyll-theme-cayman
+remote_theme: tuur29/pages-themes-cayman
 title: WSA Sideloader
 description: Easily sideload Android apps on Windows Subsystem for Android on Windows 11
 buttons:
