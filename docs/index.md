@@ -21,6 +21,13 @@ Change your PC region setting to United States, you should then be able to downl
 
 Amazon Appstore for WSA is currently not available outside the US, but when you have WSA Sideloader what's the need of the appstore? :)
 
+### What's the difference between the GitHub version and Microsoft Store version?
+Installing WSA Sideloader from the Microsoft Store is a one click install process. With the GitHub version, you have more control over your install, including installing for all users and changing the installation directory. The Microsoft Store version is installed at `C:\Users\[username]\AppData\Local\Programs\WSA Sideloader`.
+
+Future updates will be published on both GitHub and Microsoft Store. You will get a message upon starting the program if an update is available. The GitHub version can be updated by downloading the latest version from the releases page while the MS Store version is updated via the Microsoft Store app.
+
+There are no other differences between the two versions.
+
 ### Do you have a portable version?
 Currently a portable version is not available.
 
