@@ -26,6 +26,16 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: source
+    attributes:
+      label: Download source
+      description: Where did you download WSA Sideloader from?
+      options:
+        - GitHub
+        - Microsoft Store
+    validations:
+      required: true
+  - type: dropdown
     id: version
     attributes:
       label: Application version
