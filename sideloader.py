@@ -5,10 +5,15 @@ import webbrowser
 import sys
 import urllib
 import urllib.error
+from configobj import ConfigObj
 
 version = "1.1.5"
 appver = 115
-sdkversion = "33.0.0"
+if os.path.exists('platform-tools/source.properties'):
+    sdkproperties = ConfigObj('platform-tools/source.properties')
+    sdkversion = sdkproperties.get('Pkg.Revision')
+else:
+    sdkversion = "Not available"
 
 def startstore():
     try:
