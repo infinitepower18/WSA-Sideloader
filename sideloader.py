@@ -5,16 +5,18 @@ import webbrowser
 import sys
 import urllib
 import urllib.error
-from configobj import ConfigObj
 from win10toast import ToastNotifier
+from jproperties import Properties
 
 toaster = ToastNotifier()
 
 version = "1.1.5"
 appver = 115
 if os.path.exists('platform-tools/source.properties'):
-    sdkproperties = ConfigObj('platform-tools/source.properties')
-    sdkversion = sdkproperties.get('Pkg.Revision')
+    configs = Properties()
+    with open('platform-tools/source.properties','rb') as sdkproperties:
+        configs.load(sdkproperties)
+        sdkversion = configs["Pkg.Revision"].data
 else:
     sdkversion = "Not available"
 
