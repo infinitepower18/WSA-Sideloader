@@ -15,7 +15,7 @@ if os.path.exists('platform-tools/source.properties'):
         configs.load(sdkproperties)
         sdkversion = configs["Pkg.Revision"].data
 else:
-    sdkversion = "Not available"
+    sdkversion = "Unknown"
 
 def startstore():
     try:
