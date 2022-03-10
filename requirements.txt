@@ -1,0 +1,2 @@
+PySimpleGUI==4.57.0
+jproperties==2.1.1
