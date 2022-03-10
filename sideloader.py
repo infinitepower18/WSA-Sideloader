@@ -18,6 +18,8 @@ else:
     sdkversion = "Unknown"
 
 def startstore():
+    global installsource
+    installsource = "Microsoft Store"
     try:
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver-store.txt")
         for line in file:
@@ -39,6 +41,8 @@ def startstore():
 
 
 def start():
+    global installsource
+    installsource = "GitHub"
     try:
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver.txt")
         for line in file:
@@ -110,7 +114,7 @@ def main():
                 break
         if event == "About WSA Sideloader":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+sys.version)],[gui.Text("PySimpleGUI version: "+gui.version)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Button("Back"),gui.Button("GitHub")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+sys.version)],[gui.Text("PySimpleGUI version: "+gui.version)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Text("Installed from: "+installsource)],[gui.Button("Back"),gui.Button("GitHub")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
             while True:
                 event,values = abtWindow.Read()
