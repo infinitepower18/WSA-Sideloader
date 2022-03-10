@@ -1,6 +1,6 @@
 WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.
 
-![image](https://user-images.githubusercontent.com/44692189/157765060-c4af2a81-c97d-4686-9b45-e7be281262d1.png)
+![image](https://user-images.githubusercontent.com/44692189/157773590-898e2b39-40e9-4548-be39-f77605d9dfa4.png)
 
 ## Getting started
 

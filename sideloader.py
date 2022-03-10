@@ -81,7 +81,7 @@ def main():
             [gui.Input('127.0.0.1:58526')],
             [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('About WSA Sideloader')]]
 
-    window = gui.Window('WSA Sideloader '+version, layout,icon="icon.ico")
+    window = gui.Window('WSA Sideloader', layout,icon="icon.ico")
 
     while True:
         event, values = window.Read()
