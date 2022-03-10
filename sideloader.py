@@ -5,10 +5,7 @@ import webbrowser
 import sys
 import urllib
 import urllib.error
-from win10toast import ToastNotifier
 from jproperties import Properties
-
-toaster = ToastNotifier()
 
 version = "1.1.5"
 appver = 115
@@ -100,15 +97,15 @@ def main():
                 if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                     pass
                 else:
-                    toaster.show_toast("WSA Sideloader failed to perform operation","Please check that WSA is running and the correct ADB address has been entered.",icon_path="icon.ico",duration=5,threaded=True)
+                    gui.SystemTray.notify('Failed to perform operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
             except IndexError:
-                toaster.show_toast("WSA Sideloader","Please enter an ADB address.",icon_path="icon.ico",duration=5,threaded=True)
+                gui.SystemTray.notify('Please enter an ADB address', 'ADB address cannot be empty.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
         if event == "Install":
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
             if address == "":
-                toaster.show_toast("WSA Sideloader","Please enter an ADB address.",icon_path="icon.ico",duration=5,threaded=True)
+                gui.SystemTray.notify('Please enter an ADB address', 'ADB address cannot be empty.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
             else:
                 break
         if event == "About WSA Sideloader":
