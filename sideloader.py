@@ -1,4 +1,3 @@
-#import dload
 import os
 import PySimpleGUI as gui
 import platform
@@ -7,12 +6,9 @@ import sys
 import urllib
 import urllib.error
 
-version = "1.1.4"
-appver = 114
-pyversion = "3.9.10 64 bit"
-sdkversion = "32.0.0"
-guiversion = "4.57.0"
-
+version = "1.1.5"
+appver = 115
+sdkversion = "33.0.0"
 
 def startstore():
     try:
@@ -72,20 +68,6 @@ def main():
             sys.exit(0)
         window.Close()
 
-#    if os.path.isdir('platform-tools') == False: # Check if platform tools present
-#        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the SDK platform tools.')],
-#                [gui.Button('Continue')]]
-#        window = gui.Window('Information', layout,icon="icon.ico")
-#        event, values = window.Read()
-#        if event is None:
-#            sys.exit(0)
-#        window.Close()
-#        layout = [[gui.Text('Downloading SDK platform tools, please wait...')]]
-#        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
-#        event, values = window.Read(timeout=0)
-#        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=os.getcwd(),delete_after=True)
-#        window.Close()
-
     layout = [[gui.Text('Choose APK file to install:')],
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
             [gui.Text('ADB address:')],
@@ -121,7 +103,7 @@ def main():
                 break
         if event == "About WSA Sideloader":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+pyversion)],[gui.Text("PySimpleGUI version: "+guiversion)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Button("Back"),gui.Button("GitHub")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+platform.python_version())],[gui.Text("PySimpleGUI version: "+gui.version)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Button("Back"),gui.Button("GitHub")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
             while True:
                 event,values = abtWindow.Read()
