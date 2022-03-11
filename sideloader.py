@@ -6,6 +6,7 @@ import sys
 import urllib
 import urllib.error
 from jproperties import Properties
+from plyer import notification
 
 version = "1.1.5"
 appver = 115
@@ -101,15 +102,15 @@ def main():
                 if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                     pass
                 else:
-                    gui.SystemTray.notify('Failed to perform operation', 'Please check that WSA is running and the correct ADB address has been entered.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+                    notification.notify(title="Failed to perform operation",message="Please check that WSA is running and the correct ADB address has been entered.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
             except IndexError:
-                gui.SystemTray.notify('Please enter an ADB address', 'ADB address cannot be empty.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+                notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
         if event == "Install":
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
             if address == "":
-                gui.SystemTray.notify('Please enter an ADB address', 'ADB address cannot be empty.',display_duration_in_ms=5000,icon="failed.png",alpha=1)
+                notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
             else:
                 break
         if event == "About WSA Sideloader":
