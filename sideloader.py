@@ -150,7 +150,7 @@ def main():
             sys.exit(0)
     else:
         layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered')],
-                [gui.Button('OK'),gui.Button('Bug report')]]
+                [gui.Button('OK'),gui.Button('Report a bug')]]
         window = gui.Window('Error', layout,icon="icon.ico")
 
         event, values = window.Read()
