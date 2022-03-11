@@ -128,8 +128,6 @@ def main():
                 elif event == "GitHub":
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
 
-    
-
     window.Close()
 
     layout = [[gui.Text('Installing application, please wait...')]]
