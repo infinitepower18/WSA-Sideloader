@@ -157,7 +157,7 @@ def main():
         if event == "OK":
             window.Close()
             main()
-        elif event == "Bug report":
+        elif event == "Report a bug":
             window.Close()
             webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
             sys.exit(0)
