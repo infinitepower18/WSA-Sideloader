@@ -9,8 +9,8 @@ from jproperties import Properties
 from plyer import notification
 
 version = "1.1.5"
-appver = 115
-if os.path.exists('platform-tools/source.properties'):
+appver = 115 # For update checker
+if os.path.exists('platform-tools/source.properties'): # Get platform tools version for about page
     configs = Properties()
     with open('platform-tools/source.properties','rb') as sdkproperties:
         configs.load(sdkproperties)
@@ -18,7 +18,7 @@ if os.path.exists('platform-tools/source.properties'):
 else:
     sdkversion = "Unknown"
 
-def startstore():
+def startstore(): # For Microsoft Store installs
     global installsource
     installsource = "Microsoft Store"
     try:
@@ -41,7 +41,7 @@ def startstore():
         main()
 
 
-def start():
+def start(): # For GitHub installs
     global installsource
     installsource = "GitHub"
     try:
@@ -80,6 +80,7 @@ def main():
             sys.exit(0)
         window.Close()
 
+    # Main window
     layout = [[gui.Text('Choose APK file to install:')],
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
             [gui.Text('ADB address:')],
@@ -92,7 +93,7 @@ def main():
         event, values = window.Read()
         if event is None:
             sys.exit(0)
-        if event == "Installed apps":
+        if event == "Installed apps": # Launch apps list of com.android.settings
             try:
                 address = values[1]
                 address = address.replace(" ", "")
@@ -133,10 +134,12 @@ def main():
     layout = [[gui.Text('Installing application, please wait...')]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
     event, values = window.Read(timeout=0)
-    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""')
+    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
     output = command.readlines()
     check = str(output[len(output)-1])
     window.Close()
+    
+    # Check if apk installed successfully
     if check.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.')],
                 [gui.Exit(),gui.Button('Install another APK')]]
@@ -157,7 +160,7 @@ def main():
         if event == "OK":
             window.Close()
             main()
-        elif event == "Report a bug":
+        elif event == "Report a bug": # Launch WSA Sideloader issues page
             window.Close()
             webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
             sys.exit(0)
