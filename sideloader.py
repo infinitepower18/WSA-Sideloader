@@ -37,7 +37,7 @@ def startstore(): # For Microsoft Store installs
                 main()
         else:
             main()
-    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error:
+    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
         main()
 
 
