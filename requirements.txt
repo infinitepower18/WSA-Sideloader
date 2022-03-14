@@ -1,0 +1,3 @@
+PySimpleGUI==4.57.0
+jproperties==2.1.1
+plyer==2.0.0

@@ -1,6 +1,6 @@
 WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.
 
-![Screenshot 2022-02-19 135951](https://user-images.githubusercontent.com/44692189/154803964-bbab9057-6201-4b24-9831-d18f6b212544.jpg)
+![image](https://user-images.githubusercontent.com/44692189/157773590-898e2b39-40e9-4548-be39-f77605d9dfa4.png)
 
 ## Getting started
 
@@ -34,8 +34,8 @@ Currently a portable version is not available.
 ### Can I use this tool to sideload apps on other Android devices?
 This program has been designed with WSA in mind, however since it just automates all the ADB commands for you it should be possible to use it on other Android devices or emulators. You may need to change the ADB address for this and I cannot guarantee it will work properly on anything other than WSA.
 
-### Can I install other kinds of apk files e.g. .xapk?
-Currently only .apk files are supported.
+### I would like to see [feature name] in your program. When can you implement it?
+I am open to suggestions and will try my best to add more relevant features to the program over time. If you have any suggestions you can open an issue with your suggestion. I usually fix bugs and maintain stability of the program before adding more stuff to it so it may take some time.
 
 ### Where can I see a list of installed WSA apps?
 You can press the "Installed apps" button to bring up a list of apps installed on the WSA. You can also launch and uninstall apps through it. WSA apps are also present on the start menu and you can right click to uninstall just like any other Windows program.
