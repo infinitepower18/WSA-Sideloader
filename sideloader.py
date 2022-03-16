@@ -8,8 +8,8 @@ import urllib.error
 from jproperties import Properties
 from plyer import notification
 
-version = "1.1.5"
-appver = 115 # For update checker
+version = "1.1.6"
+appver = 1160 # For update checker
 if os.path.exists('platform-tools/source.properties'): # Get platform tools version for about page
     configs = Properties()
     with open('platform-tools/source.properties','rb') as sdkproperties:
@@ -64,7 +64,7 @@ def start(): # For GitHub installs
                 main()
         else:
             main()
-    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error:
+    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
         main()
     
 
