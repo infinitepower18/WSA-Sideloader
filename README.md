@@ -55,5 +55,11 @@ My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run 
 
 Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug or want to make a feature request? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
 
+## Contributing
+
+Whether it's a bug fix or a new feature, contributions to the project are always welcome! To get started, make sure you have [Python 3.10](https://www.python.org/downloads/windows/) and [Git](https://gitforwindows.org/) installed. Then clone this repo and install the required packages using `pip install -r requirements.txt`. Please test the program before making your pull request.
+
+As this program is a sideloading tool for Windows Subsystem for Android, please make sure you are running Windows 11 with WSA installed.
+
 ## Disclaimer
 This project is not affiliated with Microsoft or Google in any way.
