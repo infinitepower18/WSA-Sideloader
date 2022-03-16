@@ -28,6 +28,9 @@ Future updates will be published on both GitHub and Microsoft Store. You will ge
 
 There are no other differences between the two versions.
 
+### Why does it take so long for new updates to be released on Microsoft Store?
+As much as I want the updates released on both GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it sadly.
+
 ### Do you have a portable version?
 Currently a portable version is not available.
 
