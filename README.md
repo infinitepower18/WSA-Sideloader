@@ -17,7 +17,14 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 ![image](https://user-images.githubusercontent.com/44692189/154768380-f0b01ed7-e622-4fdd-8eb7-bf1c758f8103.png)
 
-3. [Download the latest release of WSA Sideloader](https://github.com/infinitepower18/WSA-Sideloader/releases/latest). If you get a warning that the file might be unsafe, select keep anyway. The program is completely safe and the source code is available if you want to take a look at what it does. Alternatively, you can also download it from the [Microsoft Store](https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L).
+3. Download the latest release of WSA Sideloader. You can download it either from [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest) or [Microsoft Store](https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L).
+
+### Already have Python on your computer?
+If you already have Python 3.10 or 3.9 installed, you can download WSA Sideloader from [PyPi](https://pypi.org/project/WSA-Sideloader/) instead. Simply run `pip install WSA-Sideloader` to install it, and `wsa-sideloader` to launch the application.
+
+Please be aware of the following limitations currently on the PyPi version:
+- Checking for newer versions of WSA Sideloader is not available. It will be added in a future update.
+- Currently it's not possible to view the Android SDK platform tools version bundled with the application. I hope to fix this in a future update.
 
 4. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
 
@@ -28,18 +35,8 @@ Change your PC region setting to United States, you should then be able to downl
 
 Amazon Appstore for WSA is currently not available outside the US, but when you have WSA Sideloader what's the need of the appstore? :)
 
-### What's the difference between the GitHub version and Microsoft Store version?
-Installing WSA Sideloader from the Microsoft Store is a one click install process. With the GitHub version, you have more control over your install, including installing for all users and changing the installation directory. The Microsoft Store version is installed at `C:\Users\[username]\AppData\Local\Programs\WSA Sideloader`.
-
-Future updates will be published on both GitHub and Microsoft Store. You will get a message upon starting the program if an update is available. The GitHub version can be updated by downloading the latest version from the releases page while the MS Store version is updated via the Microsoft Store app.
-
-There are no other differences between the two versions.
-
 ### Why does it take so long for new updates to be released on Microsoft Store?
 As much as I want the updates released on both GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
-
-### Do you have a portable version?
-Currently a portable version is not available.
 
 ### Can I use this tool to sideload apps on other Android devices?
 This program has been designed with WSA in mind, however since it just automates all the ADB commands for you it should be possible to use it on other Android devices or emulators. You may need to change the ADB address for this and I cannot guarantee it will work properly on anything other than WSA.
