@@ -42,6 +42,7 @@ def startstore(): # For Microsoft Store installs
 
 def startpypi(): # For PyPi installs
     global installsource
+    os.chdir(__file__.strip("sideloader.py"))
     installsource = "PyPi"
     main()
 
