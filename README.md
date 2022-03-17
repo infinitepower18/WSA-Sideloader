@@ -35,7 +35,7 @@ Change your PC region setting to United States, you should then be able to downl
 Amazon Appstore for WSA is currently not available outside the US, but when you have WSA Sideloader what's the need of the appstore? :)
 
 ### Why does it take so long for new updates to be released on Microsoft Store?
-As much as I want the updates released on both GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
+As much as I want the updates released on GitHub, PyPi and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
 
 ### Can I use this tool to sideload apps on other Android devices?
 This program has been designed with WSA in mind, however since it just automates all the ADB commands for you it should be possible to use it on other Android devices or emulators. You may need to change the ADB address for this and I cannot guarantee it will work properly on anything other than WSA.
