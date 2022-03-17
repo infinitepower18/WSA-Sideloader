@@ -33,6 +33,7 @@ body:
       options:
         - GitHub
         - Microsoft Store
+        - PyPi
     validations:
       required: true
   - type: dropdown
