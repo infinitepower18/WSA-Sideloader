@@ -19,7 +19,7 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 3. Download the latest release of WSA Sideloader. You can download it either from [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest) or [Microsoft Store](https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L).
 
-### Already have Python on your computer?
+<b>Already have Python on your computer?</b>
 If you already have Python 3.10 or 3.9 installed, you can download WSA Sideloader from [PyPi](https://pypi.org/project/WSA-Sideloader/) instead. Simply run `pip install WSA-Sideloader` to install it, and `wsa-sideloader` to launch the application.
 
 Please be aware of the following limitations currently on the PyPi version:
