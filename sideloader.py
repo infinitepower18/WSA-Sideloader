@@ -40,6 +40,10 @@ def startstore(): # For Microsoft Store installs
     except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
         main()
 
+def startpypi(): # For PyPi installs
+    global installsource
+    installsource = "PyPi"
+    main()
 
 def start(): # For GitHub installs
     global installsource
