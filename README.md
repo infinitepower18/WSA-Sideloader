@@ -24,7 +24,7 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 If you already have Python 3.10 or 3.9 installed, you can download WSA Sideloader from [PyPi](https://pypi.org/project/WSA-Sideloader/) instead. Simply run `pip install WSA-Sideloader` to install it, and `wsa-sideloader` to launch the application.
 
 Please be aware of the following limitations currently on the PyPi version:
-- Checking for newer versions of WSA Sideloader is not available. It will be added in a future update.
+- Checking for newer versions of WSA Sideloader upon application launch is not available. It will be added in a future update.
 - Currently it's not possible to view the Android SDK platform tools version bundled with the application. I hope to fix this in a future update.
 
 4. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
