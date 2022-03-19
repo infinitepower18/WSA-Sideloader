@@ -42,6 +42,7 @@ body:
       label: Application version
       description:
       options:
+        - 1.1.7
         - 1.1.6
         - 1.1.5
         - 1.1.4
@@ -61,7 +62,7 @@ body:
     id: logs
     attributes:
       label: Log output
-      description: If available, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.log
+      description: For GitHub and MS Store versions, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.log
     validations:
       required: false
   - type: textarea
