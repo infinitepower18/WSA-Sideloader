@@ -8,8 +8,8 @@ import urllib.error
 from jproperties import Properties
 from plyer import notification
 
-version = "1.1.7"
-appver = 1170 # For update checker
+version = "1.1.8"
+appver = 1171 # For update checker
 if os.path.exists('platform-tools/source.properties'): # Get platform tools version for about page
     configs = Properties()
     with open('platform-tools/source.properties','rb') as sdkproperties:
