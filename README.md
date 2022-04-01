@@ -55,6 +55,8 @@ My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run 
 
 Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug or want to make a feature request? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
 
+For email support, [click here](https://forms.gle/Fkbyh7WRX17mQ7dW9).
+
 ## Contributing
 
 Whether it's a bug fix or a new feature, contributions to the project are always welcome! To get started, make sure you have [Python 3.10](https://www.python.org/downloads/windows/) and [Git](https://gitforwindows.org/) installed. Then clone this repo and install the required packages using `pip install -r requirements.txt`.
