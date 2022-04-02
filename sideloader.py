@@ -7,9 +7,11 @@ import urllib
 import urllib.error
 from jproperties import Properties
 from plyer import notification
+import ctypes
 
-version = "1.1.8"
-appver = 1171 # For update checker
+ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
+version = "1.1.9"
+appver = 1172 # For update checker
 if os.path.exists('platform-tools/source.properties'): # Get platform tools version for about page
     configs = Properties()
     with open('platform-tools/source.properties','rb') as sdkproperties:
