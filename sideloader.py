@@ -25,10 +25,10 @@ def startstore(): # For Microsoft Store installs
     global installsource
     installsource = "Microsoft Store"
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver-store.txt")
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion-store.txt")
         for line in file:
-            latestver = int(line.decode("utf-8"))
-        if latestver > appver:
+            latestver = line.decode("utf-8")
+        if parse_version(latestver) > parse_version(appver):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.')],
                 [gui.Button('Update now'),gui.Button('Later')]]
             window = gui.Window('Update available', layout,icon="icon.ico")
