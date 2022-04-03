@@ -12,7 +12,6 @@ from pkg_resources import parse_version
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 version = "1.1.9"
-appver = 1172 # For update checker
 if os.path.exists('platform-tools/source.properties'): # Get platform tools version for about page
     configs = Properties()
     with open('platform-tools/source.properties','rb') as sdkproperties:
@@ -28,7 +27,7 @@ def startstore(): # For Microsoft Store installs
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion-store.txt")
         for line in file:
             latestver = line.decode("utf-8")
-        if parse_version(latestver) > parse_version(appver):
+        if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.')],
                 [gui.Button('Update now'),gui.Button('Later')]]
             window = gui.Window('Update available', layout,icon="icon.ico")
