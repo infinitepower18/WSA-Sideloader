@@ -29,12 +29,16 @@ def startstore(): # For Microsoft Store installs
             latestver = int(line.decode("utf-8"))
         if latestver > appver:
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.')],
-                [gui.Button('OK')]]
+                [gui.Button('Update now'),gui.Button('Later')]]
             window = gui.Window('Update available', layout,icon="icon.ico")
             event, values = window.Read()
             if event is None:
                 sys.exit(0)
-            elif event == "OK":
+            elif event == "Update now":
+                window.Close()
+                webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
+                sys.exit(0)
+            elif event == "Later":
                 window.Close()
                 main()
         else:
