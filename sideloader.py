@@ -8,6 +8,7 @@ import urllib.error
 from jproperties import Properties
 from plyer import notification
 import ctypes
+from pkg_resources import parse_version
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 version = "1.1.9"
@@ -56,10 +57,10 @@ def start(): # For GitHub installs
     global installsource
     installsource = "GitHub"
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestver.txt")
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
         for line in file:
-            latestver = int(line.decode("utf-8"))
-        if latestver > appver:
+            latestver = line.decode("utf-8")
+        if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?')],
                 [gui.Yes(),gui.No()]]
             window = gui.Window('Update available', layout,icon="icon.ico")
