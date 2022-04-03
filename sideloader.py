@@ -50,7 +50,24 @@ def startpypi(): # For PyPi installs
     global installsource
     os.chdir(__file__.strip("sideloader.py"))
     installsource = "PyPi"
-    main()
+    try:
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion-pypi.txt")
+        for line in file:
+            latestver = line.decode("utf-8")
+        if parse_version(latestver) > parse_version(version):
+            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nUpdate using pip to get the latest version.')],
+                [gui.Button('OK')]]
+            window = gui.Window('Update available', layout,icon="icon.ico")
+            event, values = window.Read()
+            if event is None:
+                sys.exit(0)
+            elif event == "OK":
+                window.Close()
+                main()
+        else:
+            main()
+    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
+        main()
 
 def start(): # For GitHub installs
     global installsource
