@@ -36,28 +36,11 @@ body:
         - PyPi
     validations:
       required: true
-  - type: dropdown
+  - type: textarea
     id: version
     attributes:
       label: Application version
-      description:
-      options:
-        - 1.1.9
-        - 1.1.8
-        - 1.1.7
-        - 1.1.6
-        - 1.1.5
-        - 1.1.4
-        - 1.1.3
-        - 1.1.2
-        - 1.1.1
-        - 1.1.0
-        - 1.0.5
-        - 1.0.4
-        - 1.0.3
-        - 1.0.2
-        - 1.0.1
-        - 1.0.0
+      description: You can find the application version by pressing About WSA Sideloader on the main window.
     validations:
       required: true
   - type: textarea
