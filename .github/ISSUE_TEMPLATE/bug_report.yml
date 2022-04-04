@@ -47,7 +47,7 @@ body:
     id: logs
     attributes:
       label: Log output
-      description: For GitHub and MS Store versions, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.log
+      description: For GitHub and MS Store users, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.log. For PyPi users, please copy and paste the console output.
     validations:
       required: false
   - type: textarea
