@@ -21,6 +21,11 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 4. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
 
+## Planned updates
+
+### Double click to install APK from File Explorer
+While this feature is not available currently, I do have the plan to implement it in WSA Sideloader. Right now I cannot say when, and since this is going to involve some registry edits, I'm gonna have to do a lot of testing before I officially release it. Appreciate your patience!
+
 ## FAQ
 
 ### I do not live in the US, how can I download the Windows Subsystem for Android?
