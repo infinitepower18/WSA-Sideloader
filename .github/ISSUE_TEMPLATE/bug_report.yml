@@ -36,7 +36,7 @@ body:
         - PyPi
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: version
     attributes:
       label: Application version
