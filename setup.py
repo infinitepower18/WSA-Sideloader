@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="WSA-Sideloader",
-    version="1.1.7",
+    version="1.1.9",
     author="infinitepower18",
     description="Easily sideload Android apps on Windows Subsystem for Android on Windows 11",
     long_description=long_description,
