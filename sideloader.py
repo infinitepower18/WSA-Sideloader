@@ -17,9 +17,9 @@ def startstore(): # For Microsoft Store installs
     global installsource
     installsource = "Microsoft Store"
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion-store.txt")
-        for line in file:
-            latestver = line.decode("utf-8")
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
+        lines = [line.decode("utf-8") for line in file]
+        latestver = lines[1].rstrip()
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.')],
                 [gui.Button('Update now'),gui.Button('Later')]]
@@ -44,9 +44,9 @@ def startpypi(): # For PyPi installs
     os.chdir(__file__.strip("sideloader.py"))
     installsource = "PyPi"
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion-pypi.txt")
-        for line in file:
-            latestver = line.decode("utf-8")
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
+        lines = [line.decode("utf-8") for line in file]
+        latestver = lines[2].rstrip()
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nUpdate using pip to get the latest version.')],
                 [gui.Button('OK')]]
@@ -67,8 +67,8 @@ def start(): # For GitHub installs
     installsource = "GitHub"
     try:
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
-        for line in file:
-            latestver = line.decode("utf-8")
+        lines = [line.decode("utf-8") for line in file]
+        latestver = lines[0].rstrip()
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?')],
                 [gui.Yes(),gui.No()]]
