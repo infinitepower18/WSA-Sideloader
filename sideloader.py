@@ -12,13 +12,6 @@ from pkg_resources import parse_version
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 version = "1.1.9"
-if os.path.exists('platform-tools/source.properties'): # Get platform tools version for about page
-    configs = Properties()
-    with open('platform-tools/source.properties','rb') as sdkproperties:
-        configs.load(sdkproperties)
-        sdkversion = configs["Pkg.Revision"].data
-else:
-    sdkversion = "Unknown"
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -97,6 +90,15 @@ def start(): # For GitHub installs
     
 
 def main():
+    # Get platform tools version for about page
+    if os.path.exists('platform-tools/source.properties'):
+        configs = Properties()
+        with open('platform-tools/source.properties','rb') as sdkproperties:
+            configs.load(sdkproperties)
+            sdkversion = configs["Pkg.Revision"].data
+    else:
+        sdkversion = "Unknown"
+            
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('Sorry! WSA Sideloader will only run on Windows 11.')],
