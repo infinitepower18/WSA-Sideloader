@@ -45,6 +45,9 @@ If you would like to launch a list of installed apps right from the start menu, 
 ### What's the best place to download APK files?
 My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run by Android Police founder Artem Russakovskii.
 
+### The program does not uninstall correctly.
+Please make sure adb.exe is not running before uninstalling. If it is, stop it via Task Manager.
+
 ## Support
 
 Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug or want to make a feature request? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
