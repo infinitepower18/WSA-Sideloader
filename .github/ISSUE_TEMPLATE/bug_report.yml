@@ -33,7 +33,6 @@ body:
       options:
         - GitHub
         - Microsoft Store
-        - PyPi
     validations:
       required: true
   - type: input
@@ -47,7 +46,7 @@ body:
     id: logs
     attributes:
       label: Log output
-      description: For GitHub and MS Store users, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.log. For PyPi users, please copy and paste the console output.
+      description: If available, please copy and paste the contents of the log file which can be found at %appdata%/WSA_Sideloader.launch.pyw.log.
     validations:
       required: false
   - type: textarea
