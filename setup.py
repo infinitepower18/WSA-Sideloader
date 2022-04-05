@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="WSA-Sideloader",
-    version="1.1.9",
+    version="1.1.9.1",
     author="infinitepower18",
     description="Easily sideload Android apps on Windows Subsystem for Android on Windows 11",
     long_description=long_description,
@@ -15,7 +15,6 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/infinitepower18/WSA-Sideloader/issues",
     },
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: Microsoft :: Windows",

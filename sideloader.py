@@ -11,7 +11,7 @@ import ctypes
 from pkg_resources import parse_version
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
-version = "1.1.9"
+version = "1.1.9.1"
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -56,11 +56,59 @@ def startpypi(): # For PyPi installs
                 sys.exit(0)
             elif event == "OK":
                 window.Close()
-                main()
+                layout = [[gui.Text('Distribution of WSA Sideloader on PyPi has been discontinued.\nTo continue receiving updates, please download WSA Sideloader from either GitHub releases or Microsoft Store.\nApologies for the inconvenience caused.')],
+                [gui.Button('GitHub download'),gui.Button('MS Store download'),gui.Button('Ignore')]]
+                window = gui.Window('Notice', layout,icon="icon.ico")
+                event, values = window.Read()
+                if event is None:
+                    sys.exit(0)
+                elif event == "Ignore":
+                    window.Close()
+                    main()
+                elif event == "GitHub download":
+                    window.Close()
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
+                    sys.exit(0)
+                elif event == "MS Store download":
+                    window.Close()
+                    webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
+                    sys.exit(0)
         else:
-            main()
+                layout = [[gui.Text('Distribution of WSA Sideloader on PyPi has been discontinued.\nTo continue receiving updates, please download WSA Sideloader from either GitHub releases or Microsoft Store.\nApologies for the inconvenience caused.')],
+                [gui.Button('GitHub download'),gui.Button('MS Store download'),gui.Button('Ignore')]]
+                window = gui.Window('Notice', layout,icon="icon.ico")
+                event, values = window.Read()
+                if event is None:
+                    sys.exit(0)
+                elif event == "Ignore":
+                    window.Close()
+                    main()
+                elif event == "GitHub download":
+                    window.Close()
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
+                    sys.exit(0)
+                elif event == "MS Store download":
+                    window.Close()
+                    webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
+                    sys.exit(0)
     except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
-        main()
+                layout = [[gui.Text('Distribution of WSA Sideloader on PyPi has been discontinued.\nTo continue receiving updates, please download WSA Sideloader from either GitHub releases or Microsoft Store.\nApologies for the inconvenience caused.')],
+                [gui.Button('GitHub download'),gui.Button('MS Store download'),gui.Button('Ignore')]]
+                window = gui.Window('Notice', layout,icon="icon.ico")
+                event, values = window.Read()
+                if event is None:
+                    sys.exit(0)
+                elif event == "Ignore":
+                    window.Close()
+                    main()
+                elif event == "GitHub download":
+                    window.Close()
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
+                    sys.exit(0)
+                elif event == "MS Store download":
+                    window.Close()
+                    webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
+                    sys.exit(0)
 
 def start(): # For GitHub installs
     global installsource
