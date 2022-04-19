@@ -25,6 +25,8 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 ### Native ARM64 build (EXPERIMENTAL)
 I plan to release an ARM64 build of WSA Sideloader around the beginning of May, for those using Windows ARM devices. This version will be experimental and is based on a beta version of Python 3.11. The program itself will run natively on ARM devices however the platform tools will have to continue running via x86 emulation for the time being until Google releases an ARM version of the platform tools.
 
+The ARM64 version will only be available via GitHub releases for now. I plan to upload it on Microsoft Store once Python 3.11 goes out of beta.
+
 ### Double click to install APK from File Explorer
 While this feature is not available currently, I do have the plan to implement it in WSA Sideloader. Right now I cannot say when, and since this is going to involve some registry edits, I'm gonna have to do a lot of testing before I officially release it. Appreciate your patience!
 
