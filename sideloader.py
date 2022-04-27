@@ -77,7 +77,7 @@ def main():
         sdkversion = "Unknown"
             
     # Check if OS is Windows 11
-    if int((platform.version().split('.')[2])) < 32000:
+    if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.')],
                 [gui.Exit(),gui.Button("GitHub")]]
         window = gui.Window('Unsupported OS', layout,icon="icon.ico")
