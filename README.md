@@ -40,9 +40,6 @@ Amazon Appstore for WSA is currently not available outside the US, but when you 
 ### Why does it take so long for new updates to be released on Microsoft Store?
 As much as I want the updates released on GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
 
-### Can I use this tool to sideload apps on other Android devices?
-This program has been designed with WSA in mind, however since it just automates all the ADB commands for you it should be possible to use it on other Android devices or emulators. You may need to change the ADB address for this and I cannot guarantee it will work properly on anything other than WSA.
-
 ### I would like to see [feature name] in your program. When can you implement it?
 I am open to suggestions and will try my best to add more relevant features to the program over time. If you have any suggestions you can open an issue with your suggestion. I usually fix bugs and maintain stability of the program before adding more stuff to it so it may take some time.
 
