@@ -96,7 +96,7 @@ def main():
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
             [gui.Text('ADB address:')],
             [gui.Input('127.0.0.1:58526')],
-            [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('About WSA Sideloader')]]
+            [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('Help'),gui.Button('About')]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico")
 
@@ -125,7 +125,21 @@ def main():
                 notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
             else:
                 break
-        if event == "About WSA Sideloader":
+        if event == "Help":
+            window.Hide()
+            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nIt is also recommended you select continuous mode.\nFor more information and support, visit the GitHub page.")],[gui.Button("Back"),gui.Button("GitHub")]]
+            helpWindow = gui.Window('Help',helpLayout,icon="icon.ico")
+            while True:
+                event,values = helpWindow.Read()
+                if event is None:
+                    sys.exit(0)
+                elif event == "Back":
+                    helpWindow.Close()
+                    window.UnHide()
+                    break
+                elif event == "GitHub":
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
+        if event == "About":
             window.Hide()
             abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+sys.version)],[gui.Text("PySimpleGUI version: "+gui.version)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Text("Downloaded from: "+installsource)],[gui.Button("Back"),gui.Button("GitHub")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
