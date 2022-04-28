@@ -1,3 +1,4 @@
 PySimpleGUI==4.59.0
 jproperties==2.1.1
 plyer==2.0.0
+Pillow==9.1.0
