@@ -128,7 +128,7 @@ def main():
                 os.popen('cmd /c "WsaClient /launch wsa://system"')
                 window.Hide()
                 startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
-                startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
+                startingWindow = gui.Window("Message",startingLayout,icon="icon.ico",relative_location=(-500,-350))
                 while True:
                     event,values = startingWindow.Read()
                     if event is None:
@@ -163,7 +163,7 @@ def main():
                     os.popen('cmd /c "WsaClient /launch wsa://system"')
                     window.Hide()
                     startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
-                    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
+                    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico",relative_location=(-500,-350))
                     while True:
                         event,values = startingWindow.Read()
                         if event is None:
