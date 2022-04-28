@@ -39,7 +39,7 @@ body:
     id: version
     attributes:
       label: Application version
-      description: You can find the application version by pressing About WSA Sideloader on the main window.
+      description: You can find the application version by pressing About on the main window.
     validations:
       required: true
   - type: textarea
