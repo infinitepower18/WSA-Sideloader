@@ -9,9 +9,17 @@ from jproperties import Properties
 from plyer import notification
 import ctypes
 from pkg_resources import parse_version
+from button import RoundedButton
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 version = "1.2.0"
+gui.theme("LightGrey")
+gui.theme_background_color("#232020")
+gui.theme_text_element_background_color("#232020")
+gui.theme_text_color("White")
+gui.theme_button_color(('#232020', '#ADD8E6'))
+gui.theme_input_background_color('#ADD8E6')
+gui.theme_input_text_color('#000000')
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -92,12 +100,12 @@ def main():
         window.Close()
 
     # Main window
-    layout = [[gui.Text('Choose APK file to install:')],
-            [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
-            [gui.Button("APK permissions")],
-            [gui.Text('ADB address:')],
+    layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
+            [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
+            [RoundedButton("APK permissions",0.3,font="Calibri 11")],
+            [gui.Text('ADB address:',font="Calibri 11")],
             [gui.Input('127.0.0.1:58526')],
-            [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('Help'),gui.Button('About')]]
+            [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico")
 
@@ -151,7 +159,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
         if event == "About":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.')],[gui.Text("Application version: "+version)],[gui.Text("Python version: "+sys.version)],[gui.Text("PySimpleGUI version: "+gui.version)],[gui.Text("Android SDK platform tools version: "+sdkversion)],[gui.Text("Downloaded from: "+installsource)],[gui.Button("Back"),gui.Button("GitHub")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Python version: "+sys.version,font="Calibri 11")],[gui.Text("PySimpleGUI version: "+gui.version,font="Calibri 11")],[gui.Text("Android SDK platform tools version: "+sdkversion,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
             while True:
                 event,values = abtWindow.Read()
