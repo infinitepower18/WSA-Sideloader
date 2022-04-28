@@ -159,7 +159,7 @@ def main():
                 if process_exists('WsaClient.exe'):
                     break
                 else:
-                    os.popen('cmd /c "WsaClient /launch wsa://system"')
+                    os.popen3('cmd /c "WsaClient /launch wsa://system"')
                     notification.notify(title="WSA is starting",message="Please wait until the starting window closes before trying again.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=10)
         if event == "Help":
             window.Hide()
