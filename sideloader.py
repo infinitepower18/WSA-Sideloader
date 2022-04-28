@@ -39,8 +39,8 @@ def startstore(): # For Microsoft Store installs
         lines = [line.decode("utf-8") for line in file]
         latestver = lines[1].rstrip()
         if parse_version(latestver) > parse_version(version):
-            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.')],
-                [gui.Button('Update now'),gui.Button('Later')]]
+            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.',font=("Calibri",11))],
+                [RoundedButton("Update now",0.3,font="Calibri 11"),RoundedButton("Later",0.3,font="Calibri 11")]]
             window = gui.Window('Update available', layout,icon="icon.ico")
             event, values = window.Read()
             if event is None:
@@ -65,8 +65,8 @@ def start(): # For GitHub installs
         lines = [line.decode("utf-8") for line in file]
         latestver = lines[0].rstrip()
         if parse_version(latestver) > parse_version(version):
-            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?')],
-                [gui.Yes(),gui.No()]]
+            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?',font=("Calibri",11))],
+                [RoundedButton("Yes",0.3,font="Calibri 11"),RoundedButton("No",0.3,font="Calibri 11")]]
             window = gui.Window('Update available', layout,icon="icon.ico")
             event, values = window.Read()
             if event is None:
@@ -96,7 +96,7 @@ def main():
             
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
-        layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.')],
+        layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
                 [gui.Exit(),gui.Button("GitHub")]]
         window = gui.Window('Unsupported OS', layout,icon="icon.ico")
 
@@ -183,7 +183,7 @@ def main():
                             break
         if event == "Help":
             window.Hide()
-            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nIt is also recommended you select continuous mode.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             helpWindow = gui.Window('Help',helpLayout,icon="icon.ico")
             while True:
                 event,values = helpWindow.Read()
@@ -223,7 +223,7 @@ def main():
     # Check if apk installed successfully
     if check.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
-                [gui.Exit(),gui.Button('Install another APK')]]
+                [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
         window = gui.Window('Information', layout,icon="icon.ico")
 
         event, values = window.Read()
