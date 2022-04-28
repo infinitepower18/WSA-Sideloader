@@ -121,7 +121,7 @@ def main():
             else:
                 source_filename = values[0]
                 window.Hide()
-                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                gui.popup_scrolled(os.popen('cmd /c "cd adbfiles & aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
             if process_exists('WsaClient.exe') == False:
@@ -141,7 +141,7 @@ def main():
                 try:
                     address = values[1]
                     address = address.replace(" ", "")
-                    command = os.popen('cmd /c "adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
+                    command = os.popen('cmd /c "cd adbfiles & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
                     output = command.readlines()
                     check = str(output[len(output)-1])
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
@@ -206,7 +206,7 @@ def main():
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
     event, values = window.Read(timeout=0)
-    command = os.popen('cmd /c "adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
+    command = os.popen('cmd /c "cd adbfiles & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
     output = command.readlines()
     check = str(output[len(output)-1])
     window.Close()
