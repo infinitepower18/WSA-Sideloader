@@ -84,16 +84,7 @@ def start(): # For GitHub installs
         main()
     
 
-def main():
-    # Get platform tools version for about page
-    if os.path.exists('platform-tools/source.properties'):
-        configs = Properties()
-        with open('platform-tools/source.properties','rb') as sdkproperties:
-            configs.load(sdkproperties)
-            sdkversion = configs["Pkg.Revision"].data
-    else:
-        sdkversion = "Unknown"
-            
+def main():            
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
@@ -150,7 +141,7 @@ def main():
                 try:
                     address = values[1]
                     address = address.replace(" ", "")
-                    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
+                    command = os.popen('cmd /c "adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
                     output = command.readlines()
                     check = str(output[len(output)-1])
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
@@ -197,7 +188,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
         if event == "About":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Python version: "+sys.version,font="Calibri 11")],[gui.Text("PySimpleGUI version: "+gui.version,font="Calibri 11")],[gui.Text("Android SDK platform tools version: "+sdkversion,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Python version: "+sys.version,font="Calibri 11")],[gui.Text("PySimpleGUI version: "+gui.version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
             while True:
                 event,values = abtWindow.Read()
@@ -215,7 +206,7 @@ def main():
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
     event, values = window.Read(timeout=0)
-    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
+    command = os.popen('cmd /c "adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
     output = command.readlines()
     check = str(output[len(output)-1])
     window.Close()
