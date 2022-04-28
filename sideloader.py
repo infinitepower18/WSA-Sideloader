@@ -12,7 +12,7 @@ from pkg_resources import parse_version
 from button import RoundedButton
 import subprocess
 
-#ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
+#ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware (temp. disabled due to visual bugs)
 version = "1.2.0"
 gui.theme("LightGrey")
 gui.theme_background_color("#232020")
@@ -135,7 +135,17 @@ def main():
         if event == "Installed apps": # Launch apps list of com.android.settings
             if process_exists('WsaClient.exe') == False:
                 os.popen('cmd /c "WsaClient /launch wsa://system"')
-                notification.notify(title="WSA is starting",message="Please wait until the starting window closes before trying again.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=10)
+                window.Hide()
+                startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
+                startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
+                while True:
+                    event,values = startingWindow.Read()
+                    if event is None:
+                        sys.exit(0)
+                    elif event == "OK":
+                        startingWindow.Close()
+                        window.UnHide()
+                        break
             else:
                 try:
                     address = values[1]
@@ -160,7 +170,17 @@ def main():
                     break
                 else:
                     os.popen('cmd /c "WsaClient /launch wsa://system"')
-                    notification.notify(title="WSA is starting",message="Please wait until the starting window closes before trying again.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=10)
+                    window.Hide()
+                    startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
+                    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
+                    while True:
+                        event,values = startingWindow.Read()
+                        if event is None:
+                            sys.exit(0)
+                        elif event == "OK":
+                            startingWindow.Close()
+                            window.UnHide()
+                            break
         if event == "Help":
             window.Hide()
             helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nIt is also recommended you select continuous mode.\nFor more information and support, visit the GitHub page.")],[gui.Button("Back"),gui.Button("GitHub")]]
