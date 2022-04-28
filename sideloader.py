@@ -11,7 +11,7 @@ import ctypes
 from pkg_resources import parse_version
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
-version = "1.1.10"
+version = "1.2.0"
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -94,6 +94,7 @@ def main():
     # Main window
     layout = [[gui.Text('Choose APK file to install:')],
             [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),))],
+            [gui.Button("APK permissions")],
             [gui.Text('ADB address:')],
             [gui.Input('127.0.0.1:58526')],
             [gui.Button('Install'),gui.Button('Installed apps'),gui.Button('Help'),gui.Button('About')]]
@@ -104,6 +105,15 @@ def main():
         event, values = window.Read()
         if event is None:
             sys.exit(0)
+        if event == "APK permissions":
+            source_filename = values[0]
+            if os.path.exists(source_filename) == False:
+                notification.notify(title="Cannot get permissions",message="APK file not found.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+            else:
+                source_filename = values[0]
+                window.Hide()
+                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
             try:
                 address = values[1]
