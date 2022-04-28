@@ -183,7 +183,7 @@ def main():
                             break
         if event == "Help":
             window.Hide()
-            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nIt is also recommended you select continuous mode.\nFor more information and support, visit the GitHub page.")],[gui.Button("Back"),gui.Button("GitHub")]]
+            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nIt is also recommended you select continuous mode.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             helpWindow = gui.Window('Help',helpLayout,icon="icon.ico")
             while True:
                 event,values = helpWindow.Read()
@@ -212,7 +212,7 @@ def main():
 
     window.Close()
 
-    layout = [[gui.Text('Installing application, please wait...')]]
+    layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
     event, values = window.Read(timeout=0)
     command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
@@ -222,7 +222,7 @@ def main():
     
     # Check if apk installed successfully
     if check.startswith("Success"):
-        layout = [[gui.Text('The application has been successfully installed.')],
+        layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
                 [gui.Exit(),gui.Button('Install another APK')]]
         window = gui.Window('Information', layout,icon="icon.ico")
 
@@ -233,8 +233,8 @@ def main():
         else:
             sys.exit(0)
     else:
-        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered')],
-                [gui.Button('OK'),gui.Button('Report a bug')]]
+        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered',font=("Calibri",11))],
+                [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("Report a bug",0.3,font="Calibri 11")]]
         window = gui.Window('Error', layout,icon="icon.ico")
 
         event, values = window.Read()
