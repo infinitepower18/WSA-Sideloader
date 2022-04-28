@@ -10,6 +10,7 @@ from plyer import notification
 import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
+import subprocess
 
 #ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 version = "1.2.0"
@@ -20,6 +21,15 @@ gui.theme_text_color("White")
 gui.theme_button_color(('#232020', '#ADD8E6'))
 gui.theme_input_background_color('#ADD8E6')
 gui.theme_input_text_color('#000000')
+
+def process_exists(process_name):
+    call = 'TASKLIST', '/FI', 'imagename eq %s' % process_name
+    # use buildin check_output right away
+    output = subprocess.check_output(call).decode()
+    # check in last line for process name
+    last_line = output.strip().split('\r\n')[-1]
+    # because Fail message could be translated
+    return last_line.lower().startswith(process_name.lower())
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -123,18 +133,22 @@ def main():
                 gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
-            try:
-                address = values[1]
-                address = address.replace(" ", "")
-                command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
-                output = command.readlines()
-                check = str(output[len(output)-1])
-                if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
-                    pass
-                else:
-                    notification.notify(title="Failed to perform operation",message="Please check that WSA is running and the correct ADB address has been entered.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
-            except IndexError:
-                notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+            if process_exists('WsaClient.exe') == False:
+                os.popen('cmd /c "WsaClient /launch wsa://system"')
+                notification.notify(title="WSA is starting",message="Please wait until the starting window closes before trying again.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=10)
+            else:
+                try:
+                    address = values[1]
+                    address = address.replace(" ", "")
+                    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
+                    output = command.readlines()
+                    check = str(output[len(output)-1])
+                    if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
+                        pass
+                    else:
+                        notification.notify(title="Failed to perform operation",message="Please check that WSA is running and the correct ADB address has been entered.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+                except IndexError:
+                    notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
         if event == "Install":
             source_filename = values[0]
             address = values[1]
@@ -142,7 +156,11 @@ def main():
             if address == "":
                 notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
             else:
-                break
+                if process_exists('WsaClient.exe'):
+                    break
+                else:
+                    os.popen('cmd /c "WsaClient /launch wsa://system"')
+                    notification.notify(title="WSA is starting",message="Please wait until the starting window closes before trying again.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=10)
         if event == "Help":
             window.Hide()
             helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nIt is also recommended you select continuous mode.\nFor more information and support, visit the GitHub page.")],[gui.Button("Back"),gui.Button("GitHub")]]
