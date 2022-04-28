@@ -11,7 +11,7 @@ import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
 
-ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
+#ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 version = "1.2.0"
 gui.theme("LightGrey")
 gui.theme_background_color("#232020")
