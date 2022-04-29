@@ -5,15 +5,15 @@ import webbrowser
 import sys
 import urllib
 import urllib.error
-from jproperties import Properties
 from plyer import notification
 import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
-import subprocess
 
 #ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware (temp. disabled due to visual bugs)
+
 version = "1.2.0"
+
 gui.theme("LightGrey")
 gui.theme_background_color("#232020")
 gui.theme_text_element_background_color("#232020")
@@ -21,15 +21,6 @@ gui.theme_text_color("White")
 gui.theme_button_color(('#232020', '#ADD8E6'))
 gui.theme_input_background_color('#ADD8E6')
 gui.theme_input_text_color('#000000')
-
-def process_exists(process_name):
-    call = 'TASKLIST', '/FI', 'imagename eq %s' % process_name
-    # use buildin check_output right away
-    output = subprocess.check_output(call).decode()
-    # check in last line for process name
-    last_line = output.strip().split('\r\n')[-1]
-    # because Fail message could be translated
-    return last_line.lower().startswith(process_name.lower())
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -124,7 +115,9 @@ def main():
                 gui.popup_scrolled(os.popen('cmd /c "cd adbfiles & aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
-            if process_exists('WsaClient.exe') == False:
+            autostart = os.popen('cmd /c "tasklist"')
+            startoutput = str(autostart.readlines())
+            if "WsaClient.exe" not in startoutput:
                 os.popen('cmd /c "WsaClient /launch wsa://system"')
                 window.Hide()
                 startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
@@ -157,7 +150,9 @@ def main():
             if address == "":
                 notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
             else:
-                if process_exists('WsaClient.exe'):
+                autostart = os.popen('cmd /c "tasklist"')
+                startoutput = str(autostart.readlines())
+                if "WsaClient.exe" in startoutput:
                     break
                 else:
                     os.popen('cmd /c "WsaClient /launch wsa://system"')
