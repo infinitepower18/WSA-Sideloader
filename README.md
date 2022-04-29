@@ -6,17 +6,17 @@
 # WSA Sideloader
 Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
-![image](https://user-images.githubusercontent.com/44692189/165562940-2a16fbb3-0887-400b-a628-83af1542cdae.png)
+![image](https://user-images.githubusercontent.com/44692189/165937751-baf5c32d-ee57-4568-a9f4-db8ab70215c0.png)
 
 ## Getting started
 
 1. Make sure you have Windows Subsystem for Android installed on your Windows 11 machine. If you don't already have it, download it from [here](https://aka.ms/AmazonAppstore). You don't need to use the Amazon Appstore, however don't uninstall it as it will remove the subsystem.
 
-2. Enable developer mode in WSA settings. It is also recommended you enable continuous mode, WSA Sideloader requires the subsystem to be running while sideloading apps.
+2. Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
 ![image](https://user-images.githubusercontent.com/44692189/154768380-f0b01ed7-e622-4fdd-8eb7-bf1c758f8103.png)
 
-3. Download the latest release of WSA Sideloader. You can download it from either [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest) or [Microsoft Store](https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L). **ARM64 version is currently experimental. Please [click here](https://github.com/infinitepower18/WSA-Sideloader/discussions/27) for more information**
+3. Download the latest release of WSA Sideloader. You can download it from either [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest) or [Microsoft Store](https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L).
 
 4. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
 
@@ -27,8 +27,11 @@ While this feature is not available currently, I do have the plan to implement i
 
 ## Known issues
 
-### ARM64 installer defaulting to Program Files (x86) folder when selecting Install for all users
-Until this issue is fixed, you can manually change the directory to the normal Program Files folder.
+### Text not clear depending on display scaling settings
+DPI awareness is temporarily disabled due to a visual bug. I hope to fix this issue in a future update.
+
+### No new ARM64 builds
+No new builds will be released until further notice.
 
 ## FAQ
 
