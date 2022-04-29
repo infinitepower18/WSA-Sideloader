@@ -31,7 +31,7 @@ While this feature is not available currently, I do have the plan to implement i
 DPI awareness is temporarily disabled due to a visual bug. I hope to fix this issue in a future update.
 
 ### No new ARM64 builds
-No new builds will be released until further notice.
+No new builds will be released until further notice. More details can be found [here](https://github.com/infinitepower18/WSA-Sideloader/discussions/30).
 
 ## FAQ
 
