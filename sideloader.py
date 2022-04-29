@@ -38,7 +38,7 @@ def startstore(): # For Microsoft Store installs
                 sys.exit(0)
             elif event == "Update now":
                 window.Close()
-                webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
+                webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L&mode=mini",2)
                 sys.exit(0)
             elif event == "Later":
                 window.Close()
