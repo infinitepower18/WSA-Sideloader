@@ -9,18 +9,22 @@ from plyer import notification
 import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
+import darkdetect
 
 #ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware (temp. disabled due to visual bugs)
 
 version = "1.2.0"
 
-gui.theme("LightGrey")
-gui.theme_background_color("#232020")
-gui.theme_text_element_background_color("#232020")
-gui.theme_text_color("White")
-gui.theme_button_color(('#232020', '#ADD8E6'))
-gui.theme_input_background_color('#ADD8E6')
-gui.theme_input_text_color('#000000')
+if darkdetect.isDark():
+    gui.theme("LightGrey")
+    gui.theme_background_color("#232020")
+    gui.theme_text_element_background_color("#232020")
+    gui.theme_text_color("White")
+    gui.theme_button_color(('#232020', '#ADD8E6'))
+    gui.theme_input_background_color('#ADD8E6')
+    gui.theme_input_text_color('#000000')
+else:
+    gui.theme("LightGrey")
 
 def startstore(): # For Microsoft Store installs
     global installsource
@@ -38,7 +42,7 @@ def startstore(): # For Microsoft Store installs
                 sys.exit(0)
             elif event == "Update now":
                 window.Close()
-                webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L&mode=mini",2)
+                webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
                 sys.exit(0)
             elif event == "Later":
                 window.Close()
