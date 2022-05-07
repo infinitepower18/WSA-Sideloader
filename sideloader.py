@@ -212,12 +212,18 @@ def main():
     
     # Check if apk installed successfully
     if check.startswith("Success"):
-        layout = [[gui.Text('The application has been successfully installed.\nYou can launch the installed app via the Start menu.',font=("Calibri",11))],
-                [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
+        layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
+                [RoundedButton("Open app",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
         window = gui.Window('Information', layout,icon="icon.ico")
 
         event, values = window.Read()
-        if event == "Install another APK":
+        if event == "Open app":
+            getpackage = os.popen('cmd /c "cd adbfiles & aapt d permissions "'+source_filename+'""')
+            pkgoutput = getpackage.readlines()
+            pkgname = str(pkgoutput[0])
+            webbrowser.open("wsa://"+pkgname[9:],2)
+            sys.exit(0)
+        elif event == "Install another APK":
             window.Close()
             main()
         else:
