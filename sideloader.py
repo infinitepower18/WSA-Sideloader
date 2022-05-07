@@ -212,7 +212,7 @@ def main():
     
     # Check if apk installed successfully
     if check.startswith("Success"):
-        layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
+        layout = [[gui.Text('The application has been successfully installed.\nYou can launch the installed app via the Start menu.',font=("Calibri",11))],
                 [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
         window = gui.Window('Information', layout,icon="icon.ico")
 
