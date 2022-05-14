@@ -31,6 +31,11 @@ if darkdetect.isDark():
 else:
     gui.theme("LightGrey")
 
+def startgit():
+    global installsource
+    installsource = "GitHub (via git clone)"
+    main()
+    
 def startstore(): # For Microsoft Store installs
     global installsource
     installsource = "Microsoft Store"
@@ -250,4 +255,4 @@ def main():
             sys.exit(0)
 
 if __name__ == '__main__':
-    start()
+    startgit()
