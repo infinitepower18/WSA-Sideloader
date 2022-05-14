@@ -12,7 +12,7 @@ from button import RoundedButton
 import darkdetect
 
 # Block usage on non Windows OS
-if(os.name != "nt"):
+if(platform.system() != "Windows"):
     print("This operating system is not supported.")
     sys.exit(0)
 
@@ -88,6 +88,22 @@ def start(): # For GitHub installs
     except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
         main()
     
+def adbEmpty():
+    notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+
+def startWSA(window): # Start subsystem if not running
+    os.popen('cmd /c "WsaClient /launch wsa://system"')
+    window.Hide()
+    startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
+    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
+    while True:
+        event,values = startingWindow.Read()
+        if event is None:
+            sys.exit(0)
+        elif event == "OK":
+            startingWindow.Close()
+            window.UnHide()
+            break
 
 def main():
     # Check if OS is Windows 11
@@ -132,18 +148,7 @@ def main():
             autostart = os.popen('cmd /c "tasklist"')
             startoutput = str(autostart.readlines())
             if "WsaClient.exe" not in startoutput:
-                os.popen('cmd /c "WsaClient /launch wsa://system"')
-                window.Hide()
-                startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
-                startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
-                while True:
-                    event,values = startingWindow.Read()
-                    if event is None:
-                        sys.exit(0)
-                    elif event == "OK":
-                        startingWindow.Close()
-                        window.UnHide()
-                        break
+                startWSA(window)
             else:
                 try:
                     address = values[1]
@@ -156,31 +161,20 @@ def main():
                     else:
                         notification.notify(title="Failed to perform operation",message="Please check that WSA is running and the correct ADB address has been entered.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
                 except IndexError:
-                    notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+                    adbEmpty()
         if event == "Install":
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
             if address == "":
-                notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+                adbEmpty()
             else:
                 autostart = os.popen('cmd /c "tasklist"')
                 startoutput = str(autostart.readlines())
                 if "WsaClient.exe" in startoutput:
                     break
                 else:
-                    os.popen('cmd /c "WsaClient /launch wsa://system"')
-                    window.Hide()
-                    startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
-                    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
-                    while True:
-                        event,values = startingWindow.Read()
-                        if event is None:
-                            sys.exit(0)
-                        elif event == "OK":
-                            startingWindow.Close()
-                            window.UnHide()
-                            break
+                    startWSA(window)
         if event == "Help":
             window.Hide()
             helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
