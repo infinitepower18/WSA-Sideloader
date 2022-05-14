@@ -11,6 +11,11 @@ from pkg_resources import parse_version
 from button import RoundedButton
 import darkdetect
 
+# Block usage on non Windows OS
+if(os.name != "nt"):
+    print("This operating system is not supported.")
+    sys.exit(0)
+
 #ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware (temp. disabled due to visual bugs)
 
 version = "1.2.1"
@@ -79,7 +84,7 @@ def start(): # For GitHub installs
         main()
     
 
-def main():            
+def main():
     # Check if OS is Windows 11
     if int((platform.version().split('.')[2])) < 22000:
         layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
