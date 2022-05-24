@@ -107,7 +107,7 @@ def startWSA(window): # Start subsystem if not running
 
 def main():
     # Check if OS is Windows 11
-    if int((platform.version().split('.')[2])) < 22000:
+    if int(platform.win32_ver()[1].split('.')[2]) < 22000:
         layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
                 [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
         window = gui.Window('Unsupported OS', layout,icon="icon.ico")
