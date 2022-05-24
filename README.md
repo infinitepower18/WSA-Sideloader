@@ -38,7 +38,7 @@ No new builds will be released until further notice. More details can be found [
 ### I do not live in the US, how can I download the Windows Subsystem for Android?
 Change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
 
-Amazon Appstore for WSA is currently not available outside the US, but when you have WSA Sideloader what's the need of the appstore? :)
+Amazon Appstore for WSA is currently not available outside the US, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, Italy and Japan by the end of this year.
 
 ### Why does it take so long for new updates to be released on Microsoft Store?
 As much as I want the updates released on GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
