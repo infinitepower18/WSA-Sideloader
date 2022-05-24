@@ -63,8 +63,6 @@ Need help using WSA Sideloader? Post in the project's [discussions tab](https://
 
 For email support, [click here](https://forms.gle/Fkbyh7WRX17mQ7dW9).
 
-I am not able to respond to reviews posted on the Microsoft Store at the moment (no option to reply) so please use the above methods if you need assistance.
-
 ## Contributing
 
 Whether it's a bug fix or a new feature, contributions to the project are always welcome! To get started, make sure you have [Python 3.10](https://www.python.org/downloads/windows/) and [Git](https://gitforwindows.org/) installed. Then clone this repo and install the required packages using `pip install -r requirements.txt`.
