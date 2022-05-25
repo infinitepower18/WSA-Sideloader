@@ -66,6 +66,12 @@ Need help using WSA Sideloader? Post in the project's [discussions tab](https://
 
 For email support, [click here](https://forms.gle/Fkbyh7WRX17mQ7dW9).
 
+## Privacy Policy
+
+Please [click here](https://github.com/infinitepower18/WSA-Sideloader/blob/main/PrivacyPolicy.md) to view the privacy policy.
+
+TLDR - No information is collected by this application.
+
 ## Contributing
 
 Whether it's a bug fix or a new feature, contributions to the project are always welcome! To get started, make sure you have [Python 3.10](https://www.python.org/downloads/windows/) and [Git](https://gitforwindows.org/) installed. Then clone this repo and install the required packages using `pip install -r requirements.txt`.
