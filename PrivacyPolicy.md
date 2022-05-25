@@ -5,4 +5,4 @@ WSA Sideloader requires access to your files in order for the "Browse Files" fun
 
 Network functionality is only used to check for the latest WSA Sideloader version upon application launch. Your current version is not collected or transmitted, the application simply checks a text file online containing the latest version number and compares it to the current version number.
 
-Source code is available if you want to see how the application works. Should you have any questions please contact me at https://forms.gle/Fkbyh7WRX17mQ7dW9
+Source code is available if you want to take a look at how the application works. Should you have any questions regarding this policy, please contact me at https://forms.gle/Fkbyh7WRX17mQ7dW9
