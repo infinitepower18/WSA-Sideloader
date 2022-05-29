@@ -8,6 +8,14 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 ![image](https://user-images.githubusercontent.com/44692189/165937751-baf5c32d-ee57-4568-a9f4-db8ab70215c0.png)
 
+## Download
+
+<p><a href="https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L">
+<img src="https://getbadgecdn.azureedge.net/images/English_L.png" width="216" height="78">
+</a></p>
+
+Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sideloader/releases).
+                
 ## Getting started
 
 1. Make sure you have Windows Subsystem for Android installed on your Windows 11 machine. If you don't already have it, download it from [here](https://aka.ms/AmazonAppstore). You don't need to use the Amazon Appstore, however don't uninstall it as it will remove the subsystem.
@@ -16,9 +24,7 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
 ![image](https://user-images.githubusercontent.com/44692189/154768380-f0b01ed7-e622-4fdd-8eb7-bf1c758f8103.png)
 
-3. Download the latest release of WSA Sideloader. You can download it from either [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest) or [Microsoft Store](https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L).
-
-4. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
+3. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
 
 ## Planned updates
 
