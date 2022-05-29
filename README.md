@@ -14,7 +14,7 @@ Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 <img src="https://getbadgecdn.azureedge.net/images/English_L.png" width="216" height="78">
 </a></p>
 
-Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sideloader/releases).
+Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest).
                 
 ## Getting started
 
