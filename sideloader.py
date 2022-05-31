@@ -123,10 +123,10 @@ def main():
 
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
-            [gui.Input(),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
-            [RoundedButton("APK permissions",0.3,font="Calibri 11")],
+            [gui.Input(font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
+            [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
             [gui.Text('ADB address:',font="Calibri 11")],
-            [gui.Input('127.0.0.1:58526')],
+            [gui.Input('127.0.0.1:58526',font="Calibri 11")],
             [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico")
@@ -135,7 +135,7 @@ def main():
         event, values = window.Read()
         if event is None:
             sys.exit(0)
-        if event == "APK permissions":
+        if event == "View APK permissions":
             source_filename = values[0]
             if os.path.exists(source_filename) == False:
                 notification.notify(title="Cannot get permissions",message="APK file not found.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
