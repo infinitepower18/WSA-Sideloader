@@ -18,7 +18,7 @@ if(platform.system() != "Windows"):
 
 #ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware (temp. disabled due to visual bugs)
 
-version = "1.2.1"
+version = "1.3.0"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
