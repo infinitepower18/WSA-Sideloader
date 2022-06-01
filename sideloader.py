@@ -34,6 +34,22 @@ else:
 def startgit():
     global installsource
     installsource = "GitHub (via git clone)"
+    
+    # Check if OS is Windows 11
+    if int(platform.win32_ver()[1].split('.')[2]) < 22000:
+        layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
+                [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+        window = gui.Window('Unsupported OS', layout,icon="icon.ico")
+
+        event, values = window.Read()
+        if event == "GitHub":
+            window.Close()
+            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/",2)
+            sys.exit(0)
+        elif event is None or "Exit":
+            sys.exit(0)
+        window.Close()
+        
     main()
     
 def startstore(): # For Microsoft Store installs
@@ -106,21 +122,6 @@ def startWSA(window): # Start subsystem if not running
             break
 
 def main():
-    # Check if OS is Windows 11
-    if int(platform.win32_ver()[1].split('.')[2]) < 22000:
-        layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
-                [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
-        window = gui.Window('Unsupported OS', layout,icon="icon.ico")
-
-        event, values = window.Read()
-        if event == "GitHub":
-            window.Close()
-            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/",2)
-            sys.exit(0)
-        elif event is None or "Exit":
-            sys.exit(0)
-        window.Close()
-
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
