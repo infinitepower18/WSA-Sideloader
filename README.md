@@ -28,7 +28,7 @@ Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sidel
 
 ## Planned updates
 
-### Double click to install APK from File Explorer
+### .apk file association
 I am happy to announce the implementation of this feature is now complete and working! I will run some final tests over the next few days before releasing version 1.3 which will include .apk file association.
 
 ## Known issues
