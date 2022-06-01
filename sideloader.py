@@ -34,6 +34,8 @@ else:
 def startgit():
     global installsource
     installsource = "GitHub (via git clone)"
+    global explorerfile
+    explorerfile = ""
     
     # Check if OS is Windows 11
     if int(platform.win32_ver()[1].split('.')[2]) < 22000:
@@ -52,9 +54,11 @@ def startgit():
         
     main()
     
-def startstore(): # For Microsoft Store installs
+def startstore(filearg = ""): # For Microsoft Store installs
     global installsource
     installsource = "Microsoft Store"
+    global explorerfile
+    explorerfile = filearg
     try:
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
         lines = [line.decode("utf-8") for line in file]
@@ -78,9 +82,11 @@ def startstore(): # For Microsoft Store installs
     except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
         main()
 
-def start(): # For GitHub installs
+def start(filearg = ""): # For GitHub installs
     global installsource
     installsource = "GitHub"
+    global explorerfile
+    explorerfile = filearg
     try:
         file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
         lines = [line.decode("utf-8") for line in file]
@@ -124,7 +130,7 @@ def startWSA(window): # Start subsystem if not running
 def main():
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
-            [gui.Input(font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
+            [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
             [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
             [gui.Text('ADB address:',font="Calibri 11")],
             [gui.Input('127.0.0.1:58526',font="Calibri 11")],
