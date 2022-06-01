@@ -29,7 +29,7 @@ Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sidel
 ## Planned updates
 
 ### Double click to install APK from File Explorer
-While this feature is not available currently, I do have the plan to implement it in WSA Sideloader. Right now I cannot say when, and since this is going to involve some registry edits, I'm gonna have to do a lot of testing before I officially release it. Appreciate your patience!
+I am happy to announce the implementation of this feature is now complete and working! I will run some final tests over the next few days before releasing version 1.3 which will include .apk file association.
 
 ## Known issues
 
