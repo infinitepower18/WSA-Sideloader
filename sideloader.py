@@ -5,7 +5,7 @@ import webbrowser
 import sys
 import urllib
 import urllib.error
-from plyer import notification
+from windows_toasts import WindowsToaster, ToastText3
 import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
@@ -17,6 +17,7 @@ if(platform.system() != "Windows"):
     sys.exit(0)
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
+wintoaster = WindowsToaster('WSA Sideloader')
 
 version = "1.3.0"
 
@@ -111,7 +112,10 @@ def start(filearg = ""): # For GitHub installs
         main()
     
 def adbEmpty():
-    notification.notify(title="Please enter an ADB address",message="ADB address cannot be empty.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+    adbEmptyToast = ToastText3()
+    adbEmptyToast.SetHeadline("Please enter an ADB address")
+    adbEmptyToast.SetFirstLine("ADB address cannot be empty.")
+    wintoaster.show_toast(adbEmptyToast)
 
 def startWSA(window): # Start subsystem if not running
     os.popen('cmd /c "WsaClient /launch wsa://system"')
@@ -145,7 +149,10 @@ def main():
         if event == "View APK permissions":
             source_filename = values[0]
             if os.path.exists(source_filename) == False:
-                notification.notify(title="Cannot get permissions",message="APK file not found.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+                permError = ToastText3()
+                permError.SetHeadline("Cannot get permissions")
+                permError.SetFirstLine("APK file not found.")
+                wintoaster.show_toast(permError)
             else:
                 source_filename = values[0]
                 window.Hide()
@@ -166,7 +173,10 @@ def main():
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                         pass
                     else:
-                        notification.notify(title="Failed to perform operation",message="Please check that WSA is running and the correct ADB address has been entered.", app_name="WSA Sideloader",app_icon="icon.ico",timeout=5)
+                        instAppsError = ToastText3()
+                        instAppsError.SetHeadline("Failed to perform operation")
+                        instAppsError.SetFirstLine("Please check that WSA is running and the correct ADB address has been entered.")
+                        wintoaster.show_toast(instAppsError)
                 except IndexError:
                     adbEmpty()
         if event == "Install":
