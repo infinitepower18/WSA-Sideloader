@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw
 from PySimpleGUI import Button, BUTTON_TYPE_READ_FORM, FILE_TYPES_ALL_FILES, theme_background_color, theme_button_color
 import io
+import ctypes
 from base64 import b64encode
 
 def RoundedButton(button_text=' ', corner_radius=0, button_type=BUTTON_TYPE_READ_FORM, target=(None, None),
@@ -12,7 +13,7 @@ def RoundedButton(button_text=' ', corner_radius=0, button_type=BUTTON_TYPE_READ
                   pad=None, key=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, 
                   metadata=None):
     if None in size:
-        multi = 4
+        multi = int(4 * (ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100))
         size = (((len(button_text) if size[0] is None else size[0]) * 5 + 20) * multi,
                 20 * multi if size[1] is None else size[1])
     if button_color is None:

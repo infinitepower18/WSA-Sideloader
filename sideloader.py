@@ -16,7 +16,7 @@ if(platform.system() != "Windows"):
     print("This operating system is not supported.")
     sys.exit(0)
 
-#ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware (temp. disabled due to visual bugs)
+ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
 version = "1.3.0"
 
