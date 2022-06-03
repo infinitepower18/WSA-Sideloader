@@ -271,3 +271,5 @@ if __name__ == '__main__':
         startgit(sys.argv[1])
     else:
         startgit()
+
+# Command for compiling to exe: nuitka --standalone sideloader.py --enable-plugin=pyqt5 --enable-plugin=tk-inter --windows-disable-console
