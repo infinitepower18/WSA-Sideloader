@@ -266,4 +266,8 @@ def main():
             sys.exit(0)
 
 if __name__ == '__main__':
-    startgit()
+    os.chdir(os.path.dirname(__file__))
+    if len(sys.argv) >1:
+        startgit(sys.argv[1])
+    else:
+        startgit()

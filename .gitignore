@@ -1,2 +1,4 @@
 build/
 __pycache__/
+sideloader.build/
+sideloader.dist/
