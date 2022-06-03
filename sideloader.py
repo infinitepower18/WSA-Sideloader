@@ -273,3 +273,4 @@ if __name__ == '__main__':
         startgit()
 
 # Command for compiling to exe: nuitka --standalone sideloader.py --enable-plugin=pyqt5 --enable-plugin=tk-inter --windows-disable-console
+# Add icon.ico and adbfiles folder inside generated sideloader.dist folder
