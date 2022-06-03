@@ -61,7 +61,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
     global explorerfile
     explorerfile = filearg
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion")
         lines = [line.decode("utf-8") for line in file]
         latestver = lines[1].rstrip()
         if parse_version(latestver) > parse_version(version):
@@ -89,7 +89,7 @@ def start(filearg = ""): # For GitHub installs
     global explorerfile
     explorerfile = filearg
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion.txt")
+        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion")
         lines = [line.decode("utf-8") for line in file]
         latestver = lines[0].rstrip()
         if parse_version(latestver) > parse_version(version):
