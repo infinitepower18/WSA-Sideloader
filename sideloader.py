@@ -32,11 +32,11 @@ if darkdetect.isDark():
 else:
     gui.theme("LightGrey")
 
-def startgit():
+def startgit(filearg = ""):
     global installsource
     installsource = "GitHub (via git clone)"
     global explorerfile
-    explorerfile = ""
+    explorerfile = filearg
     
     # Check if OS is Windows 11
     if int(platform.win32_ver()[1].split('.')[2]) < 22000:
