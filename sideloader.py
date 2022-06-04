@@ -208,7 +208,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
         if event == "About":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Python version: "+sys.version,font="Calibri 11")],[gui.Text("PySimpleGUI version: "+gui.version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
             while True:
                 event,values = abtWindow.Read()
@@ -271,6 +271,3 @@ if __name__ == '__main__':
         startgit(sys.argv[1])
     else:
         startgit()
-
-# Command for compiling to exe: nuitka --standalone sideloader.py --enable-plugin=pyqt5 --enable-plugin=tk-inter --windows-disable-console
-# Add icon.ico and adbfiles folder inside generated sideloader.dist folder
