@@ -6,7 +6,7 @@
 # WSA Sideloader
 Easily sideload Android apps on Windows Subsystem for Android on Windows 11.
 
-![image](https://user-images.githubusercontent.com/44692189/165937751-baf5c32d-ee57-4568-a9f4-db8ab70215c0.png)
+![image](https://user-images.githubusercontent.com/44692189/172241903-a66b7d9f-0692-4178-81e4-561e3978ed9b.png)
 
 ## Download
 
@@ -24,17 +24,9 @@ Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sidel
 
 ![image](https://user-images.githubusercontent.com/44692189/154768380-f0b01ed7-e622-4fdd-8eb7-bf1c758f8103.png)
 
-3. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address.
-
-## Planned updates
-
-### .apk file association
-I am happy to announce the implementation of this feature is now complete and working! I will run some final tests over the next few days before releasing version 1.3 which will include .apk file association.
+3. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs.
 
 ## Known issues
-
-### Text not clear depending on display scaling settings
-DPI awareness is temporarily disabled due to a visual bug. I hope to fix this issue in a future update.
 
 ### No new ARM64 builds
 No new builds will be released until further notice. More details can be found [here](https://github.com/infinitepower18/WSA-Sideloader/discussions/30).
