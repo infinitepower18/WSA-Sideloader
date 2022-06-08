@@ -42,7 +42,7 @@ def startgit(filearg = ""):
     if int(platform.win32_ver()[1].split('.')[2]) < 22000:
         layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
                 [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
-        window = gui.Window('Unsupported OS', layout,icon="icon.ico")
+        window = gui.Window('Unsupported OS', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
         if event == "GitHub":
@@ -67,7 +67,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.',font=("Calibri",11))],
                 [RoundedButton("Update now",0.3,font="Calibri 11"),RoundedButton("Later",0.3,font="Calibri 11")]]
-            window = gui.Window('Update available', layout,icon="icon.ico")
+            window = gui.Window('Update available', layout,icon="icon.ico",debugger_enabled=False)
             event, values = window.Read()
             if event is None:
                 sys.exit(0)
@@ -95,7 +95,7 @@ def start(filearg = ""): # For GitHub installs
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?',font=("Calibri",11))],
                 [RoundedButton("Yes",0.3,font="Calibri 11"),RoundedButton("No",0.3,font="Calibri 11")]]
-            window = gui.Window('Update available', layout,icon="icon.ico")
+            window = gui.Window('Update available', layout,icon="icon.ico",debugger_enabled=False)
             event, values = window.Read()
             if event is None:
                 sys.exit(0)
@@ -121,7 +121,7 @@ def startWSA(window): # Start subsystem if not running
     os.popen('cmd /c "WsaClient /launch wsa://system"')
     window.Hide()
     startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
-    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico")
+    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico",debugger_enabled=False)
     while True:
         event,values = startingWindow.Read()
         if event is None:
@@ -140,7 +140,7 @@ def main():
             [gui.Input('127.0.0.1:58526',font="Calibri 11")],
             [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")]]
 
-    window = gui.Window('WSA Sideloader', layout,icon="icon.ico")
+    window = gui.Window('WSA Sideloader', layout,icon="icon.ico",debugger_enabled=False)
 
     while True:
         event, values = window.Read()
@@ -195,7 +195,7 @@ def main():
         if event == "Help":
             window.Hide()
             helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
-            helpWindow = gui.Window('Help',helpLayout,icon="icon.ico")
+            helpWindow = gui.Window('Help',helpLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = helpWindow.Read()
                 if event is None:
@@ -209,7 +209,7 @@ def main():
         if event == "About":
             window.Hide()
             abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
-            abtWindow = gui.Window('About',abtLayout,icon="icon.ico")
+            abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = abtWindow.Read()
                 if event is None:
@@ -224,7 +224,7 @@ def main():
     window.Close()
 
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
-    window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True)
+    window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
     event, values = window.Read(timeout=0)
     command = os.popen('cmd /c "cd adbfiles & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
     output = command.readlines()
@@ -235,7 +235,7 @@ def main():
     if check.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
                 [RoundedButton("Open app",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
-        window = gui.Window('Information', layout,icon="icon.ico")
+        window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
         if event == "Open app":
@@ -252,7 +252,7 @@ def main():
     else:
         layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("Report a bug",0.3,font="Calibri 11")]]
-        window = gui.Window('Error', layout,icon="icon.ico")
+        window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
         if event == "OK":
