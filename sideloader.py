@@ -10,6 +10,7 @@ import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
 import darkdetect
+from os.path import exists
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -183,15 +184,31 @@ def main():
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
-            if address == "":
-                adbEmpty()
+            if source_filename == "":
+                EmptyFileName = ToastText3()
+                EmptyFileName.SetHeadline("No APK file provided")
+                EmptyFileName.SetFirstLine("Please select an APK file.")
+                wintoaster.show_toast(EmptyFileName)
+            elif exists(source_filename) == False:
+                FileNotFound = ToastText3()
+                FileNotFound.SetHeadline("File not found")
+                FileNotFound.SetFirstLine("Please check the file path and try again.")
+                wintoaster.show_toast(FileNotFound)
+            elif source_filename.endswith(".apk") == False:
+                UnsupportedFileType = ToastText3()
+                UnsupportedFileType.SetHeadline("Unsupported file type")
+                UnsupportedFileType.SetFirstLine("Only APK files are supported.")
+                wintoaster.show_toast(UnsupportedFileType)
             else:
-                autostart = os.popen('cmd /c "tasklist"')
-                startoutput = str(autostart.readlines())
-                if "WsaClient.exe" in startoutput:
-                    break
+                if address == "":
+                    adbEmpty()
                 else:
-                    startWSA(window)
+                    autostart = os.popen('cmd /c "tasklist"')
+                    startoutput = str(autostart.readlines())
+                    if "WsaClient.exe" in startoutput:
+                        break
+                    else:
+                        startWSA(window)
         if event == "Help":
             window.Hide()
             helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
