@@ -20,7 +20,7 @@ if(platform.system() != "Windows"):
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 wintoaster = WindowsToaster('WSA Sideloader')
 
-version = "1.3.0"
+version = "1.3.1"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -225,7 +225,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
         if event == "About":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool which can be used to easily install apps on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = abtWindow.Read()
