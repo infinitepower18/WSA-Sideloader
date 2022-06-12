@@ -36,6 +36,8 @@ No new builds will be released until further notice. More details can be found [
 ### I do not live in the US, how can I download the Windows Subsystem for Android?
 Change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
 
+![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
+
 Amazon Appstore for WSA is currently not available outside the US, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, Italy and Japan by the end of this year.
 
 ### Why does it take so long for new updates to be released on Microsoft Store?
@@ -57,6 +59,8 @@ Please try installing from [GitHub releases](https://github.com/infinitepower18/
 
 ### The program does not uninstall properly.
 Please make sure adb.exe is not running before uninstalling. If it is, stop it via Task Manager.
+
+![image](https://user-images.githubusercontent.com/44692189/173249477-02dac55e-ebaa-4cc8-b858-5b305c9081a8.png)
 
 ## Support
 
@@ -84,7 +88,7 @@ To compile from source, follow the below instructions:
 4. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console`. This may take some time depending on your computer.
 5. Copy the icon.ico file and adbfiles folder to the sideloader.dist folder.
 
-As this program is a sideloading tool for Windows Subsystem for Android, please make sure you are running Windows 11 with WSA installed.
+As this program is a APK installer for Windows Subsystem for Android, please make sure you are running Windows 11 with WSA installed.
 
 ## Disclaimer
 This project is not affiliated with Microsoft or Google in any way.
