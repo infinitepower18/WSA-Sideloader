@@ -22,7 +22,7 @@ Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sidel
 
 2. Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
-![image](https://user-images.githubusercontent.com/44692189/154768380-f0b01ed7-e622-4fdd-8eb7-bf1c758f8103.png)
+![image](https://user-images.githubusercontent.com/44692189/173668310-94c409b2-5987-4dba-924d-969aeabdf202.png)
 
 3. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs.
 
