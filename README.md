@@ -40,6 +40,9 @@ Change your PC region setting to United States, you should then be able to downl
 
 Amazon Appstore for WSA is currently not available outside the US, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, Italy and Japan by the end of this year.
 
+### I installed the app successfully, but the app crashes while using it or doesn't work as intended.
+WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSA) if you want Google Play functionality.
+
 ### Why does it take so long for new updates to be released on Microsoft Store?
 As much as I want the updates released on GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
 
@@ -56,6 +59,9 @@ My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run 
 
 ### I get an error when installing from Microsoft Store.
 Please try installing from [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest). If the installation still fails please post in [discussions](https://github.com/infinitepower18/WSA-Sideloader/discussions) for further assistance.
+
+### Where is WSA Sideloader installed at if downloaded from Microsoft Store?
+```C:\Users\username\AppData\Local\Programs\WSA Sideloader```
 
 ### The program does not uninstall properly.
 Please make sure adb.exe is not running before uninstalling. If it is, stop it via Task Manager.
