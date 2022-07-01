@@ -20,7 +20,7 @@ if(platform.system() != "Windows"):
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 wintoaster = WindowsToaster('WSA Sideloader')
 
-version = "1.3.1"
+version = "1.3.2"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -154,6 +154,11 @@ def main():
                 permError.SetHeadline("Cannot get permissions")
                 permError.SetFirstLine("APK file not found.")
                 wintoaster.show_toast(permError)
+            elif source_filename.endswith(".apk") == False:
+                UnsupportedFileType = ToastText3()
+                UnsupportedFileType.SetHeadline("Unsupported file type")
+                UnsupportedFileType.SetFirstLine("Only APK files are supported.")
+                wintoaster.show_toast(UnsupportedFileType)
             else:
                 source_filename = values[0]
                 window.Hide()
