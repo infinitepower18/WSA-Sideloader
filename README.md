@@ -60,9 +60,6 @@ My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run 
 ### I get an error when installing from Microsoft Store.
 Please try installing from [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest). If the installation still fails please post in [discussions](https://github.com/infinitepower18/WSA-Sideloader/discussions) for further assistance.
 
-### Where is WSA Sideloader installed at if downloaded from Microsoft Store?
-```C:\Users\username\AppData\Local\Programs\WSA Sideloader```
-
 ### The program does not uninstall properly.
 Please make sure adb.exe is not running before uninstalling. If it is, stop it via Task Manager.
 
