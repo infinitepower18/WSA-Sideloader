@@ -1,4 +1,4 @@
 PySimpleGUI==4.60.1
 windows-toasts==0.3.3
-Pillow==9.1.1
+Pillow==9.2.0
 darkdetect==0.6.0
