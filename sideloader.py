@@ -6,6 +6,8 @@ import sys
 import urllib
 import urllib.error
 import ctypes
+import dload
+import shutil
 from pkg_resources import parse_version
 from button import RoundedButton
 import darkdetect
@@ -19,6 +21,7 @@ if(platform.system() != "Windows"):
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
 version = "1.3.3"
+msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -59,27 +62,26 @@ def startstore(filearg = ""): # For Microsoft Store installs
     installsource = "Microsoft Store"
     global explorerfile
     explorerfile = filearg
-    try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion")
-        lines = [line.decode("utf-8") for line in file]
-        latestver = lines[1].rstrip()
-        if parse_version(latestver) > parse_version(version):
-            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nVisit the Microsoft Store to download the latest version.',font=("Calibri",11))],
-                [RoundedButton("Update now",0.3,font="Calibri 11"),RoundedButton("Later",0.3,font="Calibri 11")]]
-            window = gui.Window('Update available', layout,icon="icon.ico",debugger_enabled=False)
-            event, values = window.Read()
-            if event is None:
-                sys.exit(0)
-            elif event == "Update now":
-                window.Close()
-                webbrowser.open("ms-windows-store://pdp/?productid=XP8K140DLVSC0L",2)
-                sys.exit(0)
-            elif event == "Later":
-                window.Close()
-                main()
-        else:
-            main()
-    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
+    if os.path.isdir(msixfolder+'\\platform-tools') == False: # Check if platform tools present
+        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the ADB platform tools. This is a one time process.',font=("Calibri",11))],
+                [RoundedButton("Continue",0.3,font="Calibri 11")]]
+        window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
+        event, values = window.Read()
+        if event is None:
+            sys.exit(0)
+        window.Close()
+        layout = [[gui.Text('Downloading ASB platform tools, please wait...',font=("Calibri",11))]]
+        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
+        event, values = window.Read(timeout=0)
+        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=msixfolder,delete_after=True)
+        copyfiles = ['icon.ico','aapt.exe']
+        for f in copyfiles:
+            shutil.copy(f,msixfolder)
+        window.Close()
+        os.chdir(msixfolder)
+        main()
+    else:
+        os.chdir(msixfolder)
         main()
 
 def start(filearg = ""): # For GitHub installs
@@ -152,7 +154,7 @@ def main():
             else:
                 source_filename = values[0]
                 window.Hide()
-                gui.popup_scrolled(os.popen('cmd /c "cd adbfiles & aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
             autostart = os.popen('cmd /c "tasklist"')
@@ -245,7 +247,7 @@ def main():
 
         event, values = window.Read()
         if event == "Open app":
-            getpackage = os.popen('cmd /c "cd adbfiles & aapt d permissions "'+source_filename+'""')
+            getpackage = os.popen('cmd /c "aapt d permissions "'+source_filename+'""')
             pkgoutput = getpackage.readlines()
             pkgname = str(pkgoutput[0])
             webbrowser.open("wsa://"+pkgname[9:],2)
