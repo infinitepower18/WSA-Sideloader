@@ -6,7 +6,7 @@ import sys
 import urllib
 import urllib.error
 import ctypes
-import dload
+#import dload
 import shutil
 from pkg_resources import parse_version
 from button import RoundedButton
