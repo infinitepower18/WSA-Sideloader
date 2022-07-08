@@ -5,7 +5,6 @@ import webbrowser
 import sys
 import urllib
 import urllib.error
-from windows_toasts import WindowsToaster, ToastText3
 import ctypes
 from pkg_resources import parse_version
 from button import RoundedButton
@@ -18,9 +17,8 @@ if(platform.system() != "Windows"):
     sys.exit(0)
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
-wintoaster = WindowsToaster('WSA Sideloader')
 
-version = "1.3.2"
+version = "1.3.3"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -111,12 +109,6 @@ def start(filearg = ""): # For GitHub installs
             main()
     except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
         main()
-    
-def adbEmpty():
-    adbEmptyToast = ToastText3()
-    adbEmptyToast.SetHeadline("Please enter an ADB address")
-    adbEmptyToast.SetFirstLine("ADB address cannot be empty.")
-    wintoaster.show_toast(adbEmptyToast)
 
 def startWSA(window): # Start subsystem if not running
     os.popen('cmd /c "WsaClient /launch wsa://system"')
@@ -137,9 +129,11 @@ def main():
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
             [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
+            [gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11")],
             [gui.Text('ADB address:',font="Calibri 11")],
             [gui.Input('127.0.0.1:58526',font="Calibri 11")],
-            [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")]]
+            [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")],
+            [gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11")]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico",debugger_enabled=False)
 
@@ -150,15 +144,11 @@ def main():
         if event == "View APK permissions":
             source_filename = values[0]
             if os.path.exists(source_filename) == False:
-                permError = ToastText3()
-                permError.SetHeadline("Cannot get permissions")
-                permError.SetFirstLine("APK file not found.")
-                wintoaster.show_toast(permError)
+                window['_ERROR1_'].Update("APK file not found")
+                window["_ERROR1_"].Update(visible=True)
             elif source_filename.endswith(".apk") == False:
-                UnsupportedFileType = ToastText3()
-                UnsupportedFileType.SetHeadline("Unsupported file type")
-                UnsupportedFileType.SetFirstLine("Only APK files are supported.")
-                wintoaster.show_toast(UnsupportedFileType)
+                window['_ERROR1_'].Update("Only APK files are supported")
+                window["_ERROR1_"].Update(visible=True)
             else:
                 source_filename = values[0]
                 window.Hide()
@@ -179,34 +169,28 @@ def main():
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                         pass
                     else:
-                        instAppsError = ToastText3()
-                        instAppsError.SetHeadline("Failed to perform operation")
-                        instAppsError.SetFirstLine("Please check that WSA is running and the correct ADB address has been entered.")
-                        wintoaster.show_toast(instAppsError)
+                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address has been entered.")
+                        window["_ERROR2_"].Update(visible=True)
                 except IndexError:
-                    adbEmpty()
+                    window['_ERROR2_'].Update("ADB address cannot be empty")
+                    window["_ERROR2_"].Update(visible=True)
         if event == "Install":
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
             if source_filename == "":
-                EmptyFileName = ToastText3()
-                EmptyFileName.SetHeadline("No APK file provided")
-                EmptyFileName.SetFirstLine("Please select an APK file.")
-                wintoaster.show_toast(EmptyFileName)
+                window['_ERROR2_'].Update("Please select an APK file.")
+                window["_ERROR2_"].Update(visible=True)
             elif exists(source_filename) == False:
-                FileNotFound = ToastText3()
-                FileNotFound.SetHeadline("File not found")
-                FileNotFound.SetFirstLine("Please check the file path and try again.")
-                wintoaster.show_toast(FileNotFound)
+                window['_ERROR2_'].Update("File not found")
+                window["_ERROR2_"].Update(visible=True)
             elif source_filename.endswith(".apk") == False:
-                UnsupportedFileType = ToastText3()
-                UnsupportedFileType.SetHeadline("Unsupported file type")
-                UnsupportedFileType.SetFirstLine("Only APK files are supported.")
-                wintoaster.show_toast(UnsupportedFileType)
+                window['_ERROR2_'].Update("Only APK files are supported")
+                window["_ERROR2_"].Update(visible=True)
             else:
                 if address == "":
-                    adbEmpty()
+                    window['_ERROR2_'].Update("ADB address cannot be empty")
+                    window["_ERROR2_"].Update(visible=True)
                 else:
                     autostart = os.popen('cmd /c "tasklist"')
                     startoutput = str(autostart.readlines())
