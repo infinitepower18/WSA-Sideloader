@@ -175,6 +175,8 @@ def main():
                 startWSA(window)
             else:
                 try:
+                    window['_ERROR2_'].Update("Loading installed apps...")
+                    window["_ERROR2_"].Update(visible=True)
                     address = values[1]
                     address = address.replace(" ", "")
                     adbRunning = True
@@ -182,7 +184,7 @@ def main():
                     output = command.readlines()
                     check = str(output[len(output)-1])
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
-                        pass
+                        window["_ERROR2_"].Update(visible=False)
                     else:
                         window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address has been entered.")
                         window["_ERROR2_"].Update(visible=True)
