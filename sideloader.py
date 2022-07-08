@@ -136,6 +136,7 @@ def startWSA(window): # Start subsystem if not running
             break
 
 def main():
+    adbRunning = False
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
@@ -151,6 +152,8 @@ def main():
     while True:
         event, values = window.Read()
         if event is None:
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
         if event == "View APK permissions":
             source_filename = values[0]
@@ -174,6 +177,7 @@ def main():
                 try:
                     address = values[1]
                     address = address.replace(" ", "")
+                    adbRunning = True
                     command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
                     output = command.readlines()
                     check = str(output[len(output)-1])
@@ -216,6 +220,8 @@ def main():
             while True:
                 event,values = helpWindow.Read()
                 if event is None:
+                    if adbRunning == True:
+                        os.popen('cmd /c "cd platform-tools & adb kill-server"')
                     sys.exit(0)
                 elif event == "Back":
                     helpWindow.Close()
@@ -230,6 +236,8 @@ def main():
             while True:
                 event,values = abtWindow.Read()
                 if event is None:
+                    if adbRunning == True:
+                        os.popen('cmd /c "cd platform-tools & adb kill-server"')
                     sys.exit(0)
                 elif event == "Back":
                     abtWindow.Close()
@@ -243,6 +251,7 @@ def main():
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
     event, values = window.Read(timeout=0)
+    adbRunning = True
     command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
     output = command.readlines()
     check = str(output[len(output)-1])
@@ -260,11 +269,15 @@ def main():
             pkgoutput = getpackage.readlines()
             pkgname = str(pkgoutput[0])
             webbrowser.open("wsa://"+pkgname[9:],2)
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
         elif event == "Install another APK":
             window.Close()
             main()
         else:
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     else:
         layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered',font=("Calibri",11))],
@@ -278,8 +291,12 @@ def main():
         elif event == "Report a bug": # Open WSA Sideloader issues page
             window.Close()
             webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
         else:
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
 
 if __name__ == '__main__':
