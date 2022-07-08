@@ -22,6 +22,7 @@ ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
 version = "1.3.3"
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
+#msixtemp = os.getenv('LOCALAPPDATA') + "\\Temp"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -63,23 +64,31 @@ def startstore(filearg = ""): # For Microsoft Store installs
     global explorerfile
     explorerfile = filearg
     if os.path.isdir(msixfolder+'\\platform-tools') == False: # Check if platform tools present
-        layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the ADB platform tools. This is a one time process.',font=("Calibri",11))],
-                [RoundedButton("Continue",0.3,font="Calibri 11")]]
-        window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
-        event, values = window.Read()
-        if event is None:
-            sys.exit(0)
-        window.Close()
-        layout = [[gui.Text('Downloading ASB platform tools, please wait...',font=("Calibri",11))]]
-        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-        event, values = window.Read(timeout=0)
-        dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=msixfolder,delete_after=True)
+        shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
         copyfiles = ['icon.ico','aapt.exe']
         for f in copyfiles:
             shutil.copy(f,msixfolder)
-        window.Close()
         os.chdir(msixfolder)
         main()
+    #if os.path.isdir(msixfolder+'\\platform-tools') == False: # Check if platform tools present
+    #    layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the ADB platform tools. This is a one time process.',font=("Calibri",11))],
+    #            [RoundedButton("Continue",0.3,font="Calibri 11")]]
+    #    window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
+    #    event, values = window.Read()
+    #    if event is None:
+    #        sys.exit(0)
+    #    window.Close()
+    #    layout = [[gui.Text('Downloading ADB platform tools, please wait...',font=("Calibri",11))]]
+    #    window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
+    #    event, values = window.Read(timeout=0)
+    #    dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=msixtemp,delete_after=True)
+    #    shutil.move(msixtemp + "\\platform-tools",msixfolder + "\\platform-tools")
+    #    copyfiles = ['icon.ico','aapt.exe']
+    #    for f in copyfiles:
+    #        shutil.copy(f,msixfolder)
+    #    window.Close()
+    #    os.chdir(msixfolder)
+    #    main()
     else:
         os.chdir(msixfolder)
         main()
@@ -165,7 +174,7 @@ def main():
                 try:
                     address = values[1]
                     address = address.replace(" ", "")
-                    command = os.popen('cmd /c "cd adbfiles & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
+                    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
                     output = command.readlines()
                     check = str(output[len(output)-1])
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
@@ -234,7 +243,7 @@ def main():
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
     event, values = window.Read(timeout=0)
-    command = os.popen('cmd /c "cd adbfiles & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
+    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
     output = command.readlines()
     check = str(output[len(output)-1])
     window.Close()
@@ -276,6 +285,6 @@ def main():
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
     if len(sys.argv) >1:
-        startgit(sys.argv[1])
+        startstore(sys.argv[1])
     else:
-        startgit()
+        startstore()
