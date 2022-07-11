@@ -5,6 +5,6 @@ WSA Sideloader requires access to your files in order for the "Browse Files" fun
 
 Network functionality is only used to check for the latest WSA Sideloader version upon application launch. Your current version is not collected or transmitted, the application simply checks a text file online containing the latest version number and compares it to the current version number.
 
-Please note that the update checker is not included in the packaged Microsoft Store release, as updates are handled by the store itself. Therefore there is no network activity on the packaged MS Store version.
+Please note that the update checker is not included in the packaged Microsoft Store release, as updates are handled by the store itself. Therefore there is no network functionality on the packaged MS Store version.
 
 Source code is available if you want to take a look at how the application works. Should you have any questions regarding this policy, please contact me at https://forms.gle/Fkbyh7WRX17mQ7dW9
