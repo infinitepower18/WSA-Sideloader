@@ -10,7 +10,7 @@ WSA Sideloader is a tool that is used to easily install APK files on Windows Sub
 
 ## Download
 
-<p><a href="https://apps.microsoft.com/store/detail/wsa-sideloader/XP8K140DLVSC0L">
+<p><a href="https://www.microsoft.com/store/apps/9NMFSJB25QJR">
 <img src="https://getbadgecdn.azureedge.net/images/English_L.png" width="216" height="78">
 </a></p>
 
