@@ -57,9 +57,6 @@ If you would like to launch a list of installed apps right from the start menu, 
 ### What's the best place to download APK files?
 My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run by Android Police founder Artem Russakovskii.
 
-### I get an error when installing from Microsoft Store.
-Please try installing from [GitHub releases](https://github.com/infinitepower18/WSA-Sideloader/releases/latest). If the installation still fails please post in [discussions](https://github.com/infinitepower18/WSA-Sideloader/discussions) for further assistance.
-
 ### The program does not uninstall properly.
 Please make sure adb.exe is not running before uninstalling. If it is, stop it via Task Manager.
 
@@ -81,7 +78,7 @@ TLDR - No information is collected by this application.
 
 Whether it's a bug fix or a new feature, contributions to the project are always welcome! To get started, make sure you have [Python 3.10](https://www.python.org/downloads/windows/) and [Git](https://gitforwindows.org/) installed. Then clone this repo and install the required packages using `pip install -r requirements.txt`.
 
-Please test the program before making your pull request. Starting from version 1.3.0, WSA Sideloader is compiled into an executable file using Nuitka. It is then distributed on GitHub Releases and Microsoft Store via the Inno installer.
+Please test the program before making your pull request. Starting from version 1.3.0, WSA Sideloader is compiled into an executable file using Nuitka.
 
 To compile from source, follow the below instructions:
 
