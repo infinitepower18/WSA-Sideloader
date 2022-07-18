@@ -20,6 +20,12 @@ Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sidel
 
 1. Make sure you have Windows Subsystem for Android installed on your Windows 11 machine. If you don't already have it, download it from [here](https://aka.ms/AmazonAppstore). You don't need to use the Amazon Appstore, however don't uninstall it as it will remove the subsystem.
 
+If you're outside the US, change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
+
+![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
+
+Amazon Appstore for WSA is currently not available outside the US, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, Italy and Japan by the end of this year.
+
 2. Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
 ![image](https://user-images.githubusercontent.com/44692189/173668310-94c409b2-5987-4dba-924d-969aeabdf202.png)
@@ -32,13 +38,6 @@ Also available on [GitHub Releases](https://github.com/infinitepower18/WSA-Sidel
 No new builds will be released until further notice. More details can be found [here](https://github.com/infinitepower18/WSA-Sideloader/discussions/30).
 
 ## FAQ
-
-### I do not live in the US, how can I download the Windows Subsystem for Android?
-Change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
-
-![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
-
-Amazon Appstore for WSA is currently not available outside the US, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, Italy and Japan by the end of this year.
 
 ### I installed the app successfully, but the app crashes while using it or doesn't work as intended.
 WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSA) if you want Google Play functionality.
