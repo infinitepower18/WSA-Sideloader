@@ -3,15 +3,13 @@ import PySimpleGUI as gui
 import platform
 import webbrowser
 import sys
-import urllib
-import urllib.error
 import ctypes
-#import dload
 import shutil
 from pkg_resources import parse_version
 from button import RoundedButton
 import darkdetect
 from os.path import exists
+import requests
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -20,9 +18,8 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.3"
+version = "1.3.4"
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
-#msixtemp = os.getenv('LOCALAPPDATA') + "\\Temp"
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -70,25 +67,6 @@ def startstore(filearg = ""): # For Microsoft Store installs
             shutil.copy(f,msixfolder)
         os.chdir(msixfolder)
         main()
-    #if os.path.isdir(msixfolder+'\\platform-tools') == False: # Check if platform tools present
-    #    layout = [[gui.Text('In order to function correctly, WSA Sideloader will need to download the ADB platform tools. This is a one time process.',font=("Calibri",11))],
-    #            [RoundedButton("Continue",0.3,font="Calibri 11")]]
-    #    window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
-    #    event, values = window.Read()
-    #    if event is None:
-    #        sys.exit(0)
-    #    window.Close()
-    #    layout = [[gui.Text('Downloading ADB platform tools, please wait...',font=("Calibri",11))]]
-    #    window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-    #    event, values = window.Read(timeout=0)
-    #    dload.save_unzip("https://dl.google.com/android/repository/platform-tools-latest-windows.zip",extract_path=msixtemp,delete_after=True)
-    #    shutil.move(msixtemp + "\\platform-tools",msixfolder + "\\platform-tools")
-    #    copyfiles = ['icon.ico','aapt.exe']
-    #    for f in copyfiles:
-    #        shutil.copy(f,msixfolder)
-    #    window.Close()
-    #    os.chdir(msixfolder)
-    #    main()
     else:
         os.chdir(msixfolder)
         main()
@@ -99,9 +77,9 @@ def start(filearg = ""): # For GitHub installs
     global explorerfile
     explorerfile = filearg
     try:
-        file = urllib.request.urlopen("https://github.com/infinitepower18/WSA-Sideloader/raw/main/latestversion")
-        lines = [line.decode("utf-8") for line in file]
-        latestver = lines[0].rstrip()
+        response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
+        latestver = response.json()["name"]
+        latestver = latestver[16:]
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?',font=("Calibri",11))],
                 [RoundedButton("Yes",0.3,font="Calibri 11"),RoundedButton("No",0.3,font="Calibri 11")]]
@@ -118,7 +96,7 @@ def start(filearg = ""): # For GitHub installs
                 main()
         else:
             main()
-    except (urllib.error.URLError,urllib.error.HTTPError,urllib.error.ContentTooShortError) as error: # Skip update check in case of network error
+    except requests.exceptions.RequestException as error: # Skip update check in case of network error
         main()
 
 def startWSA(window): # Start subsystem if not running
@@ -186,7 +164,7 @@ def main():
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                         window["_ERROR2_"].Update(visible=False)
                     else:
-                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address has been entered.")
+                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.")
                         window["_ERROR2_"].Update(visible=True)
                 except IndexError:
                     window['_ERROR2_'].Update("ADB address cannot be empty")
@@ -217,7 +195,7 @@ def main():
                         startWSA(window)
         if event == "Help":
             window.Hide()
-            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11"),RoundedButton("Compatible apps",0.3,font="Calibri 11")]]
             helpWindow = gui.Window('Help',helpLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = helpWindow.Read()
@@ -231,9 +209,11 @@ def main():
                     break
                 elif event == "GitHub":
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
+                elif event == "Compatible apps":
+                    webbrowser.open("https://github.com/riverar/wsa-app-compatibility",2)
         if event == "About":
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = abtWindow.Read()
