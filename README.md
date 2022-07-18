@@ -43,6 +43,8 @@ Amazon Appstore for WSA is currently not available outside the US, but Microsoft
 ### I installed the app successfully, but the app crashes while using it or doesn't work as intended.
 WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSA) if you want Google Play functionality.
 
+You may check [this page](https://github.com/riverar/wsa-app-compatibility) for a list of compatible apps.
+
 ### Why does it take so long for new updates to be released on Microsoft Store?
 As much as I want the updates released on GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
 
