@@ -36,6 +36,7 @@ Amazon Appstore for WSA is currently not available outside the US, but Microsoft
 
 ### No new ARM64 builds
 No new builds will be released until further notice. More details can be found [here](https://github.com/infinitepower18/WSA-Sideloader/discussions/30).
+
 An ARM64 version of [version 1.1.10](https://github.com/infinitepower18/WSA-Sideloader/releases/tag/v1.1.10) if you really want to use a native version. However please be aware that features like Explorer integration are not available in this version.
 
 ## FAQ
