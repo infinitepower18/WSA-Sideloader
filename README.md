@@ -28,7 +28,7 @@ Amazon Appstore for WSA is currently not available outside the US, but Microsoft
 
 2. Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
-![image](https://user-images.githubusercontent.com/44692189/173668310-94c409b2-5987-4dba-924d-969aeabdf202.png)
+![image](https://user-images.githubusercontent.com/44692189/182654572-bdfb9a18-a28a-4332-8139-cbc4a8c928f8.png)
 
 3. Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs.
 
