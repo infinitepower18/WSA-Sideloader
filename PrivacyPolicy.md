@@ -1,9 +1,9 @@
 # Privacy Policy
 Thank you for using WSA Sideloader. By using this application, you agree to the terms outlined in this privacy policy.
 
-WSA Sideloader requires access to your files in order for the "Browse Files" functionality to work, as well as reading the selected APK file for installing onto the Windows Subsystem for Android. This information is not collected or transmitted in any way.
+WSA Sideloader requires access to your files in order for the "Browse Files" functionality to work, as well as reading the selected APK file for listing APK permissions and installing onto the Windows Subsystem for Android. This information is not collected or transmitted in any way.
 
-Network functionality is only used to check for the latest WSA Sideloader version upon application launch. Your current version is not collected or transmitted, the application simply checks a text file online containing the latest version number and compares it to the current version number.
+Network functionality is only used to check for the latest WSA Sideloader version upon application launch. Your current version is not collected or transmitted, the application simply checks the latest release version via the GitHub API and compares it to the current version number.
 
 Please note that the update checker is not included in the packaged Microsoft Store release, as updates are handled by the store itself. Therefore there is no network functionality on the packaged MS Store version.
 
