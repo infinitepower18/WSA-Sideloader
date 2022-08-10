@@ -23,6 +23,7 @@ version = "1.3.5"
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
 config = ConfigParser()
+configpath = 'config.ini'
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -78,6 +79,7 @@ def start(filearg = ""): # For GitHub installs
     installsource = "GitHub"
     global explorerfile
     explorerfile = filearg
+    configpath = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\config.ini"
     try:
         response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
         latestver = response.json()["name"]
@@ -118,12 +120,12 @@ def startWSA(window): # Start subsystem if not running
 def main():
     adbRunning = False
     adbAddress = "127.0.0.1:58526"
-    if os.path.isfile('config.ini'):
-        config.read('config.ini')
+    if os.path.isfile(configpath):
+        config.read(configpath)
         adbAddress = config.get('Application','adbAddress')
     else:
         config['Application'] = {'adbAddress':'127.0.0.1:58526'}
-        with open('config.ini', 'w') as configfile:
+        with open(configpath, 'w') as configfile:
             config.write(configfile)
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
@@ -158,7 +160,7 @@ def main():
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
             config.set('Application','adbAddress',values[1])
-            with open('config.ini', 'w') as configfile:
+            with open(configpath, 'w') as configfile:
                 config.write(configfile)
             autostart = os.popen('cmd /c "tasklist"')
             startoutput = str(autostart.readlines())
@@ -184,7 +186,7 @@ def main():
                     window["_ERROR2_"].Update(visible=True)
         if event == "Install":
             config.set('Application','adbAddress',values[1])
-            with open('config.ini', 'w') as configfile:
+            with open(configpath, 'w') as configfile:
                 config.write(configfile)
             source_filename = values[0]
             address = values[1]
