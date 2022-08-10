@@ -125,6 +125,8 @@ def main():
         config.read(configpath)
         adbAddress = config.get('Application','adbAddress')
     except:
+        if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
+            os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
         config['Application'] = {'adbAddress':'127.0.0.1:58526'}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
