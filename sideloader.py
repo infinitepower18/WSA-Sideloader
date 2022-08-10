@@ -10,6 +10,7 @@ from button import RoundedButton
 import darkdetect
 from os.path import exists
 import requests
+from configparser import ConfigParser
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -18,8 +19,10 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.4"
+version = "1.3.5"
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
+
+config = ConfigParser()
 
 if darkdetect.isDark():
     gui.theme("LightGrey")
@@ -37,7 +40,6 @@ def startgit(filearg = ""):
     installsource = "GitHub (via git clone)"
     global explorerfile
     explorerfile = filearg
-    
     # Check if OS is Windows 11
     if int(platform.win32_ver()[1].split('.')[2]) < 22000:
         layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
@@ -115,13 +117,21 @@ def startWSA(window): # Start subsystem if not running
 
 def main():
     adbRunning = False
+    adbAddress = "127.0.0.1:58526"
+    if os.path.isfile('config.ini'):
+        config.read('config.ini')
+        adbAddress = config.get('Application','adbAddress')
+    else:
+        config['Application'] = {'adbAddress':'127.0.0.1:58526'}
+        with open('config.ini', 'w') as configfile:
+            config.write(configfile)
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
             [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
             [gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11")],
             [gui.Text('ADB address:',font="Calibri 11")],
-            [gui.Input('127.0.0.1:58526',font="Calibri 11")],
+            [gui.Input(adbAddress,font="Calibri 11")],
             [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")],
             [gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11")]]
 
@@ -147,6 +157,9 @@ def main():
                 gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
+            config.set('Application','adbAddress',values[1])
+            with open('config.ini', 'w') as configfile:
+                config.write(configfile)
             autostart = os.popen('cmd /c "tasklist"')
             startoutput = str(autostart.readlines())
             if "WsaClient.exe" not in startoutput:
@@ -170,6 +183,9 @@ def main():
                     window['_ERROR2_'].Update("ADB address cannot be empty")
                     window["_ERROR2_"].Update(visible=True)
         if event == "Install":
+            config.set('Application','adbAddress',values[1])
+            with open('config.ini', 'w') as configfile:
+                config.write(configfile)
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
