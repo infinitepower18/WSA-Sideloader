@@ -79,6 +79,7 @@ def start(filearg = ""): # For GitHub installs
     installsource = "GitHub"
     global explorerfile
     explorerfile = filearg
+    global configpath
     configpath = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\config.ini"
     try:
         response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
@@ -120,10 +121,10 @@ def startWSA(window): # Start subsystem if not running
 def main():
     adbRunning = False
     adbAddress = "127.0.0.1:58526"
-    if os.path.isfile(configpath):
+    try:
         config.read(configpath)
         adbAddress = config.get('Application','adbAddress')
-    else:
+    except:
         config['Application'] = {'adbAddress':'127.0.0.1:58526'}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
