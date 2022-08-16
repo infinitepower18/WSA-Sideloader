@@ -69,7 +69,7 @@ For email support, [click here](https://forms.gle/Fkbyh7WRX17mQ7dW9).
 
 ## Privacy Policy
 
-Please [click here](https://github.com/infinitepower18/WSA-Sideloader/blob/main/PrivacyPolicy.md) to view the privacy policy.
+Please [click here](https://ahnafmahmud.me/apps/WSA-Sideloader/PrivacyPolicy.html) to view the privacy policy.
 
 TLDR - No information is collected by this application.
 
