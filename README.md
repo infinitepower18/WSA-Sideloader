@@ -15,7 +15,7 @@ WSA Sideloader is a tool that is used to easily install APK files on Windows Sub
 <img src="https://getbadgecdn.azureedge.net/images/English_L.png" width="216" height="78">
 </a></p>
 
-You can also download from [GitHub Releases](https://github.com/infinitepower18/WSA-Sideloader/releases) or via winget `winget install infinitepower18.WSASideloader`
+You can also download from [GitHub Releases](https://github.com/infinitepower18/WSA-Sideloader/releases) or via winget using the command `winget install infinitepower18.WSASideloader`
                 
 ## Getting started
 
