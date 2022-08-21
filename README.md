@@ -1,5 +1,5 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
-![MS Store downloads](https://img.shields.io/badge/ms%20store%20downloads-10k%2B-brightgreen)
+![MS Store downloads](https://img.shields.io/badge/ms%20store%20downloads-15k%2B-brightgreen)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
 ![Uses Python 3.10](https://img.shields.io/badge/python-3.10-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
