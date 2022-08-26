@@ -25,7 +25,7 @@ If you're outside the US, change your PC region setting to United States, you sh
 
 ![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
 
-Amazon Appstore for WSA is currently not available outside the US, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, Italy and Japan by the end of this year.
+Amazon Appstore for WSA is currently not available outside the US and Japan, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, and Italy by the end of this year.
 
 2. Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
