@@ -43,7 +43,7 @@ An ARM64 version of [version 1.1.10](https://github.com/infinitepower18/WSA-Side
 ## FAQ
 
 ### I installed the app successfully, but the app crashes while using it or doesn't work as intended.
-WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSA) if you want Google Play functionality.
+WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSALocal) if you want Google Play functionality.
 
 You may check [this page](https://github.com/riverar/wsa-app-compatibility) for a list of compatible apps.
 
