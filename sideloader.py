@@ -19,7 +19,7 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.5"
+version = "1.3.6"
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
 config = ConfigParser()
@@ -182,7 +182,7 @@ def main():
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                         window["_ERROR2_"].Update(visible=False)
                     else:
-                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.")
+                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.\nRestart your computer if you continue to see this error.")
                         window["_ERROR2_"].Update(visible=True)
                 except IndexError:
                     window['_ERROR2_'].Update("ADB address cannot be empty")
@@ -283,7 +283,7 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     else:
-        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered',font=("Calibri",11))],
+        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered\nIf you continue to see this error, restart your computer and try again.',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("Report a bug",0.3,font="Calibri 11")]]
         window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
 
