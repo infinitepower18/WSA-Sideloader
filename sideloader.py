@@ -19,7 +19,8 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.6"
+version = "1.3.7"
+adbRunning = False
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
 config = ConfigParser()
@@ -119,7 +120,7 @@ def startWSA(window): # Start subsystem if not running
             break
 
 def main():
-    adbRunning = False
+    global adbRunning
     adbAddress = "127.0.0.1:58526"
     try:
         config.read(configpath)
