@@ -21,11 +21,9 @@ You can also download from [GitHub Releases](https://github.com/infinitepower18/
 
 Make sure you have Windows Subsystem for Android installed on your Windows 11 machine. If you don't already have it, download it from [here](https://aka.ms/AmazonAppstore). You don't need to use the Amazon Appstore, however don't uninstall it as it will remove the subsystem.
 
-If you're outside the US, change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
+If you're not in a [supported country](https://support.microsoft.com/en-us/windows/countries-and-regions-that-support-amazon-appstore-on-windows-d8dd17c7-5994-4187-9527-ddb076f9493e), change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
 
 ![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
-
-Amazon Appstore for WSA is currently not available outside the US and Japan, but Microsoft plans to make the appstore and WSA available in France, Germany, UK, and Italy by the end of this year.
 
 Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
