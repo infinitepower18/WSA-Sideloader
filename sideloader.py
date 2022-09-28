@@ -192,6 +192,10 @@ def main():
                     check = str(output[len(output)-1])
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                         window["_ERROR2_"].Update(visible=False)
+                    elif check.startswith("failed to authenticate"):
+                        os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
+                        window["_ERROR2_"].Update("Please allow the ADB connection and try again.")
+                        window["_ERROR2_"].Update(visible=True)
                     else:
                         window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.\nRestart your computer if you continue to see this error.")
                         window["_ERROR2_"].Update(visible=True)
@@ -287,6 +291,20 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
         elif event == "Install another APK":
+            window.Close()
+            main()
+        else:
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
+            sys.exit(0)
+    elif check.startswith("failed to authenticate"):
+        os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
+        layout = [[gui.Text('Please allow the ADB connection and run the installation again.',font=("Calibri",11))],
+                [RoundedButton("OK",0.3,font="Calibri 11")]]
+        window = gui.Window('Message', layout,icon="icon.ico",debugger_enabled=False)
+
+        event, values = window.Read()
+        if event == "OK":
             window.Close()
             main()
         else:
