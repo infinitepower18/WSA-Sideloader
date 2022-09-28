@@ -1,2 +1,0 @@
-**NOTICE FOR USERS WITH WSA SIDELOADER VERSIONS BELOW 1.3.0 INSTALLED**
-In version 1.3, changes have been made to the installation and executing process. To prevent any unexpected issues, please first uninstall the old version before continuing with the setup process.
