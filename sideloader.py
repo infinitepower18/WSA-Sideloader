@@ -312,7 +312,7 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     else:
-        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled and the correct address has been entered\nIf you continue to see this error, restart your computer and try again.',font=("Calibri",11))],
+        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\nIf you continue to see this error, restart your computer and try again.',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("Report a bug",0.3,font="Calibri 11")]]
         window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
 
