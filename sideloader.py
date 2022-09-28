@@ -117,6 +117,7 @@ def startWSA(window): # Start subsystem if not running
 
 def main():
     global adbRunning
+    global explorerfile
     adbAddress = "127.0.0.1:58526"
     try:
         config.read(configpath)
@@ -265,7 +266,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
 
     window.Close()
-
+    explorerfile = source_filename
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
     event, values = window.Read(timeout=0)
@@ -292,6 +293,7 @@ def main():
             sys.exit(0)
         elif event == "Install another APK":
             window.Close()
+            explorerfile = ""
             main()
         else:
             if adbRunning == True:
