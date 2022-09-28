@@ -134,7 +134,7 @@ def main():
 
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
-        layout = [[gui.Text('You need to install Windows Subsystem for Android before running this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nVisit the WSA Sideloader GitHub page for further assistance.',font=("Calibri",11))],
+        layout = [[gui.Text("You need to install Windows Subsystem for Android before running this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",font=("Calibri",11))],
                 [RoundedButton("Install WSA",0.3,font="Calibri 11")]]
         window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
         event, values = window.Read()
@@ -144,7 +144,7 @@ def main():
             sys.exit(0)
         elif event is None:
             sys.exit(0)
-            
+
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
