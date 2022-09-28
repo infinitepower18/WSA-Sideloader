@@ -49,11 +49,7 @@ def startgit(filearg = ""):
         window = gui.Window('Unsupported OS', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
-        if event == "GitHub":
-            window.Close()
-            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/",2)
-            sys.exit(0)
-        elif event is None or "Exit":
+        if event is None or "Exit":
             sys.exit(0)
         window.Close()
         
