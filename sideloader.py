@@ -19,7 +19,7 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.7"
+version = "1.3.8" # Version number
 adbRunning = False
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
@@ -131,6 +131,20 @@ def main():
         config['Application'] = {'adbAddress':'127.0.0.1:58526'}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
+
+    # Check if WSA is installed
+    if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
+        layout = [[gui.Text('You need to install Windows Subsystem for Android before running this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nVisit the WSA Sideloader GitHub page for further assistance.',font=("Calibri",11))],
+                [RoundedButton("Install WSA",0.3,font="Calibri 11")]]
+        window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
+        event, values = window.Read()
+        if event == "Install WSA":
+            window.Close()
+            webbrowser.open("ms-windows-store://pdp/?productid=9NJHK44TTKSX",2)
+            sys.exit(0)
+        elif event is None:
+            sys.exit(0)
+            
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
