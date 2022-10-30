@@ -1,7 +1,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
 ![MS Store downloads](https://img.shields.io/badge/ms%20store%20downloads-25k%2B-brightgreen)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
-![Uses Python 3.10](https://img.shields.io/badge/python-3.10-yellow)
+![Python](https://img.shields.io/badge/python-3.10%20|%203.11%20ARM64-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
 
 # WSA Sideloader
@@ -38,9 +38,7 @@ You might see the below message if using WSA Sideloader for the first time. Just
 ## Known issues
 
 ### No new ARM64 builds
-No new builds will be released until further notice. More details can be found [here](https://github.com/infinitepower18/WSA-Sideloader/discussions/30).
-
-An ARM64 version of [version 1.1.10](https://github.com/infinitepower18/WSA-Sideloader/releases/tag/v1.1.10) is available if you really want to use a native version. However please be aware that features like Explorer integration are not available in this version.
+No new builds have been released since version 1.1.10, however that will soon change as I now have current releases of WSA Sideloader running on ARM64. Expect a new ARM64 build shortly.
 
 ## FAQ
 
