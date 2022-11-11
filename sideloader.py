@@ -276,8 +276,14 @@ def main():
     command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()
-    outLine = str(stdout[len(stdout)-1])
-    errLine = str(stderr[len(stderr)-1])
+    try:
+        outLine = str(stdout[len(stdout)-1])
+    except IndexError:
+        outLine = ""
+    try:
+        errLine = str(stderr[len(stderr)-1])
+    except IndexError:
+        errLine = ""
     window.Close()
     
     # Check if apk installed successfully
