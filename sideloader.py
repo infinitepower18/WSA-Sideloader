@@ -1,4 +1,5 @@
 import os
+import subprocess
 import PySimpleGUI as gui
 import platform
 import webbrowser
@@ -272,13 +273,15 @@ def main():
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
     event, values = window.Read(timeout=0)
     adbRunning = True
-    command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""') # Command to install APK
-    output = command.readlines()
-    check = str(output[len(output)-1])
+    command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
+    stdout = command.stdout.readlines()
+    stderr = command.stderr.readlines()
+    outLine = str(stdout[len(stdout)-1])
+    errLine = str(stderr[len(stderr)-1])
     window.Close()
     
     # Check if apk installed successfully
-    if check.startswith("Success"):
+    if outLine.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
                 [RoundedButton("Open app",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
         window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
@@ -300,7 +303,7 @@ def main():
             if adbRunning == True:
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
-    elif check.startswith("failed to authenticate"):
+    elif outLine.startswith("failed to authenticate"):
         os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
         layout = [[gui.Text('Please allow the ADB connection (with the always allow checkbox selected) and run the installation again.',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11")]]
@@ -315,7 +318,7 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     else:
-        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\n\nIf you continue to see this error, restart your computer and try again.\n\n[Error Info]\n'+'\n'.join(map(str,textwrap.wrap(check,80))),font=("Calibri",11))],
+        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\n\n[Error Info]\n'+'\n'.join(map(str,textwrap.wrap(outLine,80)))+'\n'+'\n'.join(map(str,textwrap.wrap(errLine,80))),font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("Report a bug",0.3,font="Calibri 11")]]
         window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
 
