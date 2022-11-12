@@ -197,10 +197,10 @@ def main():
                         window["_ERROR2_"].Update(visible=False)
                     elif check.startswith("failed to authenticate"):
                         os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
-                        window["_ERROR2_"].Update("Please allow the ADB connection and try again.")
+                        window["_ERROR2_"].Update("Please allow the ADB connection (with the always allow\ncheckbox selected) and try again.")
                         window["_ERROR2_"].Update(visible=True)
                     else:
-                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.\nRestart your computer if you continue to see this error.")
+                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.")
                         window["_ERROR2_"].Update(visible=True)
                 except IndexError:
                     window['_ERROR2_'].Update("ADB address cannot be empty")
@@ -311,7 +311,7 @@ def main():
             sys.exit(0)
     elif outLine.startswith("failed to authenticate"):
         os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
-        layout = [[gui.Text('Please allow the ADB connection (with the always allow checkbox selected) and run the installation again.',font=("Calibri",11))],
+        layout = [[gui.Text('Please allow the ADB connection (with the always allow checkbox selected)\nand run the installation again.',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11")]]
         window = gui.Window('Message', layout,icon="icon.ico",debugger_enabled=False)
 
