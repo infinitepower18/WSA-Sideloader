@@ -12,7 +12,7 @@ WSA Sideloader is a tool that is used to easily install APK files on Windows Sub
 ## Download
 
 <p><a href="https://www.microsoft.com/store/apps/9NMFSJB25QJR?cid=ghreadme">
-<img src="https://ahnafmahmud.me/apps/WSA-Sideloader/storebadge.png" width="216" height="78">
+<img src="https://user-images.githubusercontent.com/44692189/202488021-8670126b-e109-4ef7-ab98-3ee19396d71d.png" width="216" height="78">
 </a></p>
 
 You can also download from [GitHub Releases](https://github.com/infinitepower18/WSA-Sideloader/releases) or via winget using the command `winget install wsa-sideloader`
@@ -73,19 +73,7 @@ TLDR - No information is collected by this application.
 
 ## Contributing
 
-Whether it's a bug fix or a new feature, contributions to the project are always welcome! To get started, make sure you have [Python 3.10](https://www.python.org/downloads/windows/) and [Git](https://gitforwindows.org/) installed. Then clone this repo and install the required packages using `pip install -r requirements.txt`.
-
-Please test the program before making your pull request. Starting from version 1.3.0, WSA Sideloader is compiled into an executable file using Nuitka.
-
-To compile from source, follow the below instructions:
-
-1. Download the latest version of [Python 3.10 64 bit](https://www.python.org/downloads/windows/)
-2. Install Nuitka via pip using the command `pip install nuitka`
-3. Clone the repository, and install the required dependencies using the command `pip install -r requirements.txt` in the root directory.
-4. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console`. This may take some time depending on your computer.
-5. Copy the icon.ico file and adbfiles folder to the sideloader.dist folder.
-
-As this program is a APK installer for Windows Subsystem for Android, please make sure you are running Windows 11 with WSA installed.
+Please read [CONTRIBUTING.md](https://github.com/infinitepower18/WSA-Sideloader/blob/main/CONTRIBUTING.md) for more information.
 
 ## Disclaimer
 This project is not affiliated with Microsoft or Google in any way.
