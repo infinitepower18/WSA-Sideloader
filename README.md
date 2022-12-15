@@ -38,7 +38,7 @@ You might see the below message if using WSA Sideloader for the first time. Just
 ## Known issues
 
 ### No new ARM64 builds
-No new builds have been released since version 1.1.10, however that will soon change as I now have current releases of WSA Sideloader running on ARM64. Expect a new ARM64 build shortly.
+No new builds have been released since version 1.1.10, however that will soon change as I now have current releases of WSA Sideloader running on ARM64. It will be available once I finish all my testing.
 
 ## FAQ
 
