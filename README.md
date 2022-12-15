@@ -1,5 +1,5 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
-![MS Store downloads](https://img.shields.io/badge/ms%20store%20downloads-25k%2B-brightgreen)
+![MS Store downloads](https://img.shields.io/badge/ms%20store%20downloads-45k%2B-brightgreen)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
 ![Python](https://img.shields.io/badge/python-3.10%20|%203.11%20ARM64-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
@@ -25,7 +25,7 @@ If you're not in a [supported country](https://support.microsoft.com/en-us/windo
 
 ![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
 
-Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
+Enable developer mode in WSA settings. The subsystem will need to be running in order to install apps, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
 ![image](https://user-images.githubusercontent.com/44692189/182655019-5cd310c6-8bbd-43b6-a60b-ebd35c12748c.png)
 
@@ -47,8 +47,10 @@ WSA Sideloader is just an APK installer. Whether the app actually works or not d
 
 You may check [this page](https://github.com/riverar/wsa-app-compatibility) for a list of compatible apps.
 
-### Why does it take so long for new updates to be released on Microsoft Store?
-As much as I want the updates released on GitHub and Microsoft Store at the same time, this is something beyond my control. Sometimes they take up to 24 hours to approve the update, sometimes few days. There's nothing I can do about it unfortunately.
+### What's the difference between downloading from GitHub and downloading from MS Store?
+The Microsoft Store version is packaged as MSIX, allowing for clean installs/uninstalls as well as autoupdates. If you download the EXE installer from GitHub instead, you will have the option to install for yourself or for all users of the computer.
+
+It is recommended you download from Microsoft Store to ensure you get the latest features and bug fixes.
 
 ### I would like to see [feature name] in your program. When can you implement it?
 I am open to suggestions and will try my best to add more relevant features to the program over time. If you have any suggestions you can open an issue with your suggestion. I usually fix bugs and maintain stability of the program before adding more stuff to it so it may take some time.
@@ -58,8 +60,8 @@ You can press the "Installed apps" button to bring up a list of apps installed o
 
 If you would like to launch a list of installed apps right from the start menu, I have made an app for that. You can download it [here](https://github.com/infinitepower18/WSA-InstalledApps).
 
-### What's the best place to download APK files?
-My personal recommendaton is [APKMirror](https://www.apkmirror.com/), it is run by Android Police founder Artem Russakovskii.
+### What are some good places to download APK files from?
+APKMirror and APKPure are two popular sites for downloading APK files. Alternatively, you can install Aurora Store, an open source Play Store client.
 
 ## Support
 
