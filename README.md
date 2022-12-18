@@ -42,6 +42,9 @@ No new builds have been released since version 1.1.10, however that will soon ch
 
 ## FAQ
 
+### The APK installation fails with the error message "No connection could be made because the target machine actively refused it"
+This is a [bug](https://github.com/microsoft/WSA/issues/136) with the subsystem itself, restarting the PC will usually fix it.
+
 ### I installed the app successfully, but the app crashes while using it or doesn't work as intended.
 WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSALocal) if you want Google Play functionality.
 
