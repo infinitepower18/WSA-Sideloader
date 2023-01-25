@@ -222,16 +222,20 @@ def main():
             if source_filename == "":
                 window['_ERROR2_'].Update("Please select an APK file.")
                 window["_ERROR2_"].Update(visible=True)
+                window["_ERROR1_"].Update(visible=False)
             elif exists(source_filename) == False:
-                window['_ERROR2_'].Update("File not found")
+                window['_ERROR2_'].Update("APK file not found")
                 window["_ERROR2_"].Update(visible=True)
+                window["_ERROR1_"].Update(visible=False)
             elif source_filename.endswith(".apk") == False:
                 window['_ERROR2_'].Update("Only APK files are supported")
                 window["_ERROR2_"].Update(visible=True)
+                window["_ERROR1_"].Update(visible=False)
             else:
                 if address == "":
                     window['_ERROR2_'].Update("ADB address cannot be empty")
                     window["_ERROR2_"].Update(visible=True)
+                    window["_ERROR1_"].Update(visible=False)
                 else:
                     autostart = os.popen('cmd /c "tasklist"')
                     startoutput = str(autostart.readlines())
