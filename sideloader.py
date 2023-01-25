@@ -21,7 +21,7 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.9" # Version number
+version = "1.3.10" # Version number
 adbRunning = False
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
@@ -104,6 +104,8 @@ def start(filearg = ""): # For GitHub installs
 
 def startWSA(window): # Start subsystem if not running
     webbrowser.open("wsa://system",2)
+    window["_ERROR1_"].Update(visible=False)
+    window["_ERROR2_"].Update(visible=False)
     window.Hide()
     startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
     startingWindow = gui.Window("Message",startingLayout,icon="icon.ico",debugger_enabled=False)
@@ -147,11 +149,11 @@ def main():
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
             [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
-            [gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11")],
+            [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
             [gui.Text('ADB address:',font="Calibri 11")],
             [gui.Input(adbAddress,font="Calibri 11")],
             [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")],
-            [gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11")]]
+            [gui.pin(gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11"))]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico",debugger_enabled=False)
 
@@ -166,10 +168,14 @@ def main():
             if os.path.exists(source_filename) == False:
                 window['_ERROR1_'].Update("APK file not found")
                 window["_ERROR1_"].Update(visible=True)
+                window["_ERROR2_"].Update(visible=False)
             elif source_filename.endswith(".apk") == False:
                 window['_ERROR1_'].Update("Only APK files are supported")
                 window["_ERROR1_"].Update(visible=True)
+                window["_ERROR2_"].Update(visible=False)
             else:
+                window["_ERROR1_"].Update(visible=False)
+                window["_ERROR2_"].Update(visible=False)
                 source_filename = values[0]
                 window.Hide()
                 gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
@@ -184,8 +190,6 @@ def main():
                 startWSA(window)
             else:
                 try:
-                    window['_ERROR2_'].Update("Loading installed apps...")
-                    window["_ERROR2_"].Update(visible=True)
                     address = values[1]
                     address = address.replace(" ", "")
                     adbRunning = True
@@ -194,16 +198,20 @@ def main():
                     check = str(output[len(output)-1])
                     if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                         window["_ERROR2_"].Update(visible=False)
+                        window["_ERROR1_"].Update(visible=False)
                     elif check.startswith("failed to authenticate"):
                         os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
                         window["_ERROR2_"].Update("Please allow the ADB connection (with the always allow\ncheckbox selected) and try again.")
                         window["_ERROR2_"].Update(visible=True)
+                        window["_ERROR1_"].Update(visible=False)
                     else:
                         window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.")
                         window["_ERROR2_"].Update(visible=True)
+                        window["_ERROR1_"].Update(visible=False)
                 except IndexError:
                     window['_ERROR2_'].Update("ADB address cannot be empty")
                     window["_ERROR2_"].Update(visible=True)
+                    window["_ERROR1_"].Update(visible=False)
         if event == "Install":
             config.set('Application','adbAddress',values[1])
             with open(configpath, 'w') as configfile:
@@ -232,6 +240,8 @@ def main():
                     else:
                         startWSA(window)
         if event == "Help":
+            window["_ERROR1_"].Update(visible=False)
+            window["_ERROR2_"].Update(visible=False)
             window.Hide()
             helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11"),RoundedButton("Compatible apps",0.3,font="Calibri 11")]]
             helpWindow = gui.Window('Help',helpLayout,icon="icon.ico",debugger_enabled=False)
@@ -250,6 +260,8 @@ def main():
                 elif event == "Compatible apps":
                     webbrowser.open("https://github.com/riverar/wsa-app-compatibility",2)
         if event == "About":
+            window["_ERROR1_"].Update(visible=False)
+            window["_ERROR2_"].Update(visible=False)
             window.Hide()
             abtLayout = [[gui.Text('WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
