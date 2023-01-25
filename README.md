@@ -35,11 +35,6 @@ You might see the below message if using WSA Sideloader for the first time. Just
 
 <img width="327" alt="image" src="https://user-images.githubusercontent.com/44692189/195931968-3450beb9-895c-436b-8682-5b28727dc81a.png">
 
-## Known issues
-
-### No new ARM64 builds
-No new builds have been released since version 1.1.10, however that will soon change as I now have current releases of WSA Sideloader running on ARM64. It will be available once I finish all my testing.
-
 ## FAQ
 
 ### The APK installation fails with the error message "No connection could be made because the target machine actively refused it"
@@ -65,6 +60,11 @@ If you would like to launch a list of installed apps right from the start menu, 
 
 ### What are some good places to download APK files from?
 APKMirror and APKPure are two popular sites for downloading APK files. Alternatively, you can install Aurora Store, an open source Play Store client.
+
+### Is a native ARM64 build of WSA Sideloader available?
+You can download a test build of [version 1.1.10](https://github.com/infinitepower18/WSA-Sideloader/releases/tag/v1.1.10) but be aware this version is quite outdated and is missing some features.
+
+The release of new ARM64 builds have been temporarily postponed. Please stay tuned for further updates.
 
 ## Support
 
