@@ -118,6 +118,22 @@ def startWSA(window): # Start subsystem if not running
             window.UnHide()
             break
 
+def installAPK(address,fname,window):
+    global adbRunning
+    adbRunning = True
+    command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+fname+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
+    stdout = command.stdout.readlines()
+    stderr = command.stderr.readlines()
+    try:
+        window.write_event_value(('-OUT-', str(stdout[len(stdout)-1])),"out")
+    except IndexError:
+        window.write_event_value(('-OUT-', ""),"out")
+    try:
+        window.write_event_value(('-ERR-', str(stderr[len(stderr)-1])),"err")
+    except IndexError:
+        window.write_event_value(('-ERR-', ""),"err")
+    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+
 def main():
     global adbRunning
     global explorerfile
@@ -286,19 +302,16 @@ def main():
     explorerfile = source_filename
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-    event, values = window.Read(timeout=0)
-    adbRunning = True
-    command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+source_filename+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
-    stdout = command.stdout.readlines()
-    stderr = command.stderr.readlines()
-    try:
-        outLine = str(stdout[len(stdout)-1])
-    except IndexError:
-        outLine = ""
-    try:
-        errLine = str(stderr[len(stderr)-1])
-    except IndexError:
-        errLine = ""
+    window.start_thread(lambda: installAPK(address, source_filename, window), ('-THREAD-','-THREAD ENDED-'))
+    while True:
+        event, values = window.read()
+        if event[0] == '-THREAD ENDED-':
+            break
+        elif event[0] == '-OUT-':
+            outLine = event[1]
+        elif event[0] == '-ERR-':
+            errLine = event[1]
+
     window.Close()
     
     # Check if apk installed successfully
