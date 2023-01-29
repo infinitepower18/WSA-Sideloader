@@ -82,7 +82,7 @@ def start(filearg = ""): # For GitHub installs
     configpath = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\config.ini"
     try:
         response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
-        latestver = response.json()["tag_name"]
+        latestver = response.json()["tag_name"][1::]
         if parse_version(latestver) > parse_version(version):
             layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?',font=("Calibri",11))],
                 [RoundedButton("Yes",0.3,font="Calibri 11"),RoundedButton("No",0.3,font="Calibri 11")]]
