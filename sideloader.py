@@ -263,7 +263,7 @@ def main():
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
-            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11"),RoundedButton("Compatible apps",0.3,font="Calibri 11")]]
+            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open Windows Subsystem for Android Settings which can be found in your start menu and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("WSA Settings",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11"),RoundedButton("Compatible apps",0.3,font="Calibri 11")]]
             helpWindow = gui.Window('Help',helpLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = helpWindow.Read()
@@ -275,6 +275,8 @@ def main():
                     helpWindow.Close()
                     window.UnHide()
                     break
+                elif event == "WSA Settings":
+                    webbrowser.open("wsa-settings://",2)
                 elif event == "GitHub":
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
                 elif event == "Compatible apps":
@@ -358,24 +360,23 @@ def main():
             errInfo = '\n'.join(map(str,textwrap.wrap(errLine,80)))
         else:
             errInfo = '\n'.join(map(str,textwrap.wrap(outLine,80)))+'\n'+'\n'.join(map(str,textwrap.wrap(errLine,80)))
-        layout = [[gui.Text('WSA Sideloader could not install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\n\n[Error Info]\n'+errInfo,font=("Calibri",11))],
-                [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("Report a bug",0.3,font="Calibri 11")]]
+        layout = [[gui.Text('Unable to install application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\n\n[Error Info]\n'+errInfo,font=("Calibri",11))],
+                [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("WSA Settings",0.3,font="Calibri 11"),RoundedButton("Report bug",0.3,font="Calibri 11")]]
         window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
 
-        event, values = window.Read()
-        if event == "OK":
-            window.Close()
-            main()
-        elif event == "Report a bug": # Open WSA Sideloader issues page
-            window.Close()
-            webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
-            if adbRunning == True:
-                os.popen('cmd /c "cd platform-tools & adb kill-server"')
-            sys.exit(0)
-        else:
-            if adbRunning == True:
-                os.popen('cmd /c "cd platform-tools & adb kill-server"')
-            sys.exit(0)
+        while True:
+            event, values = window.Read()
+            if event == "OK":
+                window.Close()
+                main()
+            elif event == "Report bug": # Open WSA Sideloader issues page
+                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
+            elif event == "WSA Settings":
+                webbrowser.open("wsa-settings://",2)
+            else:
+                if adbRunning == True:
+                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                sys.exit(0)
 
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
