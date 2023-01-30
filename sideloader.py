@@ -367,8 +367,7 @@ def main():
         while True:
             event, values = window.Read()
             if event == "OK":
-                window.Close()
-                main()
+                break
             elif event == "Report bug": # Open WSA Sideloader issues page
                 webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
             elif event == "WSA Settings":
@@ -377,6 +376,8 @@ def main():
                 if adbRunning == True:
                     os.popen('cmd /c "cd platform-tools & adb kill-server"')
                 sys.exit(0)
+        window.Close()
+        main()
 
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
