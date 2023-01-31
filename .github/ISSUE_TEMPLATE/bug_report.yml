@@ -43,6 +43,13 @@ body:
       description: You can find the application version by pressing About on the main window.
     validations:
       required: true
+  - type: input
+    id: winbuild
+    attributes:
+      label: Windows build number
+      description: You can find the build number by typing winver in the Windows search box.
+    validations:
+      required: true
   - type: textarea
     id: other
     attributes:
