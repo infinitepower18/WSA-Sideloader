@@ -378,6 +378,14 @@ def main():
                 sys.exit(0)
         window.Close()
         main()
+         
+"""
+Which start function is called depends on how it will be deployed.
+startgit if launched from git repo
+start if it is being packaged into an installer
+startstore for Microsoft Store distribution
+Change below to appropriate function if necessary.
+"""
 
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
