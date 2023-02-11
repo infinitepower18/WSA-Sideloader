@@ -21,7 +21,7 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.10" # Version number
+version = "1.3.11" # Version number
 adbRunning = False
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
@@ -44,17 +44,6 @@ def startgit(filearg = ""):
     installsource = "GitHub (via git clone)"
     global explorerfile
     explorerfile = filearg
-    # Check if OS is Windows 11
-    if int(platform.win32_ver()[1].split('.')[2]) < 22000:
-        layout = [[gui.Text('You need Windows 11 to use WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before running this program.\nFor more information and support, visit the WSA Sideloader GitHub page.',font=("Calibri",11))],
-                [RoundedButton("Exit",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
-        window = gui.Window('Unsupported OS', layout,icon="icon.ico",debugger_enabled=False)
-
-        event, values = window.Read()
-        if event is None or "Exit":
-            sys.exit(0)
-        window.Close()
-        
     main()
     
 def startstore(filearg = ""): # For Microsoft Store installs
@@ -150,16 +139,28 @@ def main():
 
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
-        layout = [[gui.Text("You need to install Windows Subsystem for Android before you can use this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",font=("Calibri",11))],
-                [RoundedButton("Install WSA",0.3,font="Calibri 11")]]
-        window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
-        event, values = window.Read()
-        if event == "Install WSA":
-            window.Close()
-            webbrowser.open("ms-windows-store://pdp/?productid=9NJHK44TTKSX",2)
-            sys.exit(0)
-        elif event is None:
-            sys.exit(0)
+        if int(platform.win32_ver()[1].split('.')[2]) < 22000:
+            layout = [[gui.Text("WSA installation not detected.\nVisit the GitHub page for more information about installing WSA on Windows 10.",font=("Calibri",11))],
+                    [RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
+            event, values = window.Read()
+            if event == "GitHub":
+                window.Close()
+                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader#getting-started",2)
+                sys.exit(0)
+            elif event is None:
+                sys.exit(0)
+        else:
+            layout = [[gui.Text("You need to install Windows Subsystem for Android before you can use this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",font=("Calibri",11))],
+                    [RoundedButton("Install WSA",0.3,font="Calibri 11")]]
+            window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
+            event, values = window.Read()
+            if event == "Install WSA":
+                window.Close()
+                webbrowser.open("ms-windows-store://pdp/?productid=9NJHK44TTKSX",2)
+                sys.exit(0)
+            elif event is None:
+                sys.exit(0)
 
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
