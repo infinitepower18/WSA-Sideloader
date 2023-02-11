@@ -23,6 +23,8 @@ Make sure you have Windows Subsystem for Android installed on your Windows 11 ma
 
 If you're not in a [supported country](https://support.microsoft.com/en-us/windows/countries-and-regions-that-support-amazon-appstore-on-windows-d8dd17c7-5994-4187-9527-ddb076f9493e), change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
 
+**Windows 10 users:** You can obtain community builds of WSA for Windows 10 from repositories like [WSABuilds](https://github.com/MustardChef/WSABuilds) and [WSAPatch](https://github.com/cinit/WSAPatch). Please note that the MS Store version of WSA Sideloader is not available on Windows 10. You can install it from the [releases page](https://github.com/infinitepower18/WSA-Sideloader/releases).
+
 ![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
 
 Enable developer mode in WSA settings. The subsystem will need to be running in order to install apps, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
