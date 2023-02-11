@@ -146,7 +146,7 @@ def main():
             event, values = window.Read()
             if event == "GitHub":
                 window.Close()
-                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader#getting-started",2)
+                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
                 sys.exit(0)
             elif event is None:
                 sys.exit(0)
