@@ -140,13 +140,11 @@ def main():
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
         if int(platform.win32_ver()[1].split('.')[2]) < 22000:
-            layout = [[gui.Text("WSA installation not detected.\nVisit the GitHub page for more information about installing WSA on Windows 10.",font=("Calibri",11))],
+            layout = [[gui.Text("WSA installation not detected.\nWindows Subsystem for Android is not officially supported on Windows 10.",font=("Calibri",11))],
                     [RoundedButton("GitHub",0.3,font="Calibri 11")]]
             window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
             event, values = window.Read()
-            if event == "GitHub":
-                window.Close()
-                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
+            if event == "Exit":
                 sys.exit(0)
             elif event is None:
                 sys.exit(0)
