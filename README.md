@@ -48,7 +48,7 @@ WSA Sideloader is just an APK installer. Whether the app actually works or not d
 You may check [this page](https://github.com/riverar/wsa-app-compatibility) for a list of compatible apps.
 
 ### What's the difference between downloading from GitHub and downloading from MS Store?
-The Microsoft Store version is packaged as MSIX, allowing for clean installs/uninstalls as well as autoupdates. If you download the EXE installer from GitHub instead, you will have the option to install for yourself or for all users of the computer.
+The Microsoft Store version is packaged as MSIX, allowing for clean installs/uninstalls as well as autoupdates. If you download the EXE installer from GitHub instead, you will have the option to install for yourself or for all users of the computer. The version that is in the winget package repository is the GitHub version.
 
 It is recommended you download from Microsoft Store to ensure you get the latest features and bug fixes. Please note that the MS Store version is not available on Windows 10.
 
