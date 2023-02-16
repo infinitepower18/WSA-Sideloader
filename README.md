@@ -52,7 +52,7 @@ The Microsoft Store version is packaged as MSIX, allowing for clean installs/uni
 
 It is recommended you download from Microsoft Store to ensure you get the latest features and bug fixes. Please note that the MS Store version is not available on Windows 10.
 
-### Does Windows Subsystem for Android and WSA Sideloader work on Apple Silicon Macs?
+### Does Windows Subsystem for Android and WSA Sideloader work on my Windows VM running on my Apple Silicon Mac?
 No.
 
 ### I would like to see [feature name] in your program. When can you implement it?
