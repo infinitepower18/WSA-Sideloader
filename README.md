@@ -67,9 +67,7 @@ If you would like to launch a list of installed apps right from the start menu, 
 APKMirror and APKPure are two popular sites for downloading APK files. Alternatively, you can install Aurora Store, an open source Play Store client.
 
 ### Is a native ARM64 build of WSA Sideloader available?
-You can download a test build of [version 1.1.10](https://github.com/infinitepower18/WSA-Sideloader/releases/tag/v1.1.10) but be aware this version is quite outdated and is missing some features.
-
-The release of new ARM64 builds have been temporarily postponed. Please stay tuned for further updates.
+ARM64 releases are available starting with version 1.3.11. Currently the ARM64 version is not available on MS Store, but I do plan to make it available on the store very soon.
 
 ## Support
 
