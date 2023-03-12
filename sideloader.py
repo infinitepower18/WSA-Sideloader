@@ -198,6 +198,7 @@ def main():
             autostart = os.popen('cmd /c "tasklist"')
             startoutput = str(autostart.readlines())
             if "WsaClient.exe" not in startoutput:
+                webbrowser.open("wsa://system",2)
                 window['_ERROR2_'].Update("Starting WSA, please wait 30 seconds before trying again.")
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
