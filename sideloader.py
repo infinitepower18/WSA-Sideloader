@@ -13,6 +13,7 @@ from os.path import exists
 import requests
 from configparser import ConfigParser
 import textwrap
+import time
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -21,7 +22,7 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.11" # Version number
+version = "1.3.12" # Version number
 adbRunning = False
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
@@ -91,21 +92,16 @@ def start(filearg = ""): # For GitHub installs
     except requests.exceptions.RequestException as error: # Skip update check in case of network error
         main()
 
-def startWSA(window): # Start subsystem if not running
-    webbrowser.open("wsa://system",2)
-    window["_ERROR1_"].Update(visible=False)
-    window["_ERROR2_"].Update(visible=False)
-    window.Hide()
-    startingLayout = [[gui.Text("WSA Sideloader is attempting to start the subsystem.\nIf it's properly installed, you should see a separate window saying it's starting.\nOnce it closes, click OK to go back and try again.",font=("Calibri",11))],[RoundedButton('OK',0.3,font="Calibri 11")]]
-    startingWindow = gui.Window("Message",startingLayout,icon="icon.ico",debugger_enabled=False)
-    while True:
-        event,values = startingWindow.Read()
-        if event is None:
-            sys.exit(0)
-        elif event == "OK":
-            startingWindow.Close()
-            window.UnHide()
-            break
+def startWSA(window):
+    seconds = 30
+    while seconds > 0:
+        if(seconds != 1):
+            window["_MESSAGE_"].Update("Installation will continue in "+str(seconds)+" seconds.")
+        else:
+            window["_MESSAGE_"].Update("Installation will continue in 1 second.")
+        seconds = seconds - 1
+        time.sleep(1)
+    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
 def installAPK(address,fname,window):
     global adbRunning
@@ -159,7 +155,7 @@ def main():
                 sys.exit(0)
             elif event is None:
                 sys.exit(0)
-
+                
     # Main window
     layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
@@ -202,7 +198,9 @@ def main():
             autostart = os.popen('cmd /c "tasklist"')
             startoutput = str(autostart.readlines())
             if "WsaClient.exe" not in startoutput:
-                startWSA(window)
+                window['_ERROR2_'].Update("Starting WSA, please wait 30 seconds before trying again.")
+                window["_ERROR2_"].Update(visible=True)
+                window["_ERROR1_"].Update(visible=False)
             else:
                 try:
                     address = values[1]
@@ -257,7 +255,18 @@ def main():
                     if "WsaClient.exe" in startoutput:
                         break
                     else:
-                        startWSA(window)
+                        webbrowser.open("wsa://system",2)
+                        window.Hide()
+                        startingLayout = [[gui.Text("Please wait while WSA starts.",font="Calibri 11")],
+                                          [gui.Text("",key='_MESSAGE_',font="Calibri 11")]]
+                        startingWindow = gui.Window('Starting WSA',startingLayout,icon="icon.ico",debugger_enabled=False,finalize=True,no_titlebar=True,keep_on_top=True)
+                        startingWindow.start_thread(lambda: startWSA(startingWindow), ('-THREAD-','-THREAD ENDED-'))
+                        while True:
+                            event, values = startingWindow.read()
+                            if event[0] == '-THREAD ENDED-':
+                                startingWindow.close()
+                                break
+                        break
         if event == "Help":
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
