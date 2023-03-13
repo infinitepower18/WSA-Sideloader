@@ -24,6 +24,7 @@ ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
 version = "1.3.12" # Version number
 adbRunning = False
+startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 
 config = ConfigParser()
@@ -93,14 +94,18 @@ def start(filearg = ""): # For GitHub installs
         main()
 
 def startWSA(window):
+    global startCode
     seconds = 30
     while seconds > 0:
-        if(seconds != 1):
-            window["_MESSAGE_"].Update("Installation will continue in "+str(seconds)+" seconds.")
+        if startCode == 0:
+            if(seconds != 1):
+                window["_MESSAGE_"].Update("Installation will continue in "+str(seconds)+" seconds.")
+            else:
+                window["_MESSAGE_"].Update("Installation will continue in 1 second.")
+            seconds = seconds - 1
+            time.sleep(1)
         else:
-            window["_MESSAGE_"].Update("Installation will continue in 1 second.")
-        seconds = seconds - 1
-        time.sleep(1)
+            break
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
 def installAPK(address,fname,window):
@@ -122,6 +127,7 @@ def installAPK(address,fname,window):
 def main():
     global adbRunning
     global explorerfile
+    global startCode
     adbAddress = "127.0.0.1:58526"
     try:
         config.read(configpath)
@@ -259,15 +265,31 @@ def main():
                         webbrowser.open("wsa://system",2)
                         window.Hide()
                         startingLayout = [[gui.Text("Please wait while WSA starts.",font="Calibri 11")],
-                                          [gui.Text("",key='_MESSAGE_',font="Calibri 11")]]
+                                          [gui.Text("",key='_MESSAGE_',font="Calibri 11")],
+                                          [RoundedButton("Install now",0.3,key="_INSTALL_",font="Calibri 11"),RoundedButton("Cancel",0.3,key="_CANCEL_",font="Calibri 11")]]
                         startingWindow = gui.Window('Starting WSA',startingLayout,icon="icon.ico",debugger_enabled=False,finalize=True,no_titlebar=True,keep_on_top=True)
                         startingWindow.start_thread(lambda: startWSA(startingWindow), ('-THREAD-','-THREAD ENDED-'))
                         while True:
-                            event, values = startingWindow.read()
+                            event, values = startingWindow.Read()
                             if event[0] == '-THREAD ENDED-':
                                 startingWindow.close()
                                 break
-                        break
+                            if event == "_INSTALL_":
+                                startingWindow["_INSTALL_"].Update(visible=False)
+                                startingWindow["_CANCEL_"].Update(visible=False)
+                                startCode = 1
+                                startingWindow['_MESSAGE_'].Update("Installing application...")
+                            if event == "_CANCEL_":
+                                startingWindow["_INSTALL_"].Update(visible=False)
+                                startingWindow["_CANCEL_"].Update(visible=False)
+                                startCode = 2
+                                startingWindow['_MESSAGE_'].Update("Cancelling...")
+                        if startCode == 2:
+                            startCode = 0
+                            window.UnHide()
+                        else:
+                            startCode = 0
+                            break
         if event == "Help":
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
