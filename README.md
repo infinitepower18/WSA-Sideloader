@@ -73,15 +73,22 @@ ARM64 releases are available starting with version 1.3.11. Currently the ARM64 v
 
 Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug or want to make a feature request? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
 
+## Build Instructions
+
+To compile from source, follow the below instructions:
+
+1. Install [Git](https://gitforwindows.org/) if you haven't already. Then clone the repo using the command `git clone https://github.com/infinitepower18/WSA-Sideloader`
+2. Download the latest version of [Python 3.10 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.11 instead.
+3. Install Nuitka via pip using the command `pip install nuitka`. ARM64 compilation requires Nuitka 1.5 or later.
+4. Clone the repository, and install the required dependencies using the command `pip install -r requirements.txt` in the root directory. If you're building for ARM64, the Pillow installation will fail, you can grab the ARM64 wheel from [this page](https://github.com/python-pillow/Pillow/issues/6750#issuecomment-1368693874) to get around this.
+5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console -windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-file-description="WSA Sideloader"`. This may take some time depending on your computer.
+6. Copy the icon.ico, apk.ico, aapt.exe files as well as the platform-tools folder to the sideloader.dist folder.
+
 ## Privacy Policy
 
 Please [click here](https://ahnafmahmud.me/apps/WSA-Sideloader/PrivacyPolicy.html) to view the privacy policy.
 
 TLDR - No information is collected by this application.
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/infinitepower18/WSA-Sideloader/blob/main/CONTRIBUTING.md) for more information.
 
 ## Disclaimer
 This project is not affiliated with Microsoft or Google in any way.
