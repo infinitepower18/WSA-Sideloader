@@ -220,7 +220,6 @@ def main():
                         window["_ERROR2_"].Update(visible=False)
                         window["_ERROR1_"].Update(visible=False)
                     elif check.startswith("failed to authenticate"):
-                        os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
                         window["_ERROR2_"].Update("Please allow the ADB connection (with the always allow\ncheckbox selected) and try again.")
                         window["_ERROR2_"].Update(visible=True)
                         window["_ERROR1_"].Update(visible=False)
@@ -371,7 +370,6 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     elif outLine.startswith("failed to authenticate"):
-        os.popen('cmd /c "cd platform-tools & adb disconnect '+address+'"')
         layout = [[gui.Text('Please allow the ADB connection (with the always allow checkbox selected)\nand run the installation again.',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11")]]
         window = gui.Window('Message', layout,icon="icon.ico",debugger_enabled=False)
