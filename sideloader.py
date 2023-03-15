@@ -220,11 +220,11 @@ def main():
                         window["_ERROR2_"].Update(visible=False)
                         window["_ERROR1_"].Update(visible=False)
                     elif check.startswith("failed to authenticate"):
-                        window["_ERROR2_"].Update("Please allow the ADB connection (with the always allow\ncheckbox selected) and try again.")
+                        window["_ERROR2_"].Update("Please allow the ADB connection and try again.")
                         window["_ERROR2_"].Update(visible=True)
                         window["_ERROR1_"].Update(visible=False)
                     else:
-                        window['_ERROR2_'].Update("Please check that WSA is running and the correct ADB address\nhas been entered.")
+                        window['_ERROR2_'].Update("Please check that WSA is running, you allowed the ADB\nconnection and the correct ADB address has been entered.\nIf you denied the ADB connection, close and reopen WSA\nSideloader.")
                         window["_ERROR2_"].Update(visible=True)
                         window["_ERROR1_"].Update(visible=False)
                 except IndexError:
@@ -370,7 +370,7 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     elif outLine.startswith("failed to authenticate"):
-        layout = [[gui.Text('Please allow the ADB connection (with the always allow checkbox selected)\nand run the installation again.',font=("Calibri",11))],
+        layout = [[gui.Text('Please allow the ADB connection and run the installation again.',font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11")]]
         window = gui.Window('Message', layout,icon="icon.ico",debugger_enabled=False)
 
@@ -389,7 +389,7 @@ def main():
             errInfo = '\n'.join(map(str,textwrap.wrap(errLine,80)))
         else:
             errInfo = '\n'.join(map(str,textwrap.wrap(outLine,80)))+'\n'+'\n'.join(map(str,textwrap.wrap(errLine,80)))
-        layout = [[gui.Text('Unable to install application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\n\n[Error Info]\n'+errInfo,font=("Calibri",11))],
+        layout = [[gui.Text('Unable to install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\nYou allowed the ADB connection. If you denied by mistake, close and reopen WSA Sideloader.\n\n[Error Info]\n'+errInfo,font=("Calibri",11))],
                 [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("WSA Settings",0.3,font="Calibri 11"),RoundedButton("Report bug",0.3,font="Calibri 11")]]
         window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
 
