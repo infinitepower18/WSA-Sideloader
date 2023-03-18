@@ -35,7 +35,7 @@ Choose the APK file you want to install and click the Install button. In most ca
 
 You might see the below message if using WSA Sideloader for the first time. Just tick the box to always allow, allow the connection and run the APK installation again.
 
-<img width="327" alt="image" src="https://user-images.githubusercontent.com/44692189/195931968-3450beb9-895c-436b-8682-5b28727dc81a.png">
+![image](https://user-images.githubusercontent.com/44692189/226106838-20b34d01-3bd5-4fae-bc93-81f24b6d0139.png)
 
 ## FAQ
 
