@@ -45,7 +45,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Application version
+      label: WSA Sideloader version
       description: You can find the application version by pressing About on the main window.
     validations:
       required: true
