@@ -21,7 +21,7 @@ body:
   - type: textarea
     id: expected
     attributes:
-      label: Expected behaviour
+      label: Expected behavior
       description: A clear and concise description of what you expected to happen.
     validations:
       required: true
@@ -33,6 +33,13 @@ body:
       options:
         - Microsoft Store
         - GitHub/winget
+    validations:
+      required: true
+  - type: input
+    id: wsasource
+    attributes:
+      label: WSA download source
+      description: Please indicate whether you downloaded the official WSA build from Microsoft Store or from some other source.
     validations:
       required: true
   - type: input
