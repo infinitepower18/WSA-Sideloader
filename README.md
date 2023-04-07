@@ -45,11 +45,13 @@ This is a [bug](https://github.com/microsoft/WSA/issues/136) with the subsystem 
 
 If you still get this error, try these steps:
 
-1. Disable Hyper-V using the command `dism.exe /Online /Disable-Feature:Microsoft-Hyper-V` and reboot your PC
+1. Make sure WSA is turned off and disable WSA autostart in Task Manager, startup apps before proceeding with the below steps
 
-2. Reserve port 58526 so Hyper-V doesn't reserve it back using the command `netsh int ipv4 add excludedportrange protocol=tcp startport=58526 numberofports=1`
+2. Disable Hyper-V using the command `dism.exe /Online /Disable-Feature:Microsoft-Hyper-V` and reboot your PC
 
-3. Re-enable Hyper-V using the command `dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All` and reboot your PC
+3. Reserve port 58526 so Hyper-V doesn't reserve it back using the command `netsh int ipv4 add excludedportrange protocol=tcp startport=58526 numberofports=1`
+
+4. Re-enable Hyper-V using the command `dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All` and reboot your PC
 
 ### I installed the app successfully, but the app crashes while using it or doesn't work as intended.
 WSA Sideloader is just an APK installer. Whether the app actually works or not depends on the app and the subsystem. Please be aware that apps that require Google Play Services may not work properly on WSA. You may try solutions such as [Magisk on WSA](https://github.com/LSPosed/MagiskOnWSALocal) if you want Google Play functionality.
