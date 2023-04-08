@@ -28,11 +28,11 @@ strings = {}
 
 # Load translation file if available, otherwise fallback to English US
 if os.path.exists("./locales/"+lang+".json"):
-    with open("./locales/"+lang+".json") as json_file:
+    with open("./locales/"+lang+".json",encoding='utf-8') as json_file:
         data = json.load(json_file)
         strings = data
 else:
-    with open("./locales/en-US.json") as json_file:
+    with open("./locales/en_US.json",encoding='utf-8') as json_file:
         data = json.load(json_file)
         strings = data
 
