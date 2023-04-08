@@ -38,6 +38,17 @@ You might see the below message if using WSA Sideloader for the first time. Just
 
 ![image](https://user-images.githubusercontent.com/44692189/226106838-20b34d01-3bd5-4fae-bc93-81f24b6d0139.png)
 
+## Upcoming features
+The following features are planned to be included in the next update:
+
+### Bundle installation
+Support for APK bundles including xapk, apkm and apks.
+
+### Community translations
+I am in the process of restructuring the app to enable localization support, and will begin accepting translations once bundle installation is implemented. I'm also looking at Crowdin integration.
+
+Thank you for your patience while I work on these features.
+
 ## FAQ
 
 ### The APK installation fails with the error message "No connection could be made because the target machine actively refused it"
