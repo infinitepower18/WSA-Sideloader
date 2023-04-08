@@ -14,6 +14,7 @@ import requests
 from configparser import ConfigParser
 import textwrap
 import time
+import locale
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -21,8 +22,9 @@ if(platform.system() != "Windows"):
     sys.exit(0)
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
+lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
 
-version = "1.3.12" # Version number
+version = "1.4.0" # Version number
 adbRunning = False
 startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
