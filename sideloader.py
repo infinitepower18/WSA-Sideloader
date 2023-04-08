@@ -197,11 +197,11 @@ def main():
         if event == strings["viewPerms"]:
             source_filename = values[0]
             if os.path.exists(source_filename) == False:
-                window['_ERROR1_'].Update("APK file not found")
+                window['_ERROR1_'].Update(strings["apkNotFound"])
                 window["_ERROR1_"].Update(visible=True)
                 window["_ERROR2_"].Update(visible=False)
             elif source_filename.endswith(".apk") == False:
-                window['_ERROR1_'].Update("Only APK files are supported")
+                window['_ERROR1_'].Update(strings["onlyApkSupported"])
                 window["_ERROR1_"].Update(visible=True)
                 window["_ERROR2_"].Update(visible=False)
             else:
