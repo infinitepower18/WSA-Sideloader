@@ -193,7 +193,7 @@ def main():
             if adbRunning == True:
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
-        if event == "View APK permissions":
+        if event == strings["viewPerms"]:
             source_filename = values[0]
             if os.path.exists(source_filename) == False:
                 window['_ERROR1_'].Update("APK file not found")
@@ -210,7 +210,7 @@ def main():
                 window.Hide()
                 gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
-        if event == "Installed apps": # Launch apps list of com.android.settings
+        if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
             config.set('Application','adbAddress',values[1])
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
@@ -244,7 +244,7 @@ def main():
                     window['_ERROR2_'].Update("ADB address cannot be empty")
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
-        if event == "Install":
+        if event == strings["installButton"]:
             config.set('Application','adbAddress',values[1])
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
@@ -302,7 +302,7 @@ def main():
                         else:
                             startCode = 0
                             break
-        if event == "Help":
+        if event == strings["helpButton"]:
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
@@ -324,7 +324,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
                 elif event == "Compatible apps":
                     webbrowser.open("https://github.com/riverar/wsa-app-compatibility",2)
-        if event == "About":
+        if event == strings["aboutButton"]:
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
