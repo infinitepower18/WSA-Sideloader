@@ -1,3 +1,9 @@
 {
-    "chooseToInstall": "Choose APK file to install:"
+    "chooseToInstall": "Choose APK file to install:",
+    "viewPerms": "View APK permissions",
+    "address": "ADB address:",
+    "installButton": "Install",
+    "installedAppsButton": "Installed apps",
+    "helpButton": "Help",
+    "aboutButton": "About"
 }

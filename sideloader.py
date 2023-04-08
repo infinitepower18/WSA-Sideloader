@@ -178,11 +178,11 @@ def main():
     # Main window
     layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
-            [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
+            [RoundedButton(strings["viewPerms"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
-            [gui.Text('ADB address:',font="Calibri 11")],
+            [gui.Text(strings["address"],font="Calibri 11")],
             [gui.Input(adbAddress,font="Calibri 11")],
-            [RoundedButton('Install',0.3,font="Calibri 11"),RoundedButton('Installed apps',0.3,font="Calibri 11"),RoundedButton('Help',0.3,font="Calibri 11"),RoundedButton('About',0.3,font="Calibri 11")],
+            [RoundedButton(strings["installButton"],0.3,font="Calibri 11"),RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11"),RoundedButton(strings["aboutButton"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11"))]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico",debugger_enabled=False)
