@@ -219,7 +219,7 @@ def main():
             startoutput = str(autostart.readlines())
             if "WsaClient.exe" not in startoutput:
                 webbrowser.open("wsa://system",2)
-                window['_ERROR2_'].Update("Starting WSA, please wait 30 seconds before trying again.")
+                window['_ERROR2_'].Update(strings["startingWait"])
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
             else:
@@ -234,15 +234,15 @@ def main():
                         window["_ERROR2_"].Update(visible=False)
                         window["_ERROR1_"].Update(visible=False)
                     elif check.startswith("failed to authenticate"):
-                        window["_ERROR2_"].Update("Please allow the ADB connection and try again.")
+                        window["_ERROR2_"].Update(strings["instAppsAdbAllow"])
                         window["_ERROR2_"].Update(visible=True)
                         window["_ERROR1_"].Update(visible=False)
                     else:
-                        window['_ERROR2_'].Update("Please check that WSA is running, you allowed the ADB\nconnection and the correct ADB address has been entered.\nIf you denied the ADB connection, close and reopen WSA\nSideloader.")
+                        window['_ERROR2_'].Update(strings["instAppsError"])
                         window["_ERROR2_"].Update(visible=True)
                         window["_ERROR1_"].Update(visible=False)
                 except IndexError:
-                    window['_ERROR2_'].Update("ADB address cannot be empty")
+                    window['_ERROR2_'].Update(strings["adbEmpty"])
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
         if event == strings["installButton"]:
@@ -253,20 +253,20 @@ def main():
             address = values[1]
             address = address.replace(" ", "")
             if source_filename == "":
-                window['_ERROR2_'].Update("Please select an APK file.")
+                window['_ERROR2_'].Update(strings["blankApkField"])
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
             elif exists(source_filename) == False:
-                window['_ERROR2_'].Update("APK file not found")
+                window['_ERROR2_'].Update(strings["apkNotFound"])
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
             elif source_filename.endswith(".apk") == False:
-                window['_ERROR2_'].Update("Only APK files are supported")
+                window['_ERROR2_'].Update(strings["onlyApkSupported"])
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
             else:
                 if address == "":
-                    window['_ERROR2_'].Update("ADB address cannot be empty")
+                    window['_ERROR2_'].Update(strings["adbEmpty"])
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
                 else:
