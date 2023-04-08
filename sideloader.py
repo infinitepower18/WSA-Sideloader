@@ -307,7 +307,7 @@ def main():
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
-            helpLayout = [[gui.Text("This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open WSA Settings and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",font=("Calibri",11))],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("WSA Settings",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11"),RoundedButton("Compatible apps",0.3,font="Calibri 11")]]
+            helpLayout = [[gui.Text(strings["helpText"],font=("Calibri",11))],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["compatAppsButton"],0.3,font="Calibri 11")]]
             helpWindow = gui.Window('Help',helpLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = helpWindow.Read()
@@ -315,15 +315,15 @@ def main():
                     if adbRunning == True:
                         os.popen('cmd /c "cd platform-tools & adb kill-server"')
                     sys.exit(0)
-                elif event == "Back":
+                elif event == strings["backButton"]:
                     helpWindow.Close()
                     window.UnHide()
                     break
-                elif event == "WSA Settings":
+                elif event == strings["wsaSettingsButton"]:
                     webbrowser.open("wsa-settings://",2)
-                elif event == "GitHub":
+                elif event == strings["ghButton"]:
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
-                elif event == "Compatible apps":
+                elif event == strings["compatAppsButton"]:
                     webbrowser.open("https://github.com/riverar/wsa-app-compatibility",2)
         if event == strings["aboutButton"]:
             window["_ERROR1_"].Update(visible=False)

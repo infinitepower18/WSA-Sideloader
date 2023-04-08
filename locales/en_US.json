@@ -5,5 +5,10 @@
     "installButton": "Install",
     "installedAppsButton": "Installed apps",
     "helpButton": "Help",
-    "aboutButton": "About"
+    "aboutButton": "About",
+    "helpText": "This program is used to install APK files on Windows Subsystem for Android. Before using WSA Sideloader, make sure you:\n1. Installed Windows Subsystem for Android\n2. Enabled developer mode (open WSA Settings and enable developer mode)\nWSA Sideloader also integrates with File Explorer and other supported programs, allowing APKs to be installed by just (double) clicking the file.\nFor more information and support, visit the GitHub page.",
+    "backButton": "Back",
+    "wsaSettingsButton": "WSA Settings",
+    "ghButton": "GitHub",
+    "compatAppsButton": "Compatible apps"
 }
