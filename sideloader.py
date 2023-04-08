@@ -26,6 +26,7 @@ ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
 strings = {}
 
+# Load translation file if available, otherwise fallback to English US
 if os.path.exists("./locales/"+lang+".json"):
     with open("./locales/"+lang+".json") as json_file:
         data = json.load(json_file)
