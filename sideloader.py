@@ -15,6 +15,7 @@ from configparser import ConfigParser
 import textwrap
 import time
 import locale
+import json
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -23,6 +24,16 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
+strings = {}
+
+if os.path.exists("./locales/"+lang+".json"):
+    with open("./locales/"+lang+".json") as json_file:
+        data = json.load(json_file)
+        strings = data
+else:
+    with open("./locales/en-US.json") as json_file:
+        data = json.load(json_file)
+        strings = data
 
 version = "1.4.0" # Version number
 adbRunning = False
@@ -165,7 +176,7 @@ def main():
                 sys.exit(0)
                 
     # Main window
-    layout = [[gui.Text('Choose APK file to install:',font="Calibri 11")],
+    layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
             [RoundedButton("View APK permissions",0.3,font="Calibri 11")],
             [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
