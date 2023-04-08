@@ -10,5 +10,8 @@
     "backButton": "Back",
     "wsaSettingsButton": "WSA Settings",
     "ghButton": "GitHub",
-    "compatAppsButton": "Compatible apps"
+    "compatAppsButton": "Compatible apps",
+    "abtText": "WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.",
+    "abtAppVer": "Application version: ",
+    "abtSource": "Downloaded from: "
 }
