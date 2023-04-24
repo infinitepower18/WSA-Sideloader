@@ -38,6 +38,12 @@ You might see the below message if using WSA Sideloader for the first time. Just
 
 ![image](https://user-images.githubusercontent.com/44692189/226106838-20b34d01-3bd5-4fae-bc93-81f24b6d0139.png)
 
+## Known issues
+### APK installation failure in partially running mode
+Microsoft has recently introduced a new partially running mode to WSA, and due to the way it works WSA Sideloader is not able to properly detect its running state and will show a "device offline" error should WSA goes to its inactive state.
+
+For now, you can open any app to wake up the subsystem before running WSA Sideloader. I hope to address this issue in an update coming by May. Thank you for your patience.
+
 ## Upcoming features
 The following features are planned to be included in the next update:
 
