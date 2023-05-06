@@ -22,7 +22,7 @@ if(platform.system() != "Windows"):
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 
-version = "1.3.12" # Version number
+version = "1.3.13" # Version number
 adbRunning = False
 startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
@@ -195,7 +195,7 @@ def main():
                 window["_ERROR2_"].Update(visible=False)
                 source_filename = values[0]
                 window.Hide()
-                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename.replace('&', '^&')+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
             config.set('Application','adbAddress',values[1])
@@ -334,7 +334,7 @@ def main():
     explorerfile = source_filename
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-    window.start_thread(lambda: installAPK(address, source_filename, window), ('-THREAD-','-THREAD ENDED-'))
+    window.start_thread(lambda: installAPK(address, source_filename.replace('&', '^&'), window), ('-THREAD-','-THREAD ENDED-'))
     while True:
         event, values = window.read()
         if event[0] == '-THREAD ENDED-':
