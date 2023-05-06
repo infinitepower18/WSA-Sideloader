@@ -315,7 +315,7 @@ def main():
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
-            abtLayout = [[gui.Text('WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11")]]
+            abtLayout = [[gui.Text('WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android.\nThe program has been designed with simplicity and ease of use in mind.',font="Calibri 11")],[gui.Text("Application version: "+version,font="Calibri 11")],[gui.Text("Downloaded from: "+installsource,font="Calibri 11")],[RoundedButton("Back",0.3,font="Calibri 11"),RoundedButton("GitHub",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = abtWindow.Read()
@@ -329,6 +329,8 @@ def main():
                     break
                 elif event == "GitHub":
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
+                elif event == "Donate":
+                    webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
 
     window.Close()
     explorerfile = source_filename
