@@ -64,6 +64,25 @@ def startstore(filearg = ""): # For Microsoft Store installs
         os.chdir(msixfolder)
         main()
 
+def escaped_filename(filename):
+    esc_filename = list(filename)
+    for i in range(len(esc_filename)):
+        if esc_filename[i] == "&":
+            esc_filename[i] = "^&"
+        elif esc_filename[i] == "|":
+            esc_filename[i] = "^|"
+        elif esc_filename[i] == "(":
+            esc_filename[i] = "^("
+        elif esc_filename[i] == ")":
+            esc_filename[i] = "^)"
+        elif esc_filename[i] == "<":
+            esc_filename[i] = "^<"
+        elif esc_filename[i] == ">":
+            esc_filename[i] = "^>"
+        elif esc_filename[i] == "^":
+            esc_filename[i] = "^^"
+    return ''.join(esc_filename)
+
 def start(filearg = ""): # For GitHub installs
     global installsource
     installsource = "GitHub"
@@ -195,7 +214,7 @@ def main():
                 window["_ERROR2_"].Update(visible=False)
                 source_filename = values[0]
                 window.Hide()
-                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename.replace('&', '^&')+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == "Installed apps": # Launch apps list of com.android.settings
             config.set('Application','adbAddress',values[1])
@@ -336,7 +355,7 @@ def main():
     explorerfile = source_filename
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-    window.start_thread(lambda: installAPK(address, source_filename.replace('&', '^&'), window), ('-THREAD-','-THREAD ENDED-'))
+    window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
     while True:
         event, values = window.read()
         if event[0] == '-THREAD ENDED-':
