@@ -375,7 +375,7 @@ def main():
 
         event, values = window.Read()
         if event == "Open app":
-            getpackage = os.popen('cmd /c "aapt d permissions "'+source_filename+'""')
+            getpackage = os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""')
             pkgoutput = getpackage.readlines()
             pkgname = str(pkgoutput[0])
             webbrowser.open("wsa://"+pkgname[9:],2)
