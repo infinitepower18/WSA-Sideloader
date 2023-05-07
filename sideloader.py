@@ -64,7 +64,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
         os.chdir(msixfolder)
         main()
 
-def escaped_filename(filename):
+def escaped_filename(filename): # Escape special characters used by cmd
     filename = list(filename)
     for i in range(len(filename)):
         if filename[i] == "&":
