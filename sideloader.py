@@ -65,23 +65,23 @@ def startstore(filearg = ""): # For Microsoft Store installs
         main()
 
 def escaped_filename(filename):
-    esc_filename = list(filename)
-    for i in range(len(esc_filename)):
-        if esc_filename[i] == "&":
-            esc_filename[i] = "^&"
-        elif esc_filename[i] == "|":
-            esc_filename[i] = "^|"
-        elif esc_filename[i] == "(":
-            esc_filename[i] = "^("
-        elif esc_filename[i] == ")":
-            esc_filename[i] = "^)"
-        elif esc_filename[i] == "<":
-            esc_filename[i] = "^<"
-        elif esc_filename[i] == ">":
-            esc_filename[i] = "^>"
-        elif esc_filename[i] == "^":
-            esc_filename[i] = "^^"
-    return ''.join(esc_filename)
+    filename = list(filename)
+    for i in range(len(filename)):
+        if filename[i] == "&":
+            filename[i] = "^&"
+        elif filename[i] == "|":
+            filename[i] = "^|"
+        elif filename[i] == "(":
+            filename[i] = "^("
+        elif filename[i] == ")":
+            filename[i] = "^)"
+        elif filename[i] == "<":
+            filename[i] = "^<"
+        elif filename[i] == ">":
+            filename[i] = "^>"
+        elif filename[i] == "^":
+            filename[i] = "^^"
+    return ''.join(filename)
 
 def start(filearg = ""): # For GitHub installs
     global installsource
