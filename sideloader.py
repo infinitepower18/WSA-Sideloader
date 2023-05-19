@@ -33,7 +33,7 @@ if os.path.exists("./locales/"+lang+".json"):
 else:
     with open("./locales/en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
-
+        
 version = "1.4.0" # Version number
 adbRunning = False
 startCode = 0
@@ -75,6 +75,25 @@ def startstore(filearg = ""): # For Microsoft Store installs
     else:
         os.chdir(msixfolder)
         main()
+
+def escaped_filename(filename): # Escape special characters used by cmd
+    filename = list(filename)
+    for i in range(len(filename)):
+        if filename[i] == "&":
+            filename[i] = "^&"
+        elif filename[i] == "|":
+            filename[i] = "^|"
+        elif filename[i] == "(":
+            filename[i] = "^("
+        elif filename[i] == ")":
+            filename[i] = "^)"
+        elif filename[i] == "<":
+            filename[i] = "^<"
+        elif filename[i] == ">":
+            filename[i] = "^>"
+        elif filename[i] == "^":
+            filename[i] = "^^"
+    return ''.join(filename)
 
 def start(filearg = ""): # For GitHub installs
     global installsource
@@ -207,7 +226,7 @@ def main():
                 window["_ERROR2_"].Update(visible=False)
                 source_filename = values[0]
                 window.Hide()
-                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+source_filename+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
             config.set('Application','adbAddress',values[1])
@@ -327,7 +346,7 @@ def main():
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
-            abtLayout = [[gui.Text(strings["abtText"],font="Calibri 11")],[gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],[gui.Text(strings["abtSource"]+installsource,font="Calibri 11")],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11")]]
+            abtLayout = [[gui.Text(strings["abtText"],font="Calibri 11")],[gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],[gui.Text(strings["abtSource"]+installsource,font="Calibri 11")],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
             abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
             while True:
                 event,values = abtWindow.Read()
@@ -341,12 +360,14 @@ def main():
                     break
                 elif event == strings["ghButton"]:
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
+                elif event == strings["donateButton"]:
+                    webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
 
     window.Close()
     explorerfile = source_filename
     layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
     window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-    window.start_thread(lambda: installAPK(address, source_filename, window), ('-THREAD-','-THREAD ENDED-'))
+    window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
     while True:
         event, values = window.read()
         if event[0] == '-THREAD ENDED-':
@@ -366,7 +387,7 @@ def main():
 
         event, values = window.Read()
         if event == "Open app":
-            getpackage = os.popen('cmd /c "aapt d permissions "'+source_filename+'""')
+            getpackage = os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""')
             pkgoutput = getpackage.readlines()
             pkgname = str(pkgoutput[0])
             webbrowser.open("wsa://"+pkgname[9:],2)
