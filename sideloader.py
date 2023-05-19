@@ -26,8 +26,6 @@ ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
 strings = {}
 
-version = "1.4.0" # Version number
-
 # Load translation file if available, otherwise fallback to English US
 if os.path.exists("./locales/"+lang+".json"):
     with open("./locales/"+lang+".json",encoding='utf-8') as json_file:
@@ -35,6 +33,8 @@ if os.path.exists("./locales/"+lang+".json"):
 else:
     with open("./locales/en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
+        
+version = "1.4.0" # Version number
 adbRunning = False
 startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
