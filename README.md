@@ -32,7 +32,7 @@ Enable developer mode in WSA settings. The subsystem will need to be running in 
 
 ![image](https://user-images.githubusercontent.com/44692189/182655019-5cd310c6-8bbd-43b6-a60b-ebd35c12748c.png)
 
-Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs.
+Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs. You may need to authorize the ADB connection when using it for the first time.
 
 You might see the below message if using WSA Sideloader for the first time. Just tick the box to always allow, allow the connection and run the APK installation again.
 
