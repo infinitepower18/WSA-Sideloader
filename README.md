@@ -1,5 +1,5 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
-![MS Store downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ahnafmahmud.me%2Fwsasideloader%2Finstalls)
+![MS Store downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ahnafmahmud.com%2Fwsasideloader%2Finstalls)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
 ![Python](https://img.shields.io/badge/python-3.10%20|%203.11%20ARM64-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
@@ -14,7 +14,7 @@ Operating System|Source
 |---------|---------|
 |<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Windows_11_logo.svg" style="width: 150px;"/>|[<img src="https://get.microsoft.com/images/en-GB%20dark.svg" style="width: 200px;"/>](https://www.microsoft.com/store/apps/9NMFSJB25QJR?cid=ghreadme)|
 |<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Windows_11_logo.svg" style="width: 150px;"/></br><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Windows_10_Logo.svg" style="width: 150px;"/> |[<img src="https://user-images.githubusercontent.com/68516357/226141505-c93328f9-d6ae-4838-b080-85b073bfa1e0.png" style="width: 200px;"/>](https://github.com/infinitepower18/WSA-Sideloader/releases/latest)|
-|<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Windows_11_logo.svg" style="width: 150px;"/></br><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Windows_10_Logo.svg" style="width: 150px;"/> |[<img src="https://user-images.githubusercontent.com/49786146/159123331-729ae9f2-4cf9-439b-8515-16a4ef991089.png" style="width: 200px;"/>](https://winget.run/pkg/infinitepower18/WSASideloader)|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Windows_11_logo.svg" style="width: 150px;"/></br><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Windows_10_Logo.svg" style="width: 150px;"/> |`winget install wsa-sideloader`|
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F1K06VY)
                 
@@ -32,7 +32,7 @@ Enable developer mode in WSA settings. The subsystem will need to be running in 
 
 ![image](https://user-images.githubusercontent.com/44692189/182655019-5cd310c6-8bbd-43b6-a60b-ebd35c12748c.png)
 
-Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs.
+Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs. You may need to authorize the ADB connection when using it for the first time.
 
 You might see the below message if using WSA Sideloader for the first time. Just tick the box to always allow, allow the connection and run the APK installation again.
 
@@ -111,7 +111,7 @@ To compile from source, follow the below instructions:
 
 ## Privacy Policy
 
-Please [click here](https://ahnafmahmud.me/apps/WSA-Sideloader/PrivacyPolicy.html) to view the privacy policy.
+Please [click here](https://ahnafmahmud.com/apps/WSA-Sideloader/PrivacyPolicy.html) to view the privacy policy.
 
 TLDR - No information is collected by this application.
 
