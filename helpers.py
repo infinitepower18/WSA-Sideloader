@@ -65,3 +65,18 @@ def extractBundle(fname,source):
     else:
         with zipfile.ZipFile(fname,"r") as zip_ref:
             zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
+
+# TODO: Handle OBB files
+def installBundle(bundleLocation, address):
+    global adbRunning
+    adbRunning = True
+    files = ''
+    for file in os.listdir(bundleLocation):
+        if file.endswith(".apk"):
+            if files == '':
+                files = files + '"'+os.path.join(bundleLocation, file)+'"'
+            else:
+                files = files + " " + '"'+os.path.join(bundleLocation, file)+'"'       
+    command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install-multiple '+files+'"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8')
+    stdout = command.stdout.readlines()
+    stderr = command.stderr.readlines()
