@@ -67,7 +67,7 @@ def extractBundle(fname,source):
             zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
 
 # TODO: Handle OBB files
-def installBundle(bundleLocation, address):
+def installBundle(bundleLocation, address, window):
     global adbRunning
     adbRunning = True
     files = ''
@@ -80,3 +80,12 @@ def installBundle(bundleLocation, address):
     command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install-multiple '+files+'"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8')
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()
+    try:
+        window.write_event_value(('-OUT-', str(stdout[len(stdout)-1])),"out")
+    except IndexError:
+        window.write_event_value(('-OUT-', ""),"out")
+    try:
+        window.write_event_value(('-ERR-', str(stderr[len(stderr)-1])),"err")
+    except IndexError:
+        window.write_event_value(('-ERR-', ""),"err")
+    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
