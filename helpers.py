@@ -1,5 +1,8 @@
+import hashlib
+import os
 import subprocess
 import time
+import zipfile
 
 def escaped_filename(filename): # Escape special characters used by cmd
     filename = list(filename)
@@ -50,3 +53,15 @@ def installAPK(address,fname,window):
     except IndexError:
         window.write_event_value(('-ERR-', ""),"err")
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+
+def extractBundle(fname,source):
+    sha256_hash = hashlib.sha256() # Get hash to distinguish between multiple versions stored in Bundles folder
+    with open(fname,"rb") as f:
+        for byte_block in iter(lambda: f.read(4096),b""):
+            sha256_hash.update(byte_block)
+    if source == "GitHub":
+        with zipfile.ZipFile(fname,"r") as zip_ref:
+            zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
+    else:
+        with zipfile.ZipFile(fname,"r") as zip_ref:
+            zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
