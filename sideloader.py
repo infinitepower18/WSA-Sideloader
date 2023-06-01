@@ -144,6 +144,7 @@ def main():
             elif event is None:
                 sys.exit(0)
                 
+    # TODO: Get permission viewer working for bundles
     # Main window
     layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("Android app files","*.apk"),("Android app files","*.xapk"),("Android app files","*.apkm"),("Android app files","*.apks")),font="Calibri 11")],
@@ -344,7 +345,7 @@ def main():
         window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
-        if event == "Open app":
+        if event == "Open app": # TODO: Get this working for bundles
             getpackage = os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""')
             pkgoutput = getpackage.readlines()
             pkgname = str(pkgoutput[0])
