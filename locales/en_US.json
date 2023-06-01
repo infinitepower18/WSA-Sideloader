@@ -1,5 +1,5 @@
 {
-    "chooseToInstall": "Choose APK file to install:",
+    "chooseToInstall": "Choose file to install:",
     "viewPerms": "View permissions",
     "address": "ADB address:",
     "installButton": "Install",

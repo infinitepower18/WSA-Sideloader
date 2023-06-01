@@ -3,6 +3,8 @@ import os
 import subprocess
 import time
 import zipfile
+import PySimpleGUI as gui
+from button import RoundedButton
 
 def escaped_filename(filename): # Escape special characters used by cmd
     filename = list(filename)
@@ -91,3 +93,28 @@ def installBundle(bundleLocation, address, window):
     except IndexError:
         window.write_event_value(('-ERR-', ""),"err")
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+
+# TODO: Complete settings page
+def settings():
+    
+    apSelection = ["System","Light","Dark"]
+    lgSelection = ["English US"]
+    checkUpdate = ["Enabled","Disabled"]
+    cacheBundles = ["Enabled","Disabled"]
+    adbAddress = "127.0.0.1:58526"
+
+    layout = [[gui.Text("Appearance:",font="Calibri 11"),gui.Combo(apSelection, size=15, enable_events=True, key='-COMBO-')],
+        [gui.Text("Language:",font="Calibri 11"),gui.Combo(lgSelection, size=15, enable_events=True, key='-COMBO-')],
+        [gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, apSelection))+1, 5), enable_events=True, key='-COMBO-')],
+        [gui.Text("ADB address:",font="Calibri 11"),gui.Input(adbAddress,font="Calibri 11",size=15)],
+        [gui.Text("Cache extracted bundles:",font="Calibri 11"),gui.Combo(cacheBundles, size=15, enable_events=True, key='-COMBO-')],
+        [gui.Text("Delete extracted bundles:",font="Calibri 11"),RoundedButton("Delete",0.3,font="Calibri 11")],
+        [gui.Text("Application version: 1.4.0 (Latest version)",font="Calibri 11")],
+        [gui.Text("Downloaded from: GitHub",font="Calibri 11")],
+        [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
+
+    window = gui.Window('Settings', layout,icon="icon.ico",debugger_enabled=False)
+
+    while True:
+        event, values = window.read()
+        break

@@ -1,7 +1,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
 ![MS Store downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ahnafmahmud.com%2Fwsasideloader%2Finstalls)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
-![Python](https://img.shields.io/badge/python-3.10%20|%203.11%20ARM64-yellow)
+![Python](https://img.shields.io/badge/python-3.11-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
 
 # WSA Sideloader
