@@ -4,3 +4,4 @@ sideloader.build/
 sideloader.dist/
 env/
 config.ini
+Bundles/

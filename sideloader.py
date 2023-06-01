@@ -146,7 +146,7 @@ def main():
                 
     # Main window
     layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
-            [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("APK files","*.apk"),),font="Calibri 11")],
+            [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("Android app files","*.apk"),("Android app files","*.xapk"),("Android app files","*.apkm"),("Android app files","*.apks")),font="Calibri 11")],
             [RoundedButton(strings["viewPerms"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
             [gui.Text(strings["address"],font="Calibri 11")],
@@ -228,7 +228,7 @@ def main():
                 window['_ERROR2_'].Update(strings["apkNotFound"])
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
-            elif source_filename.endswith(".apk") == False:
+            elif source_filename.endswith(".apk") == False and source_filename.endswith(".xapk") == False and source_filename.endswith(".apkm") == False and source_filename.endswith(".apks") == False:
                 window['_ERROR2_'].Update(strings["onlyApkSupported"])
                 window["_ERROR2_"].Update(visible=True)
                 window["_ERROR1_"].Update(visible=False)
@@ -316,9 +316,15 @@ def main():
 
     window.Close()
     explorerfile = source_filename
-    layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
-    window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-    window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
+    if source_filename.endswith(".apk"):
+        layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
+        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
+        window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
+    else:
+        extractedBundle = extractBundle(source_filename,installsource)
+        layout = [[gui.Text('Installing application...\nDepending on the file size, this might take a few minutes. Please be patient.',font=("Calibri",11))]]
+        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
+        window.start_thread(lambda: installBundle(escaped_filename(extractedBundle),address,window), ('-THREAD-','-THREAD ENDED-'))
     while True:
         event, values = window.read()
         if event[0] == '-THREAD ENDED-':
@@ -330,6 +336,7 @@ def main():
 
     window.Close()
     
+    # TODO: Handle files in Bundles folder
     # Check if apk installed successfully
     if outLine.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],

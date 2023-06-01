@@ -15,7 +15,7 @@
     "abtAppVer": "Application version: ",
     "abtSource": "Downloaded from: ",
     "apkNotFound": "APK file not found",
-    "onlyApkSupported": "Only APK files are supported",
+    "onlyApkSupported": "Only APK, XAPK, APKM and APKS files are supported",
     "startingWait": "Starting WSA, please wait 30 seconds before trying again.",
     "instAppsAdbAllow": "Please allow the ADB connection and try again.",
     "instAppsError": "Please check that WSA is running, you allowed the ADB\nconnection and the correct ADB address has been entered.\nIf you denied the ADB connection, close and reopen WSA\nSideloader.",

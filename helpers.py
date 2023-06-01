@@ -62,9 +62,11 @@ def extractBundle(fname,source):
     if source == "GitHub":
         with zipfile.ZipFile(fname,"r") as zip_ref:
             zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
+            return os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
     else:
         with zipfile.ZipFile(fname,"r") as zip_ref:
             zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
+            return os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
 
 # TODO: Handle OBB files
 def installBundle(bundleLocation, address, window):
