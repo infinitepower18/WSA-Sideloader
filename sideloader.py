@@ -118,9 +118,7 @@ def getConfig():
     except:
         if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
             os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
-        config['Application'] = {'adbAddress':'127.0.0.1:58526'}
-        config['Application'] = {'checkUpdates':"Enabled"}
-        config['Application'] = {'appearance':'System'}
+        config['Application'] = {'adbAddress':'127.0.0.1:58526','checkUpdates':"Enabled",'appearance':'System'}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
 
@@ -129,6 +127,8 @@ def main():
     global explorerfile
     global startCode
     global adbAddress
+
+    getConfig()
 
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
