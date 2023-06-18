@@ -148,11 +148,9 @@ def main():
     # Main window
     layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("Android app files","*.apk"),("Android app files","*.xapk"),("Android app files","*.apkm"),("Android app files","*.apks")),font="Calibri 11")],
-            [RoundedButton(strings["viewPerms"],0.3,font="Calibri 11")],
+            [RoundedButton(strings["installButton"],0.3,font="Calibri 11"),RoundedButton(strings["viewPerms"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
-            [gui.Text(strings["address"],font="Calibri 11")],
-            [gui.Input(adbAddress,font="Calibri 11")],
-            [RoundedButton(strings["installButton"],0.3,font="Calibri 11"),RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11"),RoundedButton(strings["aboutButton"],0.3,font="Calibri 11")],
+            [RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["settingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11"))]]
 
     window = gui.Window('WSA Sideloader', layout,icon="icon.ico",debugger_enabled=False)
@@ -294,7 +292,7 @@ def main():
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
                 elif event == strings["compatAppsButton"]:
                     webbrowser.open("https://github.com/riverar/wsa-app-compatibility",2)
-        if event == strings["aboutButton"]:
+        if event == strings["settingsButton"]:
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
