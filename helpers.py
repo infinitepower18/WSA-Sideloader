@@ -100,15 +100,13 @@ def settings():
     apSelection = ["System","Light","Dark"]
     lgSelection = ["English US"]
     checkUpdate = ["Enabled","Disabled"]
-    cacheBundles = ["Enabled","Disabled"]
     adbAddress = "127.0.0.1:58526"
 
     layout = [[gui.Text("Appearance:",font="Calibri 11"),gui.Combo(apSelection, size=15, enable_events=True, key='-COMBO-')],
         [gui.Text("Language:",font="Calibri 11"),gui.Combo(lgSelection, size=15, enable_events=True, key='-COMBO-')],
         [gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, apSelection))+1, 5), enable_events=True, key='-COMBO-')],
         [gui.Text("ADB address:",font="Calibri 11"),gui.Input(adbAddress,font="Calibri 11",size=15)],
-        [gui.Text("Cache extracted bundles:",font="Calibri 11"),gui.Combo(cacheBundles, size=15, enable_events=True, key='-COMBO-')],
-        [gui.Text("Delete extracted bundles:",font="Calibri 11"),RoundedButton("Delete",0.3,font="Calibri 11")],
+        [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
         [gui.Text("Application version: 1.4.0 (Latest version)",font="Calibri 11")],
         [gui.Text("Downloaded from: GitHub",font="Calibri 11")],
         [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
