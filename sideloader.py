@@ -197,7 +197,7 @@ def main():
                 window["_ERROR1_"].Update(visible=False)
             else:
                 try:
-                    address = values[1]
+                    address = adbAddress
                     address = address.replace(" ", "")
                     adbRunning = True
                     command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
@@ -220,7 +220,7 @@ def main():
                     window["_ERROR1_"].Update(visible=False)
         if event == strings["installButton"]:
             source_filename = values[0]
-            address = values[1]
+            address = adbAddress
             address = address.replace(" ", "")
             if source_filename == "":
                 window['_ERROR2_'].Update(strings["blankApkField"])
