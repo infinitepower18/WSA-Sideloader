@@ -303,22 +303,8 @@ def main():
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
-            abtLayout = [[gui.Text(strings["abtText"],font="Calibri 11")],[gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],[gui.Text(strings["abtSource"]+installsource,font="Calibri 11")],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
-            abtWindow = gui.Window('About',abtLayout,icon="icon.ico",debugger_enabled=False)
-            while True:
-                event,values = abtWindow.Read()
-                if event is None:
-                    if adbRunning == True:
-                        os.popen('cmd /c "cd platform-tools & adb kill-server"')
-                    sys.exit(0)
-                elif event == strings["backButton"]:
-                    abtWindow.Close()
-                    window.UnHide()
-                    break
-                elif event == strings["ghButton"]:
-                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
-                elif event == strings["donateButton"]:
-                    webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
+            settings()
+            window.UnHide()
 
     window.Close()
     explorerfile = source_filename

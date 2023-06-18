@@ -115,4 +115,5 @@ def settings():
 
     while True:
         event, values = window.read()
+        window.Close()
         break
