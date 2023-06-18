@@ -5,6 +5,8 @@ import time
 import zipfile
 import PySimpleGUI as gui
 from button import RoundedButton
+from configparser import ConfigParser
+import webbrowser
 
 def escaped_filename(filename): # Escape special characters used by cmd
     filename = list(filename)
@@ -95,16 +97,18 @@ def installBundle(bundleLocation, address, window):
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
 # TODO: Complete settings page
-def settings():
-    
+def settings(configpath):
+    config = ConfigParser()
+    config.read(configpath)
+
     apSelection = ["System","Light","Dark"]
     lgSelection = ["English US"]
     checkUpdate = ["Enabled","Disabled"]
-    adbAddress = "127.0.0.1:58526"
+    adbAddress = config.get('Application','adbAddress')
 
-    layout = [[gui.Text("Language:",font="Calibri 11"),gui.Combo(lgSelection, size=15, enable_events=True, key='-COMBO-')],
-        [gui.Text("Appearance:",font="Calibri 11"),gui.Combo(apSelection, size=15, enable_events=True, key='-COMBO-')],
-        [gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, apSelection))+1, 5), enable_events=True, key='-COMBO-')],
+    layout = [[gui.Text("Language:",font="Calibri 11"),gui.Combo(lgSelection, size=15, enable_events=True, key='-COMBO-',readonly=True,default_value=config.get('Application','language',fallback="English US"))],
+        [gui.Text("Appearance:",font="Calibri 11"),gui.Combo(apSelection, size=15, enable_events=True, key='-COMBO-',readonly=True,default_value=config.get('Application','appearance',fallback="System"))],
+        [gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, apSelection))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-COMBO-',readonly=True)],
         [gui.Text("ADB address:",font="Calibri 11"),gui.Input(adbAddress,font="Calibri 11",size=15)],
         [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
         [gui.Text("Application version: 1.4.0 (Latest version)",font="Calibri 11")],
@@ -115,5 +119,14 @@ def settings():
 
     while True:
         event, values = window.read()
-        window.Close()
-        break
+        if event == "Save":
+            window.Close()
+            # Code to save to config file
+            break
+        elif event == "Cancel":
+            window.Close()
+            break
+        elif event == "Donate":
+            webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
+        elif event == "View":
+            subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')

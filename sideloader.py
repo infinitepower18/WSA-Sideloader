@@ -119,8 +119,8 @@ def getConfig():
         if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
             os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
         config['Application'] = {'adbAddress':'127.0.0.1:58526'}
-        config['Application'] = {'checkUpdates':"true"}
-        config['Application'] = {'appearance':'system'}
+        config['Application'] = {'checkUpdates':"Enabled"}
+        config['Application'] = {'appearance':'System'}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
 
@@ -302,9 +302,9 @@ def main():
         if event == strings["settingsButton"]:
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
-            window.Hide()
-            settings()
-            window.UnHide()
+            window.Close()
+            settings(configpath=configpath)
+            main()
 
     window.Close()
     explorerfile = source_filename
