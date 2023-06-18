@@ -188,8 +188,6 @@ def main():
                 gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
-            with open(configpath, 'w') as configfile:
-                config.write(configfile)
             autostart = os.popen('cmd /c "tasklist"')
             startoutput = str(autostart.readlines())
             if "WsaClient.exe" not in startoutput:
@@ -221,8 +219,6 @@ def main():
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
         if event == strings["installButton"]:
-            with open(configpath, 'w') as configfile:
-                config.write(configfile)
             source_filename = values[0]
             address = values[1]
             address = address.replace(" ", "")
