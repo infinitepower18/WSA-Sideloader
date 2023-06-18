@@ -39,6 +39,7 @@ version = "1.4.0" # Version number
 adbRunning = False
 startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
+adbAddress = "127.0.0.1:58526"
 
 config = ConfigParser()
 configpath = 'config.ini'
@@ -106,20 +107,28 @@ def start(filearg = ""): # For GitHub installs
     except requests.exceptions.RequestException as error: # Skip update check in case of network error
         main()
 
-def main():
-    global adbRunning
-    global explorerfile
-    global startCode
-    adbAddress = "127.0.0.1:58526"
+def getConfig():
+    global adbAddress
     try:
         config.read(configpath)
         adbAddress = config.get('Application','adbAddress')
+        language = config.get('Application','language')
+        checkUpdates = config.get('Application','checkUpdates')
+        appearance = config.get('Application','appearance')
     except:
         if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
             os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
         config['Application'] = {'adbAddress':'127.0.0.1:58526'}
+        config['Application'] = {'checkUpdates':"true"}
+        config['Application'] = {'appearance':'system'}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
+
+def main():
+    global adbRunning
+    global explorerfile
+    global startCode
+    global adbAddress
 
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
@@ -179,7 +188,6 @@ def main():
                 gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
                 window.UnHide()
         if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
-            config.set('Application','adbAddress',values[1])
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
             autostart = os.popen('cmd /c "tasklist"')
@@ -213,7 +221,6 @@ def main():
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
         if event == strings["installButton"]:
-            config.set('Application','adbAddress',values[1])
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
             source_filename = values[0]
