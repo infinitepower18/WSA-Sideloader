@@ -328,7 +328,6 @@ def main():
 
     window.Close()
     
-    # TODO: Handle files in Bundles folder
     # Check if apk installed successfully
     if outLine.startswith("Success"):
         layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
