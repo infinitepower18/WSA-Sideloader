@@ -72,7 +72,6 @@ def extractBundle(fname,source):
             zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
             return os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
 
-# TODO: Handle OBB files
 def installBundle(bundleLocation, address, window):
     global adbRunning
     adbRunning = True
@@ -86,6 +85,9 @@ def installBundle(bundleLocation, address, window):
     command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install-multiple '+files+'"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8')
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()
+    if os.path.exists(bundleLocation + "\\Android\\obb"):
+        for dir in os.listdir(bundleLocation + "\\Android\\obb"):
+            subprocess.Popen('cmd /c "cd platform-tools & adb -s '+address+' shell mkdir /sdcard/Android/obb/'+dir+' & adb -s '+address+' push '+bundleLocation+'\\android\\obb\\'+dir+'\. /sdcard/Android/obb/'+dir+'/"', shell=True)
     try:
         window.write_event_value(('-OUT-', str(stdout[len(stdout)-1])),"out")
     except IndexError:
