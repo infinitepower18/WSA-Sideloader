@@ -309,9 +309,11 @@ def main():
         window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
         window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
     else:
+        layout = [[gui.Text('Depending on the file size, this might take a few minutes. Please be patient.',font=("Calibri",11))],
+                  [gui.Text("Processing bundle...",key='_PROGRESS_',font="Calibri 11")]]
+        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
+        window.read(timeout=0)
         extractedBundle = extractBundle(source_filename,installsource)
-        layout = [[gui.Text('Installing application...\nDepending on the file size, this might take a few minutes. Please be patient.',font=("Calibri",11))]]
-        window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
         window.start_thread(lambda: installBundle(escaped_filename(extractedBundle),address,window), ('-THREAD-','-THREAD ENDED-'))
     while True:
         event, values = window.read()
