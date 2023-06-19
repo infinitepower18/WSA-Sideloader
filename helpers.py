@@ -65,11 +65,13 @@ def extractBundle(fname,source):
             sha256_hash.update(byte_block)
     if source == "GitHub":
         with zipfile.ZipFile(fname,"r") as zip_ref:
-            zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
+            if os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()) == False:
+                zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
             return os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
     else:
         with zipfile.ZipFile(fname,"r") as zip_ref:
-            zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
+            if os.path.exists("Bundles\\"+sha256_hash.hexdigest()) == False:
+                zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
             return os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
 
 def installBundle(bundleLocation, address, window):
