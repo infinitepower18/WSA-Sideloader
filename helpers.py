@@ -35,9 +35,9 @@ def startWSA(window):
     while seconds > 0:
         if startCode == 0:
             if(seconds != 1):
-                window["_MESSAGE_"].Update("Installation will continue in "+str(seconds)+" seconds.")
+                window["_MESSAGE_"].Update(strings["instContinueinSeconds"].format(secs=seconds))
             else:
-                window["_MESSAGE_"].Update("Installation will continue in 1 second.")
+                window["_MESSAGE_"].Update(strings["instContinueinOneSec"])
             seconds = seconds - 1
             time.sleep(1)
         else:

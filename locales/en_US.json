@@ -22,5 +22,7 @@
     "instAppsError": "Please check that WSA is running, you allowed the ADB\nconnection and the correct ADB address has been entered.\nIf you denied the ADB connection, close and reopen WSA\nSideloader.",
     "adbEmpty": "ADB address cannot be empty",
     "blankApkField": "Please select an APK file.",
-    "donateButton": "Donate"
+    "donateButton": "Donate",
+    "instContinueinSeconds": "Installation will continue in {secs} seconds.",
+    "instContinueinOneSec": "Installation will continue in 1 second."
 }
