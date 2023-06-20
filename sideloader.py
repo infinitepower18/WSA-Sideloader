@@ -340,8 +340,12 @@ def main():
     
     # Check if apk installed successfully
     if outLine.startswith("Success"):
-        layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
-                [RoundedButton("Open app",0.3,font="Calibri 11"),RoundedButton("Install another APK",0.3,font="Calibri 11")]]
+        if source_filename.endswith(".apk"):
+            layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
+                    [RoundedButton("Open app",0.3,font="Calibri 11"),RoundedButton("Install another app",0.3,font="Calibri 11")]]
+        else:
+            layout = [[gui.Text('The application has been successfully installed.\nYou can launch the installed app via the start menu.',font=("Calibri",11))],
+                    [RoundedButton("Install another app",0.3,font="Calibri 11")]]
         window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
@@ -353,7 +357,7 @@ def main():
             if adbRunning == True:
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
-        elif event == "Install another APK":
+        elif event == "Install another app":
             window.Close()
             explorerfile = ""
             main()
