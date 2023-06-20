@@ -57,14 +57,15 @@ else:
 
 def startgit(filearg = ""):
     global installsource
-    installsource = "GitHub (via git clone)"
+    installsource = strings["githubClone"]
     global explorerfile
     explorerfile = filearg
     main()
     
+# TODO: Handle adb updates
 def startstore(filearg = ""): # For Microsoft Store installs
     global installsource
-    installsource = "Microsoft Store"
+    installsource = strings["msStore"]
     global explorerfile
     explorerfile = filearg
     if os.path.isdir(msixfolder+'\\platform-tools') == False: # Check if platform tools present
@@ -80,7 +81,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
 
 def start(filearg = ""): # For GitHub installs
     global installsource
-    installsource = "GitHub"
+    installsource = strings["github"]
     global explorerfile
     explorerfile = filearg
     global configpath
@@ -89,17 +90,17 @@ def start(filearg = ""): # For GitHub installs
         response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
         latestver = response.json()["tag_name"][1::]
         if parse_version(latestver) > parse_version(version):
-            layout = [[gui.Text('A newer version of WSA Sideloader is available.\nWould you like to update now?',font=("Calibri",11))],
-                [RoundedButton("Yes",0.3,font="Calibri 11"),RoundedButton("No",0.3,font="Calibri 11")]]
-            window = gui.Window('Update available', layout,icon="icon.ico",debugger_enabled=False)
+            layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
+                [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
+            window = gui.Window(strings["updateAvailable"], layout,icon="icon.ico",debugger_enabled=False)
             event, values = window.Read()
             if event is None:
                 sys.exit(0)
-            elif event == "Yes":
+            elif event == strings["yesButton"]:
                 window.Close()
                 webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
                 sys.exit(0)
-            elif event == "No":
+            elif event == strings["noButton"]:
                 window.Close()
                 main()
         else:
@@ -133,20 +134,20 @@ def main():
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
         if int(platform.win32_ver()[1].split('.')[2]) < 22000:
-            layout = [[gui.Text("WSA installation not detected.\nWindows Subsystem for Android is not officially supported on Windows 10.",font=("Calibri",11))],
-                    [RoundedButton("Exit",0.3,font="Calibri 11")]]
-            window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
+            layout = [[gui.Text(strings["wsaNotDetectedWin10"],font=("Calibri",11))],
+                    [RoundedButton(strings["exitButton"],0.3,font="Calibri 11")]]
+            window = gui.Window(strings["wsaNotInstalled"], layout,icon="icon.ico",debugger_enabled=False)
             event, values = window.Read()
-            if event == "Exit":
+            if event == strings["exitButton"]:
                 sys.exit(0)
             elif event is None:
                 sys.exit(0)
         else:
-            layout = [[gui.Text("You need to install Windows Subsystem for Android before you can use this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",font=("Calibri",11))],
-                    [RoundedButton("Install WSA",0.3,font="Calibri 11")]]
-            window = gui.Window('WSA not installed', layout,icon="icon.ico",debugger_enabled=False)
+            layout = [[gui.Text(strings["wsaNotDetectedWin11"],font=("Calibri",11))],
+                    [RoundedButton(strings["installWsaButton"],0.3,font="Calibri 11")]]
+            window = gui.Window(strings["wsaNotInstalled"], layout,icon="icon.ico",debugger_enabled=False)
             event, values = window.Read()
-            if event == "Install WSA":
+            if event == strings["installWsaButton"]:
                 window.Close()
                 webbrowser.open("ms-windows-store://pdp/?productid=9NJHK44TTKSX",2)
                 sys.exit(0)

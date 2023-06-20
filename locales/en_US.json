@@ -1,5 +1,6 @@
 {
     "language": "English US",
+
     "chooseToInstall": "Choose file to install:",
     "viewPerms": "View permissions",
     "address": "ADB address:",
@@ -42,5 +43,17 @@
     "okButton": "OK",
     "unableToInstall": "Unable to install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\nYou allowed the ADB connection. If you denied by mistake, close and reopen WSA Sideloader.\n\n[Error Info]",
     "reportBugButton": "Report bug",
-    "errorTitle": "Error"
+    "errorTitle": "Error",
+    "githubClone": "GitHub (via git clone)",
+    "msStore": "Microsoft Store",
+    "github": "GitHub",
+    "updateAvailable": "Update available",
+    "newUpdate": "A newer version of WSA Sideloader is available.\nWould you like to update now?",
+    "yesButton": "Yes",
+    "noButton": "No",
+    "wsaNotDetectedWin10": "WSA installation not detected.\nWindows Subsystem for Android is not officially supported on Windows 10.",
+    "exitButton": "Exit",
+    "wsaNotInstalled": "WSA not installed",
+    "wsaNotDetectedWin11": "You need to install Windows Subsystem for Android before you can use this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",
+    "installWsaButton": "Install WSA"
 }
