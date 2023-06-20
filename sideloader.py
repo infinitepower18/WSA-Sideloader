@@ -153,7 +153,6 @@ def main():
             elif event is None:
                 sys.exit(0)
                 
-    # TODO: Get permission viewer working for bundles
     # Main window
     layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
             [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("Android app files","*.apk"),("Android app files","*.xapk"),("Android app files","*.apkm"),("Android app files","*.apks")),font="Calibri 11")],
@@ -176,7 +175,7 @@ def main():
                 window['_ERROR1_'].Update(strings["apkNotFound"])
                 window["_ERROR1_"].Update(visible=True)
                 window["_ERROR2_"].Update(visible=False)
-            elif source_filename.endswith(".apk") == False:
+            elif source_filename.endswith(".apk") == False and source_filename.endswith(".apks") == False and source_filename.endswith(".apkm") == False and source_filename.endswith(".xapk") == False:
                 window['_ERROR1_'].Update(strings["onlyApkSupported"])
                 window["_ERROR1_"].Update(visible=True)
                 window["_ERROR2_"].Update(visible=False)
@@ -185,7 +184,20 @@ def main():
                 window["_ERROR2_"].Update(visible=False)
                 source_filename = values[0]
                 window.Hide()
-                gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                if source_filename.endswith(".apk"):
+                    gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                else:
+                    waitLayout = [[gui.Text('Retrieving permissions...',font=("Calibri",11))]]
+                    waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
+                    waitWindow.read(timeout=0)
+                    extractedBundle = extractBundle(source_filename,installsource)
+                    waitWindow.close()
+                    if source_filename.endswith(".apks"):
+                        bundlePermissions(escaped_filename(extractedBundle),"apks")
+                    elif source_filename.endswith(".apkm"):
+                        bundlePermissions(escaped_filename(extractedBundle),"apkm")
+                    elif source_filename.endswith(".xapk"):
+                        bundlePermissions(escaped_filename(extractedBundle),"xapk")
                 window.UnHide()
         if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
             autostart = os.popen('cmd /c "tasklist"')

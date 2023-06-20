@@ -8,6 +8,7 @@ from button import RoundedButton
 from configparser import ConfigParser
 import webbrowser
 import sys
+import json
 
 def escaped_filename(filename): # Escape special characters used by cmd
     filename = list(filename)
@@ -74,6 +75,14 @@ def extractBundle(fname,source):
             if os.path.exists("Bundles\\"+sha256_hash.hexdigest()) == False:
                 zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
             return os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
+        
+def bundlePermissions(bundleLocation,format):
+    if format == "apkm" or format == "apks":
+        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon="icon.ico",title="View permissions")
+    if format == "xapk":
+        with open(os.path.join(bundleLocation, "manifest.json"), 'r') as f:
+            data = json.load(f)
+            gui.popup_scrolled(data['permissions'],size=(100,10),icon="icon.ico",title="View permissions")
 
 def installBundle(bundleLocation, address, window):
     global adbRunning
