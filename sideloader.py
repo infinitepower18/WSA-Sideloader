@@ -259,9 +259,9 @@ def main():
                     else:
                         webbrowser.open("wsa://system",2)
                         window.Hide()
-                        startingLayout = [[gui.Text("Please wait while WSA starts.",font="Calibri 11")],
+                        startingLayout = [[gui.Text(strings["waitWhileWsaStarts"],font="Calibri 11")],
                                           [gui.Text("",key='_MESSAGE_',font="Calibri 11")],
-                                          [RoundedButton("Install now",0.3,key="_INSTALL_",font="Calibri 11"),RoundedButton("Cancel",0.3,key="_CANCEL_",font="Calibri 11")]]
+                                          [RoundedButton(strings["installNowButton"],0.3,key="_INSTALL_",font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,key="_CANCEL_",font="Calibri 11")]]
                         startingWindow = gui.Window('Starting WSA',startingLayout,icon="icon.ico",debugger_enabled=False,finalize=True,no_titlebar=True,keep_on_top=True)
                         startingWindow.start_thread(lambda: startWSA(startingWindow), ('-THREAD-','-THREAD ENDED-'))
                         while True:
@@ -273,12 +273,12 @@ def main():
                                 startingWindow["_INSTALL_"].Update(visible=False)
                                 startingWindow["_CANCEL_"].Update(visible=False)
                                 startCode = 1
-                                startingWindow['_MESSAGE_'].Update("Installing application...")
+                                startingWindow['_MESSAGE_'].Update(strings["installingApp"])
                             if event == "_CANCEL_":
                                 startingWindow["_INSTALL_"].Update(visible=False)
                                 startingWindow["_CANCEL_"].Update(visible=False)
                                 startCode = 2
-                                startingWindow['_MESSAGE_'].Update("Cancelling...")
+                                startingWindow['_MESSAGE_'].Update(strings["cancelling"])
                         if startCode == 2:
                             startCode = 0
                             window.UnHide()
@@ -317,12 +317,12 @@ def main():
     window.Close()
     explorerfile = source_filename
     if source_filename.endswith(".apk"):
-        layout = [[gui.Text('Installing application, please wait...',font=("Calibri",11))]]
+        layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
         window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
         window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
     else:
-        layout = [[gui.Text('Depending on the file size, this may take a few minutes. Please be patient.',font=("Calibri",11))],
-                  [gui.Text("Processing file...",key='_PROGRESS_',font="Calibri 11")]]
+        layout = [[gui.Text(strings["bundleInstallPatient"],font=("Calibri",11))],
+                  [gui.Text(strings["processingFile"],key='_PROGRESS_',font="Calibri 11")]]
         window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
         window.read(timeout=0)
         extractedBundle = extractBundle(source_filename,installsource)
@@ -341,15 +341,15 @@ def main():
     # Check if apk installed successfully
     if outLine.startswith("Success"):
         if source_filename.endswith(".apk"):
-            layout = [[gui.Text('The application has been successfully installed.',font=("Calibri",11))],
-                    [RoundedButton("Open app",0.3,font="Calibri 11"),RoundedButton("Install another app",0.3,font="Calibri 11")]]
+            layout = [[gui.Text(strings["appInstalled"],font=("Calibri",11))],
+                    [RoundedButton(strings["openAppButton"],0.3,font="Calibri 11"),RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
         else:
-            layout = [[gui.Text('The application has been successfully installed.\nYou can launch the installed app via the start menu.',font=("Calibri",11))],
-                    [RoundedButton("Install another app",0.3,font="Calibri 11")]]
-        window = gui.Window('Information', layout,icon="icon.ico",debugger_enabled=False)
+            layout = [[gui.Text(strings["appInstalledBundle"],font=("Calibri",11))],
+                    [RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
+        window = gui.Window(strings["infoTitle"], layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
-        if event == "Open app": # TODO: Get this working for bundles
+        if event == strings["openAppButton"]: # TODO: Get this working for bundles
             getpackage = os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""')
             pkgoutput = getpackage.readlines()
             pkgname = str(pkgoutput[0])
@@ -357,7 +357,7 @@ def main():
             if adbRunning == True:
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
-        elif event == "Install another app":
+        elif event == strings["installAnotherAppButton"]:
             window.Close()
             explorerfile = ""
             main()
@@ -366,12 +366,12 @@ def main():
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
     elif outLine.startswith("failed to authenticate"):
-        layout = [[gui.Text('Please allow the ADB connection and run the installation again.',font=("Calibri",11))],
-                [RoundedButton("OK",0.3,font="Calibri 11")]]
+        layout = [[gui.Text(strings["allowAdb"],font=("Calibri",11))],
+                [RoundedButton(strings["okButton"],0.3,font="Calibri 11")]]
         window = gui.Window('Message', layout,icon="icon.ico",debugger_enabled=False)
 
         event, values = window.Read()
-        if event == "OK":
+        if event == strings["okButton"]:
             window.Close()
             main()
         else:
@@ -385,17 +385,17 @@ def main():
             errInfo = '\n'.join(map(str,textwrap.wrap(errLine,80)))
         else:
             errInfo = '\n'.join(map(str,textwrap.wrap(outLine,80)))+'\n'+'\n'.join(map(str,textwrap.wrap(errLine,80)))
-        layout = [[gui.Text('Unable to install the application. Please check that:\nThe APK file is valid\nWSA is running\nDev mode is enabled in WSA settings and the correct address has been entered\nYou allowed the ADB connection. If you denied by mistake, close and reopen WSA Sideloader.\n\n[Error Info]\n'+errInfo,font=("Calibri",11))],
-                [RoundedButton("OK",0.3,font="Calibri 11"),RoundedButton("WSA Settings",0.3,font="Calibri 11"),RoundedButton("Report bug",0.3,font="Calibri 11")]]
-        window = gui.Window('Error', layout,icon="icon.ico",debugger_enabled=False)
+        layout = [[gui.Text(strings["unableToInstall"]+'\n'+errInfo,font=("Calibri",11))],
+                [RoundedButton(strings["okButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11")]]
+        window = gui.Window(strings["errorTitle"], layout,icon="icon.ico",debugger_enabled=False)
 
         while True:
             event, values = window.Read()
-            if event == "OK":
+            if event == strings["okButton"]:
                 break
-            elif event == "Report bug": # Open WSA Sideloader issues page
+            elif event == strings["reportBugButton"]: # Open WSA Sideloader issues page
                 webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
-            elif event == "WSA Settings":
+            elif event == strings["wsaSettingsButton"]:
                 webbrowser.open("wsa-settings://",2)
             else:
                 if adbRunning == True:
