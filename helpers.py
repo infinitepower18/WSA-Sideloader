@@ -29,21 +29,6 @@ def escaped_filename(filename): # Escape special characters used by cmd
             filename[i] = "^^"
     return ''.join(filename)
 
-def startWSA(window):
-    global startCode
-    seconds = 30
-    while seconds > 0:
-        if startCode == 0:
-            if(seconds != 1):
-                window["_MESSAGE_"].Update(strings["instContinueinSeconds"].format(secs=seconds))
-            else:
-                window["_MESSAGE_"].Update(strings["instContinueinOneSec"])
-            seconds = seconds - 1
-            time.sleep(1)
-        else:
-            break
-    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
-
 def installAPK(address,fname,window):
     global adbRunning
     adbRunning = True

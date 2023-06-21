@@ -118,6 +118,21 @@ def start(filearg = ""): # For GitHub installs
     except requests.exceptions.RequestException as error: # Skip update check in case of network error
         main()
 
+def startWSA(window):
+    global startCode
+    seconds = 30
+    while seconds > 0:
+        if startCode == 0:
+            if(seconds != 1):
+                window["_MESSAGE_"].Update(strings["instContinueinSeconds"].format(secs=seconds))
+            else:
+                window["_MESSAGE_"].Update(strings["instContinueinOneSec"])
+            seconds = seconds - 1
+            time.sleep(1)
+        else:
+            break
+    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+
 def getConfig():
     global adbAddress
     try:
