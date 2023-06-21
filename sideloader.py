@@ -343,9 +343,10 @@ def main():
         if event == strings["settingsButton"]:
             window["_ERROR1_"].Update(visible=False)
             window["_ERROR2_"].Update(visible=False)
-            window.Close()
-            settings(configpath=configpath)
-            main()
+            window.Hide()
+            settings(configpath=configpath,version=version,source=installsource)
+            getConfig()
+            window.UnHide()
 
     window.Close()
     explorerfile = source_filename
