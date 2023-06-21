@@ -38,8 +38,9 @@ def installAPK(address,fname,window):
         window.write_event_value(('-ERR-', ""),"err")
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
-def extractBundle(fname,source):
+def extractBundle(fname,source,window):
     sha256_hash = hashlib.sha256() # Get hash to distinguish between multiple versions stored in Bundles folder
+    location = ""
     with open(fname,"rb") as f:
         for byte_block in iter(lambda: f.read(4096),b""):
             sha256_hash.update(byte_block)
@@ -47,9 +48,11 @@ def extractBundle(fname,source):
         with zipfile.ZipFile(fname,"r") as zip_ref:
             if os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()) == False:
                 zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
-            return os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
+            location = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
     else:
         with zipfile.ZipFile(fname,"r") as zip_ref:
             if os.path.exists("Bundles\\"+sha256_hash.hexdigest()) == False:
                 zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
-            return os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
+            location = os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
+    window.write_event_value(('-OUT-', location),"out")
+    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')

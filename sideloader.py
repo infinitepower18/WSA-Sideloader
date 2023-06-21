@@ -314,8 +314,13 @@ def main():
                 else:
                     waitLayout = [[gui.Text('Retrieving permissions...',font=("Calibri",11))]]
                     waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-                    waitWindow.read(timeout=0)
-                    extractedBundle = extractBundle(source_filename,installsource)
+                    waitWindow.start_thread(lambda: extractBundle(source_filename,installsource,waitWindow), ('-THREAD-','-THREAD ENDED-'))
+                    while True:
+                        event, values = waitWindow.read()
+                        if event[0] == '-THREAD ENDED-':
+                            break
+                        elif event[0] == '-OUT-':
+                            extractedBundle = event[1]
                     waitWindow.close()
                     if source_filename.endswith(".apks"):
                         bundlePermissions(escaped_filename(extractedBundle),"apks")
@@ -450,8 +455,13 @@ def main():
         layout = [[gui.Text(strings["bundleInstallPatient"],font=("Calibri",11))],
                   [gui.Text(strings["processingFile"],key='_PROGRESS_',font="Calibri 11")]]
         window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-        window.read(timeout=0)
-        extractedBundle = extractBundle(source_filename,installsource)
+        window.start_thread(lambda: extractBundle(source_filename,installsource,window), ('-THREAD-','-THREAD ENDED-'))
+        while True:
+            event, values = window.read()
+            if event[0] == '-THREAD ENDED-':
+                break
+            elif event[0] == '-OUT-':
+                extractedBundle = event[1]
         window.start_thread(lambda: installBundle(escaped_filename(extractedBundle),address,window), ('-THREAD-','-THREAD ENDED-'))
     while True:
         event, values = window.read()
