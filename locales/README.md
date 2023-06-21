@@ -13,4 +13,4 @@ Future updates to strings will involve updating all translated language files us
 
 During translation, it is a good idea to run WSA Sideloader with the translated language to see the end result. Just make sure you have Git and Python 3.11 installed, clone this repo, install the dependencies and run `sideloader.py`. As long as the translated file is properly named and placed in the locales folder, it should automatically display in that language.
 
-You can use the newline character `\n` to put the text after it to the next line on the screen. Text enclosed in {} brackets, such as {secs} are variables which should be left the way they are and not be translated. 
+You can use the newline character `\n` to put the text after it to the next line on the screen. Text enclosed in `{}` brackets, such as `{secs}` are variables which should be left the way they are and not be translated. 
