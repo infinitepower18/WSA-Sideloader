@@ -143,22 +143,19 @@ def startWSA(window):
 def getConfig():
     global adbAddress
     global checkUpdates
-    try:
-        config.read(configpath)
-        adbAddress = config.get('Application','adbAddress',fallback="127.0.0.1:58526")
-        if config.get('Application','checkUpdates',fallback="Enabled") == "Enabled":
-            checkUpdates = True
-        else:
-            checkUpdates = False
-    except:
-        if installsource == "GitHub":
-            if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
-                os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
+    if installsource == "GitHub":
+        if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
+            os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
+    if not os.path.exists(configpath):
         config['Application'] = {'adbAddress':'127.0.0.1:58526','checkUpdates':"Enabled"}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
+    config.read(configpath)
+    adbAddress = config.get('Application','adbAddress',fallback="127.0.0.1:58526")
+    if config.get('Application','checkUpdates',fallback="Enabled") == "Enabled":
         checkUpdates = True
-        adbAddress = "127.0.0.1:58526"
+    else:
+        checkUpdates = False
 
 def main():
     global adbRunning
