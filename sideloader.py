@@ -17,6 +17,7 @@ import time
 import locale
 import json
 from helpers import *
+from jproperties import Properties
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -36,6 +37,7 @@ else:
         strings = json.load(json_file)
         
 version = "1.4.0" # Version number
+adbVersion = "34.0.3"
 adbRunning = False
 startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
@@ -68,14 +70,23 @@ def startstore(filearg = ""): # For Microsoft Store installs
     installsource = strings["msStore"]
     global explorerfile
     explorerfile = filearg
-    if os.path.isdir(msixfolder+'\\platform-tools') == False: # Check if platform tools present
+    if os.path.exists(msixfolder+'\\platform-tools\\source.properties'): # Check if latest platform tools present
+        configs = Properties()
+        with open(msixfolder+'\\platform-tools\\source.properties','rb') as sdkproperties:
+            configs.load(sdkproperties)
+            curAdbVer = configs["Pkg.Revision"].data
+        if parse_version(curAdbVer) < parse_version(adbVersion):
+            shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
+            copyfiles = ['icon.ico','aapt.exe']
+            for f in copyfiles:
+                shutil.copy(f,msixfolder)
+        os.chdir(msixfolder)
+        main()
+    else:
         shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
         copyfiles = ['icon.ico','aapt.exe']
         for f in copyfiles:
             shutil.copy(f,msixfolder)
-        os.chdir(msixfolder)
-        main()
-    else:
         os.chdir(msixfolder)
         main()
 
