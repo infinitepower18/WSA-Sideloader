@@ -64,7 +64,6 @@ def startgit(filearg = ""):
     explorerfile = filearg
     main()
     
-# TODO: Handle adb updates
 def startstore(filearg = ""): # For Microsoft Store installs
     global installsource
     installsource = strings["msStore"]
