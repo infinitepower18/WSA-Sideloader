@@ -1,5 +1,4 @@
 import os
-import subprocess
 import PySimpleGUI as gui
 import platform
 import webbrowser
@@ -42,6 +41,7 @@ adbRunning = False
 startCode = 0
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 adbAddress = "127.0.0.1:58526"
+checkUpdates = True
 
 config = ConfigParser()
 configpath = 'config.ini'
@@ -62,6 +62,7 @@ def startgit(filearg = ""):
     installsource = strings["githubClone"]
     global explorerfile
     explorerfile = filearg
+    getConfig()
     main()
     
 def startstore(filearg = ""): # For Microsoft Store installs
@@ -80,6 +81,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
             for f in copyfiles:
                 shutil.copy(f,msixfolder)
         os.chdir(msixfolder)
+        getConfig()
         main()
     else:
         shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
@@ -87,6 +89,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
         for f in copyfiles:
             shutil.copy(f,msixfolder)
         os.chdir(msixfolder)
+        getConfig()
         main()
 
 def start(filearg = ""): # For GitHub installs
@@ -96,26 +99,30 @@ def start(filearg = ""): # For GitHub installs
     explorerfile = filearg
     global configpath
     configpath = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\config.ini"
-    try:
-        response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
-        latestver = response.json()["tag_name"][1::]
-        if parse_version(latestver) > parse_version(version):
-            layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
-                [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
-            window = gui.Window(strings["updateAvailable"], layout,icon="icon.ico",debugger_enabled=False)
-            event, values = window.Read()
-            if event is None:
-                sys.exit(0)
-            elif event == strings["yesButton"]:
-                window.Close()
-                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
-                sys.exit(0)
-            elif event == strings["noButton"]:
-                window.Close()
+    getConfig()
+    if checkUpdates:
+        try:
+            response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
+            latestver = response.json()["tag_name"][1::]
+            if parse_version(latestver) > parse_version(version):
+                layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
+                    [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
+                window = gui.Window(strings["updateAvailable"], layout,icon="icon.ico",debugger_enabled=False)
+                event, values = window.Read()
+                if event is None:
+                    sys.exit(0)
+                elif event == strings["yesButton"]:
+                    window.Close()
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
+                    sys.exit(0)
+                elif event == strings["noButton"]:
+                    window.Close()
+                    main()
+            else:
                 main()
-        else:
+        except requests.exceptions.RequestException as error: # Skip update check in case of network error
             main()
-    except requests.exceptions.RequestException as error: # Skip update check in case of network error
+    else:
         main()
 
 def startWSA(window):
@@ -135,26 +142,29 @@ def startWSA(window):
 
 def getConfig():
     global adbAddress
+    global checkUpdates
     try:
         config.read(configpath)
-        adbAddress = config.get('Application','adbAddress')
-        language = config.get('Application','language')
-        checkUpdates = config.get('Application','checkUpdates')
-        appearance = config.get('Application','appearance')
+        adbAddress = config.get('Application','adbAddress',fallback="127.0.0.1:58526")
+        if config.get('Application','checkUpdates',fallback="Enabled") == "Enabled":
+            checkUpdates = True
+        else:
+            checkUpdates = False
     except:
-        if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
-            os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
-        config['Application'] = {'adbAddress':'127.0.0.1:58526','checkUpdates':"Enabled",'appearance':'System'}
+        if installsource == "GitHub":
+            if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader"):
+                os.makedirs(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader")
+        config['Application'] = {'adbAddress':'127.0.0.1:58526','checkUpdates':"Enabled"}
         with open(configpath, 'w') as configfile:
             config.write(configfile)
+        checkUpdates = True
+        adbAddress = "127.0.0.1:58526"
 
 def main():
     global adbRunning
     global explorerfile
     global startCode
     global adbAddress
-
-    getConfig()
 
     # Check if WSA is installed
     if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
