@@ -1,13 +1,13 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
 ![MS Store downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ahnafmahmud.com%2Fwsasideloader%2Finstalls)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
-![Python](https://img.shields.io/badge/python-3.10%20|%203.11%20ARM64-yellow)
+![Python](https://img.shields.io/badge/python-3.11-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
 
 # WSA Sideloader
 WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.
 
-![image](https://user-images.githubusercontent.com/44692189/172241903-a66b7d9f-0692-4178-81e4-561e3978ed9b.png)
+<img width="311" alt="image" src="https://github.com/infinitepower18/WSA-Sideloader/assets/44692189/ede49229-4667-47b1-ac2d-84f2d71b954f">
 
 ## Download
 Operating System|Source

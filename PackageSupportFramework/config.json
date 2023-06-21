@@ -1,0 +1,14 @@
+﻿{
+    "applications": [
+        {
+        "id": "WSASIDELOADER",
+        "executable": "WSA Sideloader/WSASideloader.exe",
+        "workingDirectory": "WSA Sideloader/"
+        }
+    ],
+    "processes": [
+        {
+        "executable": "WSASideloader"
+        }
+    ]
+}
