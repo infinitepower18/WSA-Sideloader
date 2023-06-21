@@ -245,6 +245,8 @@ def settings(configpath,version,source):
         elif event == "View":
             subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
         elif event is None:
+            if adbRunning == True:
+                os.popen('cmd /c "cd platform-tools & adb kill-server"')
             sys.exit(0)
 
 def main():
