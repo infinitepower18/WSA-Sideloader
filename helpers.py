@@ -107,19 +107,25 @@ def installBundle(bundleLocation, address, window):
         window.write_event_value(('-ERR-', ""),"err")
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
-# TODO: Complete settings page
 def settings(configpath,version,source):
     config = ConfigParser()
     config.read(configpath)
 
     checkUpdate = ["Enabled","Disabled"]
 
-    layout = [[gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-COMBO-',readonly=True)],
-        [gui.Text("ADB address:",font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15)],
-        [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
-        [gui.Text("Application version: "+version,font="Calibri 11")],
-        [gui.Text("Downloaded from: "+source,font="Calibri 11")],
-        [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
+    if source == "Microsoft Store":
+        layout = [[gui.Text("ADB address:",font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+            [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+            [gui.Text("Application version: "+version,font="Calibri 11")],
+            [gui.Text("Downloaded from: "+source,font="Calibri 11")],
+            [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
+    else:
+        layout = [[gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
+            [gui.Text("ADB address:",font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+            [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+            [gui.Text("Application version: "+version,font="Calibri 11")],
+            [gui.Text("Downloaded from: "+source,font="Calibri 11")],
+            [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
 
     window = gui.Window('Settings', layout,icon="icon.ico",debugger_enabled=False)
 
@@ -127,7 +133,12 @@ def settings(configpath,version,source):
         event, values = window.read()
         if event == "Save":
             window.Close()
-            # Code to save to config file
+            if source == "Microsoft Store":
+                config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':"Enabled"}
+            else:
+                config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':values["-CHECKUPDATES-"]}
+            with open(configpath, 'w') as configfile:
+                config.write(configfile)
             break
         elif event == "Cancel":
             window.Close()
@@ -136,5 +147,5 @@ def settings(configpath,version,source):
             webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
         elif event == "View":
             subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
-        else:
+        elif event is None:
             sys.exit(0)
