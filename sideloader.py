@@ -28,11 +28,11 @@ lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() 
 strings = {}
 
 # Load translation file if available, otherwise fallback to English US
-if os.path.exists("./locales/"+lang+".json"):
-    with open("./locales/"+lang+".json",encoding='utf-8') as json_file:
+if os.path.exists(os.getcwd()+"\\locales\\"+lang+".json"):
+    with open(os.getcwd()+"\\locales\\"+lang+".json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
 else:
-    with open("./locales/en_US.json",encoding='utf-8') as json_file:
+    with open(os.getcwd()+"\\locales\\en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
 version = "1.4.0" # Version number
@@ -242,6 +242,7 @@ def settings(configpath,version,source):
         elif event == "Donate":
             webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
         elif event == "View":
+            # TODO: Fix this for MS Store version
             subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
         elif event is None:
             sys.exit(0)
