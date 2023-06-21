@@ -242,7 +242,6 @@ def settings(configpath,version,source):
         elif event == "Donate":
             webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
         elif event == "View":
-            # TODO: Fix this for MS Store version
             subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
         elif event is None:
             sys.exit(0)
