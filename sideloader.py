@@ -39,6 +39,7 @@ version = "1.4.0" # Version number
 adbVersion = "34.0.3"
 adbRunning = False
 startCode = 0
+icon = os.getcwd()+"\\icon.ico"
 msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
 adbAddress = "127.0.0.1:58526"
 checkUpdates = True
@@ -77,7 +78,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
             curAdbVer = configs["Pkg.Revision"].data
         if parse_version(curAdbVer) < parse_version(adbVersion):
             shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
-            copyfiles = ['icon.ico','aapt.exe']
+            copyfiles = ['aapt.exe']
             for f in copyfiles:
                 shutil.copy(f,msixfolder)
         os.chdir(msixfolder)
@@ -85,7 +86,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
         main()
     else:
         shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
-        copyfiles = ['icon.ico','aapt.exe']
+        copyfiles = ['aapt.exe']
         for f in copyfiles:
             shutil.copy(f,msixfolder)
         os.chdir(msixfolder)
@@ -107,7 +108,7 @@ def start(filearg = ""): # For GitHub installs
             if parse_version(latestver) > parse_version(version):
                 layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
                     [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
-                window = gui.Window(strings["updateAvailable"], layout,icon="icon.ico",debugger_enabled=False)
+                window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False)
                 event, values = window.Read()
                 if event is None:
                     sys.exit(0)
@@ -159,11 +160,11 @@ def getConfig():
 
 def bundlePermissions(bundleLocation,format):
     if format == "apkm" or format == "apks":
-        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon="icon.ico",title="View permissions")
+        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon=icon,title="View permissions")
     if format == "xapk":
         with open(os.path.join(bundleLocation, "manifest.json"), 'r') as f:
             data = json.load(f)
-            gui.popup_scrolled(data['permissions'],size=(100,10),icon="icon.ico",title="View permissions")
+            gui.popup_scrolled(data['permissions'],size=(100,10),icon=icon,title="View permissions")
 
 def installBundle(bundleLocation, address, window):
     global adbRunning
@@ -223,7 +224,7 @@ def settings(configpath,version,source):
             [gui.Text("Downloaded from: "+source,font="Calibri 11")],
             [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
 
-    window = gui.Window('Settings', layout,icon="icon.ico",debugger_enabled=False)
+    window = gui.Window('Settings', layout,icon=icon,debugger_enabled=False)
 
     while True:
         event, values = window.read()
@@ -257,7 +258,7 @@ def main():
         if int(platform.win32_ver()[1].split('.')[2]) < 22000:
             layout = [[gui.Text(strings["wsaNotDetectedWin10"],font=("Calibri",11))],
                     [RoundedButton(strings["exitButton"],0.3,font="Calibri 11")]]
-            window = gui.Window(strings["wsaNotInstalled"], layout,icon="icon.ico",debugger_enabled=False)
+            window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False)
             event, values = window.Read()
             if event == strings["exitButton"]:
                 sys.exit(0)
@@ -266,7 +267,7 @@ def main():
         else:
             layout = [[gui.Text(strings["wsaNotDetectedWin11"],font=("Calibri",11))],
                     [RoundedButton(strings["installWsaButton"],0.3,font="Calibri 11")]]
-            window = gui.Window(strings["wsaNotInstalled"], layout,icon="icon.ico",debugger_enabled=False)
+            window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False)
             event, values = window.Read()
             if event == strings["installWsaButton"]:
                 window.Close()
@@ -283,7 +284,7 @@ def main():
             [RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["settingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11"))]]
 
-    window = gui.Window('WSA Sideloader', layout,icon="icon.ico",debugger_enabled=False)
+    window = gui.Window('WSA Sideloader', layout,icon=icon,debugger_enabled=False)
 
     while True:
         event, values = window.Read()
@@ -307,7 +308,7 @@ def main():
                 source_filename = values[0]
                 window.Hide()
                 if source_filename.endswith(".apk"):
-                    gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon="icon.ico",title="APK permissions")
+                    gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon=icon,title="APK permissions")
                 else:
                     waitLayout = [[gui.Text('Retrieving permissions...',font=("Calibri",11))]]
                     waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
@@ -384,7 +385,7 @@ def main():
                         startingLayout = [[gui.Text(strings["waitWhileWsaStarts"],font="Calibri 11")],
                                           [gui.Text("",key='_MESSAGE_',font="Calibri 11")],
                                           [RoundedButton(strings["installNowButton"],0.3,key="_INSTALL_",font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,key="_CANCEL_",font="Calibri 11")]]
-                        startingWindow = gui.Window('Starting WSA',startingLayout,icon="icon.ico",debugger_enabled=False,finalize=True,no_titlebar=True,keep_on_top=True)
+                        startingWindow = gui.Window('Starting WSA',startingLayout,icon=icon,debugger_enabled=False,finalize=True,no_titlebar=True,keep_on_top=True)
                         startingWindow.start_thread(lambda: startWSA(startingWindow), ('-THREAD-','-THREAD ENDED-'))
                         while True:
                             event, values = startingWindow.Read()
@@ -412,7 +413,7 @@ def main():
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
             helpLayout = [[gui.Text(strings["helpText"],font=("Calibri",11))],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["compatAppsButton"],0.3,font="Calibri 11")]]
-            helpWindow = gui.Window('Help',helpLayout,icon="icon.ico",debugger_enabled=False)
+            helpWindow = gui.Window('Help',helpLayout,icon=icon,debugger_enabled=False)
             while True:
                 event,values = helpWindow.Read()
                 if event is None:
@@ -469,7 +470,7 @@ def main():
         else:
             layout = [[gui.Text(strings["appInstalledBundle"],font=("Calibri",11))],
                     [RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
-        window = gui.Window(strings["infoTitle"], layout,icon="icon.ico",debugger_enabled=False)
+        window = gui.Window(strings["infoTitle"], layout,icon=icon,debugger_enabled=False)
 
         event, values = window.Read()
         if event == strings["openAppButton"]: # TODO: Get this working for bundles
@@ -491,7 +492,7 @@ def main():
     elif outLine.startswith("failed to authenticate"):
         layout = [[gui.Text(strings["allowAdb"],font=("Calibri",11))],
                 [RoundedButton(strings["okButton"],0.3,font="Calibri 11")]]
-        window = gui.Window('Message', layout,icon="icon.ico",debugger_enabled=False)
+        window = gui.Window('Message', layout,icon=icon,debugger_enabled=False)
 
         event, values = window.Read()
         if event == strings["okButton"]:
@@ -510,7 +511,7 @@ def main():
             errInfo = '\n'.join(map(str,textwrap.wrap(outLine,80)))+'\n'+'\n'.join(map(str,textwrap.wrap(errLine,80)))
         layout = [[gui.Text(strings["unableToInstall"]+'\n'+errInfo,font=("Calibri",11))],
                 [RoundedButton(strings["okButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11")]]
-        window = gui.Window(strings["errorTitle"], layout,icon="icon.ico",debugger_enabled=False)
+        window = gui.Window(strings["errorTitle"], layout,icon=icon,debugger_enabled=False)
 
         while True:
             event, values = window.Read()
