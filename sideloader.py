@@ -220,6 +220,7 @@ def settings(configpath,version,source):
         layout = [[gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
             [gui.Text("ADB address:",font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
             [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+            [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
             [gui.Text("Application version: "+version,font="Calibri 11")],
             [gui.Text("Downloaded from: "+source,font="Calibri 11")],
             [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
@@ -243,7 +244,10 @@ def settings(configpath,version,source):
         elif event == "Donate":
             webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
         elif event == "View":
-            subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
+            if os.path.exists(os.getcwd()+'\\Bundles'):
+                subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
+            else:
+                window["_NOBUNDLES_"].Update(visible=True)
         elif event is None:
             if adbRunning == True:
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')

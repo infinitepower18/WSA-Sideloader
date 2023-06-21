@@ -53,5 +53,6 @@
     "exitButton": "Exit",
     "wsaNotInstalled": "WSA not installed",
     "wsaNotDetectedWin11": "You need to install Windows Subsystem for Android before you can use this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",
-    "installWsaButton": "Install WSA"
+    "installWsaButton": "Install WSA",
+    "noBundlesFound": "No bundles found"
 }
