@@ -44,17 +44,6 @@ Microsoft has recently introduced a new partially running mode to WSA, and due t
 
 For now, you can open any app to wake up the subsystem before running WSA Sideloader. I hope to address this issue in a future update. Thank you for your patience.
 
-## Upcoming features
-The following features are planned to be included in the next update:
-
-### Bundle installation
-Support for APK bundles including xapk, apkm and apks.
-
-### Community translations
-I am in the process of restructuring the app to enable localization support, and will begin accepting translations once bundle installation is implemented. I'm also looking at Crowdin integration.
-
-Thank you for your patience while I work on these features.
-
 ## FAQ
 
 ### The APK installation fails with the error message "No connection could be made because the target machine actively refused it"
@@ -103,11 +92,11 @@ Need help using WSA Sideloader? Post in the project's [discussions tab](https://
 To compile from source, follow the below instructions:
 
 1. Install [Git](https://gitforwindows.org/) if you haven't already. Then clone the repo using the command `git clone https://github.com/infinitepower18/WSA-Sideloader`
-2. Download the latest version of [Python 3.10 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.11 instead.
-3. Install Nuitka via pip using the command `pip install nuitka`. ARM64 compilation requires Nuitka 1.5 or later.
+2. Download the latest version of [Python 3.11 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.11 instead.
+3. Install Nuitka via pip using the command `pip install nuitka`.
 4. Install the required dependencies for WSA Sideloader using the command `pip install -r requirements.txt` in the root directory.
 5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console -windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-file-description="WSA Sideloader"`. This may take some time depending on your computer.
-6. Copy the icon.ico, apk.ico, aapt.exe files as well as the platform-tools folder to the sideloader.dist folder.
+6. Copy the icon.ico, apk.ico, aapt.exe files as well as the locales and platform-tools folders to the sideloader.dist folder.
 
 ## Privacy Policy
 
