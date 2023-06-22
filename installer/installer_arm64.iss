@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WSA Sideloader"
-#define MyAppVersion "1.3.13"
+#define MyAppVersion "1.4.0"
 #define MyAppPublisher "infinitepower18"
 #define MyAppURL "https://github.com/infinitepower18/WSA-Sideloader"
 #define MyAppUpdateURL "https://github.com/infinitepower18/WSA-Sideloader/releases/latest"
@@ -10,6 +10,15 @@
 #define MyAppAssocName "APK File"
 #define MyAppAssocExt ".apk"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
+#define MyAppAssocName1 "XAPK File"
+#define MyAppAssocExt1 ".xapk"
+#define MyAppAssocKey1 StringChange(MyAppAssocName1, " ", "") + MyAppAssocExt1
+#define MyAppAssocName2 "APKM File"
+#define MyAppAssocExt2 ".apkm"
+#define MyAppAssocKey2 StringChange(MyAppAssocName2, " ", "") + MyAppAssocExt2
+#define MyAppAssocName3 "APKS File"
+#define MyAppAssocExt3 ".apks"
+#define MyAppAssocKey3 StringChange(MyAppAssocName3, " ", "") + MyAppAssocExt3
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -49,11 +58,33 @@ Source: "C:\Users\ahnafm\Documents\WSA-Sideloader\sideloader.dist\*"; DestDir: "
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
+; associate .apk
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\apk.ico"
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
 Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".apk"; ValueData: ""
+
+; associate .xapk
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt1}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey1}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey1}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName1}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey1}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\apk.ico"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey1}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName1}"" ""%1"""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName1}\SupportedTypes"; ValueType: string; ValueName: ".xapk"; ValueData: ""
+
+; associate .apkm
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt2}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey2}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey2}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName2}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey2}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\apk.ico"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey2}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName2}"" ""%1"""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName2}\SupportedTypes"; ValueType: string; ValueName: ".apkm"; ValueData: ""
+
+; associate .apks
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt3}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey3}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey3}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName3}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey3}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\apk.ico"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey3}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName3}"" ""%1"""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName3}\SupportedTypes"; ValueType: string; ValueName: ".apks"; ValueData: ""
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
