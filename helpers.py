@@ -23,8 +23,6 @@ def escaped_filename(filename): # Escape special characters used by cmd
     return ''.join(filename)
 
 def installAPK(address,fname,window):
-    global adbRunning
-    adbRunning = True
     command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+fname+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()

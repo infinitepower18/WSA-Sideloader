@@ -453,6 +453,7 @@ def main():
     window.Close()
     explorerfile = source_filename
     if source_filename.endswith(".apk"):
+        adbRunning = True
         layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
         window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
         window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
