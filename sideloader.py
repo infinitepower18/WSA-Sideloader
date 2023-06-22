@@ -4,7 +4,6 @@ import platform
 import webbrowser
 import sys
 import ctypes
-import shutil
 from pkg_resources import parse_version
 from button import RoundedButton
 import darkdetect
@@ -16,7 +15,6 @@ import time
 import locale
 import json
 from helpers import *
-from jproperties import Properties
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
