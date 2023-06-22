@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  assertions:
+    - resource: OsVersion
+      directives:
+        description: Verify min OS version requirement
+        module: Microsoft.Windows.Developer
+        allowPrerelease: true
+      settings:
+        MinVersion: "10.0.22000"
+  resources:
+    - resource: DeveloperMode
+      directives:
+        description: Enable Developer Mode
+        module: Microsoft.Windows.Developer
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    - resource: WinGetPackage
+      id: vsCode
+      directives:
+        description: Install Visual Studio Code
+        module: Microsoft.WinGet.DSC
+        allowPrerelease: true
+      settings:
+        id: Microsoft.VisualStudioCode
+        source: winget
+    - resource: WinGetPackage
+      id: python311
+      directives:
+        description: Install Python 3.11
+        module: Microsoft.WinGet.DSC
+        allowPrerelease: true
+      settings:
+        id: Python.Python.3.11
+        source: winget
+  configurationVersion: 0.2.0
