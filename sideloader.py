@@ -77,7 +77,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
             configs.load(sdkproperties)
             curAdbVer = configs["Pkg.Revision"].data
         if parse_version(curAdbVer) < parse_version(adbVersion):
-            shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
+            shutil.copytree("platform-tools",msixfolder + "\\platform-tools",dirs_exist_ok=True)
             copyfiles = ['aapt.exe']
             for f in copyfiles:
                 shutil.copy(f,msixfolder)
@@ -85,7 +85,7 @@ def startstore(filearg = ""): # For Microsoft Store installs
         getConfig()
         main()
     else:
-        shutil.copytree("platform-tools",msixfolder + "\\platform-tools")
+        shutil.copytree("platform-tools",msixfolder + "\\platform-tools",dirs_exist_ok=True)
         copyfiles = ['aapt.exe']
         for f in copyfiles:
             shutil.copy(f,msixfolder)
