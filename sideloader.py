@@ -38,7 +38,7 @@ adbVersion = "34.0.3"
 adbRunning = False
 startCode = 0
 icon = os.getcwd()+"\\icon.ico"
-msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState"
+msixfolder = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\TempState"
 adbAddress = "127.0.0.1:58526"
 checkUpdates = True
 
@@ -576,6 +576,6 @@ Change below to appropriate function if necessary.
 if __name__ == '__main__':
     os.chdir(os.path.dirname(__file__))
     if len(sys.argv) >1:
-        startgit(sys.argv[1])
+        startstore(sys.argv[1])
     else:
-        startgit()
+        startstore()
