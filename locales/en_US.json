@@ -65,5 +65,6 @@
     "androidFiles": "Android app files",
     "retrievingPerms": "Retrieving permissions...",
     "message": "Message",
-    "getPermsError": "Sorry, an error has occured. Please submit a bug report.\n\n[Error Info]\n"
+    "fatalError": "Sorry, an error has occured. Please submit a bug report.\n\n[Error Info]\n",
+    "continueButton": "Continue"
 }
