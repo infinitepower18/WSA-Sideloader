@@ -212,7 +212,7 @@ def settings(configpath,version,source):
 
     if source == "Microsoft Store":
         layout = [[gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+            [gui.Text(strings["viewExtractedBundles"],key='_NOBUNDLES_',font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
             [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
             [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
             [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
