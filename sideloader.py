@@ -71,27 +71,10 @@ def startstore(filearg = ""): # For Microsoft Store installs
     installsource = "Microsoft Store"
     global explorerfile
     explorerfile = filearg
-    if os.path.exists(msixfolder+'\\platform-tools\\source.properties'): # Check if latest platform tools present
-        configs = Properties()
-        with open(msixfolder+'\\platform-tools\\source.properties','rb') as sdkproperties:
-            configs.load(sdkproperties)
-            curAdbVer = configs["Pkg.Revision"].data
-        if parse_version(curAdbVer) < parse_version(adbVersion):
-            shutil.copytree("platform-tools",msixfolder + "\\platform-tools",dirs_exist_ok=True)
-            copyfiles = ['aapt.exe']
-            for f in copyfiles:
-                shutil.copy(f,msixfolder)
-        os.chdir(msixfolder)
-        getConfig()
-        main()
-    else:
-        shutil.copytree("platform-tools",msixfolder + "\\platform-tools",dirs_exist_ok=True)
-        copyfiles = ['aapt.exe']
-        for f in copyfiles:
-            shutil.copy(f,msixfolder)
-        os.chdir(msixfolder)
-        getConfig()
-        main()
+    global configpath
+    configpath = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState\\config.ini"
+    getConfig()
+    main()
 
 def start(filearg = ""): # For GitHub installs
     global installsource
@@ -245,10 +228,16 @@ def settings(configpath,version,source):
         elif event == strings["donateButton"]:
             webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
         elif event == strings["viewButton"]:
-            if os.path.exists(os.getcwd()+'\\Bundles'):
-                subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
+            if installsource == "Microsoft Store":
+                if os.path.exists(msixfolder+'\\Bundles'):
+                    subprocess.Popen('explorer "'+msixfolder+'\\Bundles"')
+                else:
+                    window["_NOBUNDLES_"].Update(visible=True)
             else:
-                window["_NOBUNDLES_"].Update(visible=True)
+                if os.path.exists(os.getcwd()+'\\Bundles'):
+                    subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
+                else:
+                    window["_NOBUNDLES_"].Update(visible=True)
         elif event is None:
             if adbRunning == True:
                 os.popen('cmd /c "cd platform-tools & adb kill-server"')

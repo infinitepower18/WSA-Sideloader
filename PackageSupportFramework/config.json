@@ -3,7 +3,8 @@
         {
         "id": "WSASIDELOADER",
         "executable": "WSA Sideloader/WSASideloader.exe",
-        "workingDirectory": "WSA Sideloader/"
+        "workingDirectory": "WSA Sideloader/",
+        "inPackageContext": true
         }
     ],
     "processes": [

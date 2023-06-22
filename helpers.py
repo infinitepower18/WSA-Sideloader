@@ -47,6 +47,11 @@ def extractBundle(fname,source,window):
             if os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()) == False:
                 zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
             location = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
+    elif source == "Microsoft Store":
+        with zipfile.ZipFile(fname,"r") as zip_ref:
+            if os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState\\Bundles\\"+sha256_hash.hexdigest()) == False:
+                zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState\\Bundles\\"+sha256_hash.hexdigest())
+            location = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalState\\Bundles\\"+sha256_hash.hexdigest()   
     else:
         with zipfile.ZipFile(fname,"r") as zip_ref:
             if os.path.exists("Bundles\\"+sha256_hash.hexdigest()) == False:
