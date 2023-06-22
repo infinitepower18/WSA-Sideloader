@@ -53,5 +53,13 @@
     "wsaNotInstalled": "WSA not installed",
     "wsaNotDetectedWin11": "You need to install Windows Subsystem for Android before you can use this program.\nPlease download Amazon Appstore from the Microsoft Store, which will install the subsystem.\nChange your region setting to US if it's not available in your country.",
     "installWsaButton": "Install WSA",
-    "noBundlesFound": "No bundles found"
+    "noBundlesFound": "No bundles found",
+    "installingBundleApks": "Installing base APK and supporting files...",
+    "copyingObb": "Copying OBB files...",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "viewExtractedBundles": "View extracted bundles:",
+    "viewButton": "View",
+    "saveButton": "Save",
+    "checkUpdatesAppStart": "Check for updates on application start:"
 }

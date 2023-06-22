@@ -160,11 +160,11 @@ def getConfig():
 
 def bundlePermissions(bundleLocation,format):
     if format == "apkm" or format == "apks":
-        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon=icon,title="View permissions")
+        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
     if format == "xapk":
         with open(os.path.join(bundleLocation, "manifest.json"), 'r') as f:
             data = json.load(f)
-            gui.popup_scrolled(data['permissions'],size=(100,10),icon=icon,title="View permissions")
+            gui.popup_scrolled(data['permissions'],size=(100,10),icon=icon,title=strings["viewPerms"])
 
 def installBundle(bundleLocation, address, window):
     global adbRunning
@@ -176,14 +176,14 @@ def installBundle(bundleLocation, address, window):
                 files = files + '"'+os.path.join(bundleLocation, file)+'"'
             else:
                 files = files + " " + '"'+os.path.join(bundleLocation, file)+'"'
-    window["_PROGRESS_"].Update("Installing base APK and supporting files...")       
+    window["_PROGRESS_"].Update(strings["installingBundleApks"])       
     command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install-multiple '+files+'"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8')
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()
     try:
         if str(stdout[len(stdout)-1]).startswith("Success"):
             if os.path.exists(bundleLocation + "\\Android\\obb"):
-                window["_PROGRESS_"].Update("Copying OBB files...")
+                window["_PROGRESS_"].Update(strings["copyingObb"])
                 for dir in os.listdir(bundleLocation + "\\Android\\obb"):
                     pushobb = subprocess.Popen('cmd /c "cd platform-tools & adb -s '+address+' shell mkdir /sdcard/Android/obb/'+dir+' & adb -s '+address+' push '+bundleLocation+'\\android\\obb\\'+dir+'\. /sdcard/Android/obb/'+dir+'/"', shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8')
                     while True:
@@ -211,25 +211,25 @@ def settings(configpath,version,source):
     checkUpdate = ["Enabled","Disabled"]
 
     if source == "Microsoft Store":
-        layout = [[gui.Text("ADB address:",font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-            [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
-            [gui.Text("Application version: "+version,font="Calibri 11")],
-            [gui.Text("Downloaded from: "+source,font="Calibri 11")],
-            [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
+        layout = [[gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+            [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
+            [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
+            [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
     else:
-        layout = [[gui.Text("Check for updates on application start:",font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
-            [gui.Text("ADB address:",font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-            [gui.Text("View extracted bundles:",font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+        layout = [[gui.Text(strings["checkUpdatesAppStart"],font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
+            [gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
             [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
-            [gui.Text("Application version: "+version,font="Calibri 11")],
-            [gui.Text("Downloaded from: "+source,font="Calibri 11")],
-            [RoundedButton("Save",0.3,font="Calibri 11"),RoundedButton("Cancel",0.3,font="Calibri 11"),RoundedButton("Donate",0.3,font="Calibri 11")]]
+            [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
+            [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
+            [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
 
-    window = gui.Window('Settings', layout,icon=icon,debugger_enabled=False)
+    window = gui.Window(strings["settingsButton"], layout,icon=icon,debugger_enabled=False)
 
     while True:
         event, values = window.read()
-        if event == "Save":
+        if event == strings["saveButton"]:
             window.Close()
             if source == "Microsoft Store":
                 config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':"Enabled"}
@@ -238,12 +238,12 @@ def settings(configpath,version,source):
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
             break
-        elif event == "Cancel":
+        elif event == strings["cancelButton"]:
             window.Close()
             break
-        elif event == "Donate":
+        elif event == strings["donateButton"]:
             webbrowser.open("https://ko-fi.com/F1F1K06VY",2)
-        elif event == "View":
+        elif event == strings["viewButton"]:
             if os.path.exists(os.getcwd()+'\\Bundles'):
                 subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
             else:
