@@ -44,17 +44,6 @@ Microsoft has recently introduced a new partially running mode to WSA, and due t
 
 For now, you can open any app to wake up the subsystem before running WSA Sideloader. I hope to address this issue in a future update. Thank you for your patience.
 
-## Upcoming features
-The following features are planned to be included in the next update:
-
-### Bundle installation
-Support for APK bundles including xapk, apkm and apks.
-
-### Community translations
-I am in the process of restructuring the app to enable localization support, and will begin accepting translations once bundle installation is implemented. I'm also looking at Crowdin integration.
-
-Thank you for your patience while I work on these features.
-
 ## FAQ
 
 ### The APK installation fails with the error message "No connection could be made because the target machine actively refused it"
