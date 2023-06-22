@@ -61,5 +61,8 @@
     "viewExtractedBundles": "View extracted bundles:",
     "viewButton": "View",
     "saveButton": "Save",
-    "checkUpdatesAppStart": "Check for updates on application start:"
+    "checkUpdatesAppStart": "Check for updates on application start:",
+    "androidFiles": "Android app files",
+    "retrievingPerms": "Retrieving permissions...",
+    "message": "Message"
 }

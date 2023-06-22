@@ -284,7 +284,7 @@ def main():
                 
     # Main window
     layout = [[gui.Text(strings["chooseToInstall"],font="Calibri 11")],
-            [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=(("Android app files","*.apk"),("Android app files","*.xapk"),("Android app files","*.apkm"),("Android app files","*.apks")),font="Calibri 11")],
+            [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=((strings["androidFiles"],"*.apk"),(strings["androidFiles"],"*.xapk"),(strings["androidFiles"],"*.apkm"),(strings["androidFiles"],"*.apks")),font="Calibri 11")],
             [RoundedButton(strings["installButton"],0.3,font="Calibri 11"),RoundedButton(strings["viewPerms"],0.3,font="Calibri 11")],
             [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
             [RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["settingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11")],
@@ -314,9 +314,9 @@ def main():
                 source_filename = values[0]
                 window.Hide()
                 if source_filename.endswith(".apk"):
-                    gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon=icon,title="APK permissions")
+                    gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
                 else:
-                    waitLayout = [[gui.Text('Retrieving permissions...',font=("Calibri",11))]]
+                    waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                     waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
                     waitWindow.start_thread(lambda: extractBundle(source_filename,installsource,waitWindow), ('-THREAD-','-THREAD ENDED-'))
                     while True:
@@ -424,7 +424,7 @@ def main():
             window["_ERROR2_"].Update(visible=False)
             window.Hide()
             helpLayout = [[gui.Text(strings["helpText"],font=("Calibri",11))],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["compatAppsButton"],0.3,font="Calibri 11")]]
-            helpWindow = gui.Window('Help',helpLayout,icon=icon,debugger_enabled=False)
+            helpWindow = gui.Window(strings["helpButton"],helpLayout,icon=icon,debugger_enabled=False)
             while True:
                 event,values = helpWindow.Read()
                 if event is None:
@@ -508,7 +508,7 @@ def main():
     elif outLine.startswith("failed to authenticate"):
         layout = [[gui.Text(strings["allowAdb"],font=("Calibri",11))],
                 [RoundedButton(strings["okButton"],0.3,font="Calibri 11")]]
-        window = gui.Window('Message', layout,icon=icon,debugger_enabled=False)
+        window = gui.Window(strings["message"], layout,icon=icon,debugger_enabled=False)
 
         event, values = window.Read()
         if event == strings["okButton"]:
