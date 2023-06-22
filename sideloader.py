@@ -143,7 +143,7 @@ def bundlePermissions(bundleLocation,format):
     if format == "apkm" or format == "apks":
         gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
     if format == "xapk":
-        with open(os.path.join(bundleLocation, "manifest.json"), 'r') as f:
+        with open(os.path.join(bundleLocation, "manifest.json"), 'r',encoding="utf-8") as f:
             data = json.load(f)
             gui.popup_scrolled(data['permissions'],size=(100,10),icon=icon,title=strings["viewPerms"])
 
