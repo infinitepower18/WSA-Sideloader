@@ -64,5 +64,6 @@
     "checkUpdatesAppStart": "Check for updates on application start:",
     "androidFiles": "Android app files",
     "retrievingPerms": "Retrieving permissions...",
-    "message": "Message"
+    "message": "Message",
+    "getPermsError": "Sorry, an error has occured. Please submit a bug report.\n\n[Error Info]\n"
 }

@@ -302,7 +302,23 @@ def main():
                 source_filename = values[0]
                 window.Hide()
                 if source_filename.endswith(".apk"):
-                    gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                    try:
+                        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                    except Exception as e:
+                        errLayout = [[gui.Text(strings["getPermsError"]+str(e),font=("Calibri",11))],
+                                     [RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11"),RoundedButton(strings["backButton"],0.3,font="Calibri 11")]]
+                        errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon)
+                        while True:
+                            event, values = errWindow.read()
+                            if event == strings["backButton"]:
+                                errWindow.Close()
+                                break
+                            elif event == strings["reportBugButton"]: # Open WSA Sideloader issues page
+                                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
+                            else:
+                                if adbRunning == True:
+                                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                                sys.exit(0)
                 else:
                     waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                     waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
@@ -314,12 +330,28 @@ def main():
                         elif event[0] == '-OUT-':
                             extractedBundle = event[1]
                     waitWindow.close()
-                    if source_filename.endswith(".apks"):
-                        bundlePermissions(escaped_filename(extractedBundle),"apks")
-                    elif source_filename.endswith(".apkm"):
-                        bundlePermissions(escaped_filename(extractedBundle),"apkm")
-                    elif source_filename.endswith(".xapk"):
-                        bundlePermissions(escaped_filename(extractedBundle),"xapk")
+                    try:
+                        if source_filename.endswith(".apks"):
+                            bundlePermissions(escaped_filename(extractedBundle),"apks")
+                        elif source_filename.endswith(".apkm"):
+                            bundlePermissions(escaped_filename(extractedBundle),"apkm")
+                        elif source_filename.endswith(".xapk"):
+                            bundlePermissions(escaped_filename(extractedBundle),"xapk")
+                    except Exception as e:
+                        errLayout = [[gui.Text(strings["getPermsError"]+str(e),font=("Calibri",11))],
+                                     [RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11"),RoundedButton(strings["backButton"],0.3,font="Calibri 11")]]
+                        errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon)
+                        while True:
+                            event, values = errWindow.read()
+                            if event == strings["backButton"]:
+                                errWindow.Close()
+                                break
+                            elif event == strings["reportBugButton"]: # Open WSA Sideloader issues page
+                                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
+                            else:
+                                if adbRunning == True:
+                                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                                sys.exit(0)
                 window.UnHide()
         if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
             autostart = os.popen('cmd /c "tasklist"')
