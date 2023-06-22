@@ -231,6 +231,11 @@ def settings(configpath,version,source):
                     subprocess.Popen('explorer "'+msixfolder+'\\Bundles"')
                 else:
                     window["_NOBUNDLES_"].Update(visible=True)
+            elif installsource == "GitHub":
+                if os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles"):
+                    subprocess.Popen('explorer "'+os.getenv('LOCALAPPDATA') + '\\WSA Sideloader\\Bundles"')
+                else:
+                    window["_NOBUNDLES_"].Update(visible=True)
             else:
                 if os.path.exists(os.getcwd()+'\\Bundles'):
                     subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
