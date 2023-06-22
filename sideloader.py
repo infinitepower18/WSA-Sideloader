@@ -21,6 +21,8 @@ if(platform.system() != "Windows"):
     print("This operating system is not supported.")
     sys.exit(0)
 
+os.chdir(os.path.dirname(__file__))
+
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
 strings = {}
@@ -579,7 +581,6 @@ Change below to appropriate function if necessary.
 """
 
 if __name__ == '__main__':
-    os.chdir(os.path.dirname(__file__))
     if len(sys.argv) >1:
         startgit(sys.argv[1])
     else:
