@@ -43,7 +43,7 @@
     "unableToInstall": "アプリをインストールできませんでした｡ 以下の項目を確認してください ：\n・ファイルが欠損していない\n・インストールを試みるパッケージの方がバージョンが新しい\n・WSA が起動している\n・開発者モードが有効であり､ 正しい ADB アドレスが入力されている\n・ADB 接続を許可した｡\n誤って拒否してしまった場合は､ WSA Sideloader を一旦終了し､ 開き直してください｡\n\n[エラー情報]",
     "reportBugButton": "  バグを報告  ",
     "errorTitle": " エラー ",
-    "githubClone": "GitHub",
+    "githubClone": "GitHub (git clone)",
     "updateAvailable": " 更新があります ",
     "newUpdate": " WSA Sideloader の新しいバージョンが利用可能です｡\n今すぐ更新しますか？",
     "yesButton": " はい ",
