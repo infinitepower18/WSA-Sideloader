@@ -206,7 +206,7 @@ def settings(configpath,version,source):
         [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
         [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
 
-    window = gui.Window(strings["settingsButton"], layout,icon=icon,debugger_enabled=False)
+    window = gui.Window(strings["settingsButton"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
     if source == "Microsoft Store":
         window["_CHECKUPDATES_"].Update(visible=False)
