@@ -62,7 +62,7 @@
     "viewButton": " 見る ",
     "saveButton": " 保存 ",
     "checkUpdatesAppStart": "起動時に更新を確認 :",
-    "androidFiles": " Android アプリファイル ",
+    "androidFiles": " Android アプリパッケージ ",
     "retrievingPerms": " 権限の取得中... ",
     "message": " メッセージ ",
     "fatalError": "申し訳ありませんが､ エラーが発生しました｡\nバグレポートを送信してください｡\n\n[エラー情報]\n",
