@@ -49,6 +49,7 @@ WizardStyle=modern
 ArchitecturesAllowed=arm64
 ArchitecturesInstallIn64BitMode=arm64
 LanguageDetectionMethod=uilanguage
+ShowLanguageDialog=no
 
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
