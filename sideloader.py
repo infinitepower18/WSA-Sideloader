@@ -144,7 +144,7 @@ def getConfig():
 
 def bundlePermissions(bundleLocation,format):
     if format == "apkm" or format == "apks":
-        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+os.path.join(bundleLocation, "base.apk")+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +os.path.join(bundleLocation, "base.apk")+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
     if format == "xapk":
         with open(os.path.join(bundleLocation, "manifest.json"), 'r',encoding="utf-8") as f:
             data = json.load(f)
@@ -332,11 +332,11 @@ def main():
                                 extractedBundle = event[1]
                         waitWindow.close()
                         if source_filename.endswith(".apks"):
-                            bundlePermissions(escaped_filename(extractedBundle),"apks")
+                            bundlePermissions(extractedBundle,"apks")
                         elif source_filename.endswith(".apkm"):
-                            bundlePermissions(escaped_filename(extractedBundle),"apkm")
+                            bundlePermissions(extractedBundle,"apkm")
                         elif source_filename.endswith(".xapk"):
-                            bundlePermissions(escaped_filename(extractedBundle),"xapk")
+                            bundlePermissions(extractedBundle,"xapk")
                     window.UnHide()
             if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
                 autostart = os.popen('cmd /c "tasklist"')

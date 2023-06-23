@@ -3,25 +3,6 @@ import os
 import subprocess
 import zipfile
 
-def escaped_filename(filename): # Escape special characters used by cmd
-    filename = list(filename)
-    for i in range(len(filename)):
-        if filename[i] == "&":
-            filename[i] = "^&"
-        elif filename[i] == "|":
-            filename[i] = "^|"
-        elif filename[i] == "(":
-            filename[i] = "^("
-        elif filename[i] == ")":
-            filename[i] = "^)"
-        elif filename[i] == "<":
-            filename[i] = "^<"
-        elif filename[i] == ">":
-            filename[i] = "^>"
-        elif filename[i] == "^":
-            filename[i] = "^^"
-    return ''.join(filename)
-
 def installAPK(address,fname,window):
     command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+fname+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
     stdout = command.stdout.readlines()
