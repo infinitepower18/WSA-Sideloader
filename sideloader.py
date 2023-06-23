@@ -195,7 +195,7 @@ def settings(configpath,version,source):
 
     layout = [[gui.Text(strings["checkUpdatesAppStart"],font="Calibri 11",key="_CHECKUPDATES_"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
         [gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-        [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+        [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton(strings["viewButton"],0.3,font="Calibri 11")],
         [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
         [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
         [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
