@@ -26,7 +26,7 @@
     "instContinueinSeconds": " インストールは､ {secs}秒後に続行されます｡ ",
     "instContinueinOneSec": " インストールは､ 1秒後に続行されます｡ ",
     "waitWhileWsaStarts": " WSA が起動するまでお待ちください｡ ",
-    "installNowButton": "   インストール中   ",
+    "installNowButton": "   インストールを続行   ",
     "cancelButton": "  キャンセル  ",
     "installingApp": " アプリをインストールしています... ",
     "cancelling": " キャンセルしています... ",
