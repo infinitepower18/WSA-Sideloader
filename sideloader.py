@@ -210,6 +210,7 @@ def settings(configpath,version,source):
 
     if source == "Microsoft Store":
         window["_CHECKUPDATES_"].Update(visible=False)
+        window["-CHECKUPDATES-"].Update(visible=False)
 
     while True:
         event, values = window.read()
