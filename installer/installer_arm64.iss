@@ -48,9 +48,11 @@ WizardStyle=modern
 ;MinVersion=10.0.22000
 ArchitecturesAllowed=arm64
 ArchitecturesInstallIn64BitMode=arm64
+LanguageDetectionMethod=uilanguage
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "en"; MessagesFile: "compiler:Default.isl"
+Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
 
 [Files]
 Source: "C:\Users\ahnafm\Documents\WSA-Sideloader\sideloader.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
@@ -93,5 +95,5 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Messages]
-WindowsVersionNotSupported=You need Windows 11 to install WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before installing this program.%nFor more information and support, visit github.com/infinitepower18/WSA-Sideloader.
-OnlyOnTheseArchitectures=The ARM64 version of WSA Sideloader is not compatible with your system. Please download the x64 version.
+;WindowsVersionNotSupported=You need Windows 11 to install WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before installing this program.%nFor more information and support, visit github.com/infinitepower18/WSA-Sideloader.
+;OnlyOnTheseArchitectures=The ARM64 version of WSA Sideloader is not compatible with your system. Please download the x64 version.
