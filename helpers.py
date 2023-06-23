@@ -3,8 +3,9 @@ import os
 import subprocess
 import zipfile
 
-def installAPK(address,fname,window):
-    command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install "'+fname+'""', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8') # Connect to WSA and install APK
+def installAPK(address,fname,app,window):
+    subprocess.Popen(app + " connect "+address)
+    command = subprocess.Popen(app + ' -s '+address+' install "'+fname+'"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000) # Connect to WSA and install APK
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()
     try:

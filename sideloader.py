@@ -463,7 +463,7 @@ def main():
             adbRunning = True
             layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False)
-            window.start_thread(lambda: installAPK(address, escaped_filename(source_filename), window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: installAPK(address, source_filename, adbApp, window), ('-THREAD-','-THREAD ENDED-'))
         else:
             layout = [[gui.Text(strings["bundleInstallPatient"],font=("Calibri",11))],
                     [gui.Text(strings["processingFile"],key='_PROGRESS_',font="Calibri 11")]]
