@@ -499,8 +499,8 @@ def main():
 
             event, values = window.Read()
             if event == strings["openAppButton"]: # TODO: Get this working for bundles
-                getpackage = os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""')
-                pkgoutput = getpackage.readlines()
+                getpackage = subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+                pkgoutput = getpackage.stdout.readlines()
                 pkgname = str(pkgoutput[0])
                 webbrowser.open("wsa://"+pkgname[9:],2)
                 if adbRunning == True:
