@@ -51,6 +51,7 @@ ArchitecturesInstallIn64BitMode=x64 arm64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 
 [Files]
 Source: "C:\Users\Ahnaf\Documents\WSA-Sideloader\sideloader.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
@@ -93,4 +94,4 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Messages]
-WindowsVersionNotSupported=You need Windows 11 to install WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before installing this program.%nFor more information and support, visit github.com/infinitepower18/WSA-Sideloader.
+;WindowsVersionNotSupported=You need Windows 11 to install WSA Sideloader (as well as the subsystem itself). Please upgrade your operating system and install WSA before installing this program.%nFor more information and support, visit github.com/infinitepower18/WSA-Sideloader.
