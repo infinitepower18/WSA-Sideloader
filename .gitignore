@@ -5,3 +5,4 @@ sideloader.dist/
 env/
 config.ini
 Bundles/
+.vscode/settings.json
