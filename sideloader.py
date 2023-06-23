@@ -536,7 +536,8 @@ def main():
             window.Close()
             main()
     except Exception as e:
-        errLayout = [[gui.Text(strings["fatalError"]+str(e),font=("Calibri",11))],
+        fatalErrorInfo = '\n'.join(map(str,textwrap.wrap(str(e),50)))
+        errLayout = [[gui.Text(strings["fatalError"]+fatalErrorInfo,font=("Calibri",11))],
                     [RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11"),RoundedButton(strings["continueButton"],0.3,font="Calibri 11")]]
         errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon)
         while True:
