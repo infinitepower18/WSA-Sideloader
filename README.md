@@ -95,7 +95,7 @@ To compile from source, follow the below instructions:
 2. Download the latest version of [Python 3.11 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.11 instead.
 3. Install Nuitka via pip using the command `pip install nuitka`.
 4. Install the required dependencies for WSA Sideloader using the command `pip install -r requirements.txt` in the root directory.
-5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console -windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-file-description="WSA Sideloader"`. This may take some time depending on your computer.
+5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console --windows-company-name=infinitepower18 --windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-product-version=<version> --windows-file-version=<version> --windows-file-description="WSA Sideloader"`. (replace `<version>` with the current version number) This may take some time depending on your computer.
 6. Copy the icon.ico, apk.ico, aapt.exe files as well as the locales and platform-tools folders to the sideloader.dist folder.
 
 ## Privacy Policy
