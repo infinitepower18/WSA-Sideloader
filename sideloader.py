@@ -193,23 +193,18 @@ def settings(configpath,version,source):
 
     checkUpdate = ["Enabled","Disabled"]
 
-    if source == "Microsoft Store":
-        layout = [[gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
-            [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
-            [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
-            [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
-            [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
-    else:
-        layout = [[gui.Text(strings["checkUpdatesAppStart"],font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
-            [gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
-            [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
-            [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
-            [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
-            [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
+    layout = [[gui.Text(strings["checkUpdatesAppStart"],font="Calibri 11",key="_CHECKUPDATES_"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=config.get('Application','checkUpdates',fallback="Enabled"), key='-CHECKUPDATES-',readonly=True)],
+        [gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+        [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton("View",0.3,font="Calibri 11")],
+        [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
+        [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
+        [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
+        [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
 
     window = gui.Window(strings["settingsButton"], layout,icon=icon,debugger_enabled=False)
+
+    if source == "Microsoft Store":
+        window["_CHECKUPDATES_"].Update(visible=False)
 
     while True:
         event, values = window.read()
@@ -541,7 +536,8 @@ def main():
             window.Close()
             main()
     except Exception as e:
-        errLayout = [[gui.Text(strings["fatalError"]+str(e),font=("Calibri",11))],
+        fatalErrorInfo = '\n'.join(map(str,textwrap.wrap(str(e),50)))
+        errLayout = [[gui.Text(strings["fatalError"]+fatalErrorInfo,font=("Calibri",11))],
                     [RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11"),RoundedButton(strings["continueButton"],0.3,font="Calibri 11")]]
         errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon)
         while True:
