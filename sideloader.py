@@ -198,13 +198,21 @@ def settings(configpath,version,source):
     else:
         curCheckUpdateValue = strings["disabled"]
 
-    layout = [[gui.Text(strings["checkUpdatesAppStart"],font="Calibri 11",key="_CHECKUPDATES_"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=curCheckUpdateValue, key='-CHECKUPDATES-',readonly=True)],
-        [gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
-        [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton(strings["viewButton"],0.3,font="Calibri 11")],
-        [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
-        [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
-        [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
-        [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
+    if source == "Microsoft Store":
+        layout = [[gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton(strings["viewButton"],0.3,font="Calibri 11")],
+            [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
+            [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
+            [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
+            [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
+    else:
+        layout = [[gui.Text(strings["checkUpdatesAppStart"],font="Calibri 11"),gui.Combo(checkUpdate, size=(max(map(len, checkUpdate))+1, 5), enable_events=True, default_value=curCheckUpdateValue, key='-CHECKUPDATES-',readonly=True)],
+            [gui.Text(strings["address"],font="Calibri 11"),gui.Input(config.get('Application','adbAddress',fallback="127.0.0.1:58526"),font="Calibri 11",size=15,key='-ADDRESS-')],
+            [gui.Text(strings["viewExtractedBundles"],font="Calibri 11"),RoundedButton(strings["viewButton"],0.3,font="Calibri 11")],
+            [gui.Text(strings["noBundlesFound"],key='_NOBUNDLES_',visible=False,font="Calibri 11")],
+            [gui.Text(strings["abtAppVer"]+version,font="Calibri 11")],
+            [gui.Text(strings["abtSource"]+source,font="Calibri 11")],
+            [RoundedButton(strings["saveButton"],0.3,font="Calibri 11"),RoundedButton(strings["cancelButton"],0.3,font="Calibri 11"),RoundedButton(strings["donateButton"],0.3,font="Calibri 11")]]
 
     window = gui.Window(strings["settingsButton"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
