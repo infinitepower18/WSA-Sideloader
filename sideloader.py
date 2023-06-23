@@ -24,6 +24,7 @@ if(platform.system() != "Windows"):
 os.chdir(os.path.dirname(__file__))
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
+adbApp = os.getcwd() + "\\platform-tools\\adb.exe"
 lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
 strings = {}
 
@@ -35,7 +36,7 @@ else:
     with open(os.getcwd()+"\\locales\\en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.0" # Version number
+version = "1.4.1" # Version number
 adbVersion = "34.0.3"
 adbRunning = False
 startCode = 0
@@ -249,7 +250,7 @@ def settings(configpath,version,source):
                     window["_NOBUNDLES_"].Update(visible=True)
         elif event is None:
             if adbRunning == True:
-                os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                subprocess.Popen(adbApp + " kill-server")
             sys.exit(0)
 
 def main():
@@ -296,7 +297,7 @@ def main():
             event, values = window.Read()
             if event is None:
                 if adbRunning == True:
-                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                    subprocess.Popen(adbApp + " kill-server")
                 sys.exit(0)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
@@ -314,7 +315,7 @@ def main():
                     source_filename = values[0]
                     window.Hide()
                     if source_filename.endswith(".apk"):
-                        gui.popup_scrolled(os.popen('cmd /c "aapt d permissions "'+escaped_filename(source_filename)+'""').read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                        gui.popup_scrolled(subprocess.Popen("aapt d permissions " +escaped_filename(source_filename),stdout=subprocess.PIPE,encoding='utf-8').stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
                     else:
                         waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                         waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
@@ -429,7 +430,7 @@ def main():
                     event,values = helpWindow.Read()
                     if event is None:
                         if adbRunning == True:
-                            os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                            subprocess.Popen(adbApp + " kill-server")
                         sys.exit(0)
                     elif event == strings["backButton"]:
                         helpWindow.Close()
@@ -496,7 +497,7 @@ def main():
                 pkgname = str(pkgoutput[0])
                 webbrowser.open("wsa://"+pkgname[9:],2)
                 if adbRunning == True:
-                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                    subprocess.Popen(adbApp + " kill-server")
                 sys.exit(0)
             elif event == strings["installAnotherAppButton"]:
                 window.Close()
@@ -504,7 +505,7 @@ def main():
                 main()
             else:
                 if adbRunning == True:
-                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                    subprocess.Popen(adbApp + " kill-server")
                 sys.exit(0)
         elif outLine.startswith("failed to authenticate"):
             layout = [[gui.Text(strings["allowAdb"],font=("Calibri",11))],
@@ -517,7 +518,7 @@ def main():
                 main()
             else:
                 if adbRunning == True:
-                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                    subprocess.Popen(adbApp + " kill-server")
                 sys.exit(0)
         else:
             if errLine == "":
@@ -540,7 +541,7 @@ def main():
                     webbrowser.open("wsa-settings://",2)
                 else:
                     if adbRunning == True:
-                        os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                        subprocess.Popen(adbApp + " kill-server")
                     sys.exit(0)
             window.Close()
             main()
@@ -558,7 +559,7 @@ def main():
                 webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
             else:
                 if adbRunning == True:
-                    os.popen('cmd /c "cd platform-tools & adb kill-server"')
+                    subprocess.Popen(adbApp + " kill-server")
                 sys.exit(0)
         main()
          
