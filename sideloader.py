@@ -353,8 +353,9 @@ def main():
                         address = adbAddress
                         address = address.replace(" ", "")
                         adbRunning = True
-                        command = os.popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications""')
-                        output = command.readlines()
+                        subprocess.Popen(adbApp + " connect "+address)   
+                        command = subprocess.Popen(adbApp + ' -s '+address+' shell am start -n "com.android.settings/.applications.ManageApplications"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+                        output = command.stdout.readlines()
                         check = str(output[len(output)-1])
                         if check.startswith("Starting: Intent { cmp=com.android.settings/.applications.ManageApplications }"):
                             window["_ERROR2_"].Update(visible=False)
