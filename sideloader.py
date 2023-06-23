@@ -475,7 +475,7 @@ def main():
                     break
                 elif event[0] == '-OUT-':
                     extractedBundle = event[1]
-            window.start_thread(lambda: installBundle(escaped_filename(extractedBundle),address,window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: installBundle(extractedBundle,address,window), ('-THREAD-','-THREAD ENDED-'))
         while True:
             event, values = window.read()
             if event[0] == '-THREAD ENDED-':
