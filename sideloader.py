@@ -319,7 +319,7 @@ def main():
                     source_filename = values[0]
                     window.Hide()
                     if source_filename.endswith(".apk"):
-                        gui.popup_scrolled(subprocess.Popen("aapt d permissions " +escaped_filename(source_filename),stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
                     else:
                         waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                         waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
