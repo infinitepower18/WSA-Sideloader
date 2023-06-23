@@ -66,5 +66,6 @@
     "retrievingPerms": "Retrieving permissions...",
     "message": "Message",
     "fatalError": "Sorry, an error has occured. Please submit a bug report.\n\n[Error Info]\n",
-    "continueButton": "Continue"
+    "continueButton": "Continue",
+    "browseButton": "Browse"
 }
