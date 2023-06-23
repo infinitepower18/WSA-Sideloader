@@ -170,7 +170,8 @@ def installBundle(bundleLocation, address, window):
             if os.path.exists(bundleLocation + "\\Android\\obb"):
                 window["_PROGRESS_"].Update(strings["copyingObb"])
                 for dir in os.listdir(bundleLocation + "\\Android\\obb"):
-                    pushobb = subprocess.Popen('cmd /c "cd platform-tools & adb -s '+address+' shell mkdir /sdcard/Android/obb/'+dir+' & adb -s '+address+' push "'+bundleLocation+'\\android\\obb\\'+dir+'\." /sdcard/Android/obb/'+dir+'/"', shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8')
+                    subprocess.Popen(adbApp + " -s "+address+" shell mkdir /sdcard/Android/obb/"+dir)
+                    pushobb = subprocess.Popen(adbApp + ' -s '+address+' push "'+bundleLocation+'\\android\\obb\\'+dir+'\." /sdcard/Android/obb/'+dir+'/',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
                     while True:
                         line = pushobb.stdout.read(1)
                         if line == '' and pushobb.poll() != None:
