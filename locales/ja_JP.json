@@ -3,7 +3,7 @@
 
     "chooseToInstall": "インストールするファイルを選択 ：",
     "viewPerms": "    使用権限を確認    ",
-    "address": "ADB アドレス：",
+    "address": "ADB アドレス :",
     "installButton": "   インストール  ",
     "installedAppsButton": "     インストール済みアプリ     ",
     "helpButton": " ヘルプ ",
@@ -58,13 +58,14 @@
     "copyingObb": " OBB ファイルのコピー中... ",
     "enabled": " 有効 ",
     "disabled": " 無効 ",
-    "viewExtractedBundles": "抽出されたバンドル：",
+    "viewExtractedBundles": "抽出されたバンドル :",
     "viewButton": " 見る ",
     "saveButton": " 保存 ",
-    "checkUpdatesAppStart": "起動時に更新を確認：",
+    "checkUpdatesAppStart": "起動時に更新を確認 :",
     "androidFiles": " Android アプリファイル ",
     "retrievingPerms": " 権限の取得中... ",
     "message": " メッセージ ",
     "fatalError": "申し訳ありませんが､ エラーが発生しました｡\nバグレポートを送信してください｡\n\n[エラー情報]\n",
-    "continueButton": " 続行 "
+    "continueButton": " 続行 ",
+    "browseButton": "  参照  "
 }
