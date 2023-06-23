@@ -160,8 +160,9 @@ def installBundle(bundleLocation, address, window):
                 files = files + '"'+os.path.join(bundleLocation, file)+'"'
             else:
                 files = files + " " + '"'+os.path.join(bundleLocation, file)+'"'
-    window["_PROGRESS_"].Update(strings["installingBundleApks"])       
-    command = subprocess.Popen('cmd /c "cd platform-tools & adb connect '+address+' & adb -s '+address+' install-multiple '+files+'"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,encoding='utf-8')
+    window["_PROGRESS_"].Update(strings["installingBundleApks"])
+    subprocess.Popen(adbApp + " connect "+address)
+    command = subprocess.Popen(adbApp + ' -s '+address+' install-multiple '+files,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)   
     stdout = command.stdout.readlines()
     stderr = command.stderr.readlines()
     try:
