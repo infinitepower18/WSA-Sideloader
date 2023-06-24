@@ -175,14 +175,8 @@ def installBundle(bundleLocation, address, window):
             if os.path.exists(bundleLocation + "\\Android\\obb"):
                 window["_PROGRESS_"].Update(strings["copyingObb"])
                 for dir in os.listdir(bundleLocation + "\\Android\\obb"):
-                    subprocess.Popen(adbApp + " -s "+address+" shell mkdir /sdcard/Android/obb/"+dir)
-                    pushobb = subprocess.Popen(adbApp + ' -s '+address+' push "'+bundleLocation+'\\android\\obb\\'+dir+'\." /sdcard/Android/obb/'+dir+'/',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
-                    while True:
-                        line = pushobb.stdout.read(1)
-                        if line == '' and pushobb.poll() != None:
-                            break
-                        if line != '':
-                            sys.stdout.flush()
+                    subprocess.Popen(adbApp + " -s "+address+" shell mkdir /sdcard/Android/obb/"+dir,creationflags=0x08000000).wait()
+                    subprocess.Popen(adbApp + ' -s '+address+' push "'+bundleLocation+'\\android\\obb\\'+dir+'\." /sdcard/Android/obb/'+dir+'/',creationflags=0x08000000).wait()
     except IndexError:
         pass
     try:
