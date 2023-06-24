@@ -4,10 +4,15 @@ import subprocess
 import zipfile
 
 def installAPK(address,fname,app,window):
-    subprocess.Popen(app + " connect "+address)
-    command = subprocess.Popen(app + ' -s '+address+' install "'+fname+'"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000) # Connect to WSA and install APK
-    stdout = command.stdout.readlines()
-    stderr = command.stderr.readlines()
+    connCommand = subprocess.Popen(app + " connect "+address,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+    stdout, stderr = connCommand.communicate()
+    stdout = stdout.splitlines()
+    stderr = stderr.splitlines()
+    if stdout[-1].startswith("connected") or stdout[-1].startswith("already connected"):
+        command = subprocess.Popen(app + ' -s '+address+' install "'+fname+'"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000) # Connect to WSA and install APK
+        stdout, stderr = command.communicate()
+        stdout = stdout.splitlines()
+        stderr = stderr.splitlines()
     try:
         window.write_event_value(('-OUT-', str(stdout[len(stdout)-1])),"out")
     except IndexError:
