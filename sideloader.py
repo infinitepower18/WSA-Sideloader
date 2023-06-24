@@ -161,10 +161,15 @@ def installBundle(bundleLocation, address, window):
             else:
                 files = files + " " + '"'+os.path.join(bundleLocation, file)+'"'
     window["_PROGRESS_"].Update(strings["installingBundleApks"])
-    subprocess.Popen(adbApp + " connect "+address)
-    command = subprocess.Popen(adbApp + ' -s '+address+' install-multiple '+files,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)   
-    stdout = command.stdout.readlines()
-    stderr = command.stderr.readlines()
+    connCommand = subprocess.Popen(adbApp + " connect "+address,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+    stdout, stderr = connCommand.communicate()
+    stdout = stdout.splitlines()
+    stderr = stderr.splitlines()
+    if stdout[-1].startswith("connected") or stdout[-1].startswith("already connected"):
+        command = subprocess.Popen(adbApp + ' -s '+address+' install-multiple '+files,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+        stdout, stderr = command.communicate()   
+        stdout = stdout.splitlines()
+        stderr = stderr.splitlines()
     try:
         if str(stdout[len(stdout)-1]).startswith("Success"):
             if os.path.exists(bundleLocation + "\\Android\\obb"):
