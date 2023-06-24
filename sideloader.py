@@ -190,6 +190,11 @@ def installBundle(bundleLocation, address, window):
         window.write_event_value(('-ERR-', ""),"err")
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
+def stopAdb():
+    global adbRunning
+    if adbRunning == True:
+        subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+
 def settings(configpath,version,source):
     config = ConfigParser()
     config.read(configpath)
@@ -255,8 +260,7 @@ def settings(configpath,version,source):
                 else:
                     window["_NOBUNDLES_"].Update(visible=True)
         elif event is None:
-            if adbRunning == True:
-                subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+            stopAdb()
             sys.exit(0)
 
 def main():
@@ -302,8 +306,7 @@ def main():
         while True:
             event, values = window.Read()
             if event is None:
-                if adbRunning == True:
-                    subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                stopAdb()
                 sys.exit(0)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
@@ -436,8 +439,7 @@ def main():
                 while True:
                     event,values = helpWindow.Read()
                     if event is None:
-                        if adbRunning == True:
-                            subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                        stopAdb()
                         sys.exit(0)
                     elif event == strings["backButton"]:
                         helpWindow.Close()
@@ -503,16 +505,14 @@ def main():
                 pkgoutput = getpackage.stdout.readlines()
                 pkgname = str(pkgoutput[0])
                 webbrowser.open("wsa://"+pkgname[9:],2)
-                if adbRunning == True:
-                    subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                stopAdb()
                 sys.exit(0)
             elif event == strings["installAnotherAppButton"]:
                 window.Close()
                 explorerfile = ""
                 main()
             else:
-                if adbRunning == True:
-                    subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                stopAdb()
                 sys.exit(0)
         elif outLine.startswith("failed to authenticate"):
             layout = [[gui.Text(strings["allowAdb"],font=("Calibri",11))],
@@ -524,8 +524,7 @@ def main():
                 window.Close()
                 main()
             else:
-                if adbRunning == True:
-                    subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                stopAdb()
                 sys.exit(0)
         else:
             if errLine == "":
@@ -547,8 +546,7 @@ def main():
                 elif event == strings["wsaSettingsButton"]:
                     webbrowser.open("wsa-settings://",2)
                 else:
-                    if adbRunning == True:
-                        subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                    stopAdb()
                     sys.exit(0)
             window.Close()
             main()
@@ -565,8 +563,7 @@ def main():
             elif event == strings["reportBugButton"]: # Open WSA Sideloader issues page
                 webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/issues",2)
             else:
-                if adbRunning == True:
-                    subprocess.Popen(adbApp + " kill-server",creationflags=0x08000000)
+                stopAdb()
                 sys.exit(0)
         main()
          
