@@ -9,7 +9,7 @@ def installAPK(address,fname,app,window):
     stdout = stdout.splitlines()
     stderr = stderr.splitlines()
     if stdout[-1].startswith("connected") or stdout[-1].startswith("already connected"):
-        command = subprocess.Popen(app + ' -s '+address+' install "'+fname+'"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000) # Connect to WSA and install APK
+        command = subprocess.Popen(app + ' -s '+address+' install "'+fname+'"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
         stdout, stderr = command.communicate()
         stdout = stdout.splitlines()
         stderr = stderr.splitlines()
