@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WSA Sideloader"
-#define MyAppVersion "1.4.0"
+#define MyAppVersion "1.4.1"
 #define MyAppPublisher "infinitepower18"
 #define MyAppURL "https://github.com/infinitepower18/WSA-Sideloader"
 #define MyAppUpdateURL "https://github.com/infinitepower18/WSA-Sideloader/releases/latest"
