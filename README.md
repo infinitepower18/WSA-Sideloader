@@ -7,6 +7,8 @@
 # WSA Sideloader
 WSA Sideloader is a tool that is used to easily install APK files on Windows Subsystem for Android. The program has been designed with simplicity and ease of use in mind.
 
+You can also install XAPK, APKM and APKS files using this tool.
+
 <img width="311" alt="image" src="https://github.com/infinitepower18/WSA-Sideloader/assets/44692189/ede49229-4667-47b1-ac2d-84f2d71b954f">
 
 ## Download
@@ -32,9 +34,9 @@ Enable developer mode in WSA settings. The subsystem will need to be running in 
 
 ![image](https://user-images.githubusercontent.com/44692189/182655019-5cd310c6-8bbd-43b6-a60b-ebd35c12748c.png)
 
-Choose the APK file you want to install and click the Install button. In most cases, you do not need to change the ADB address. You can also install an APK file right from File Explorer, web browsers and other supported programs. You may need to authorize the ADB connection when using it for the first time.
+Choose the file you want to install and click the Install button. You can also install a file right from File Explorer, web browsers and other supported programs. You may need to authorize the ADB connection when using it for the first time.
 
-You might see the below message if using WSA Sideloader for the first time. Just tick the box to always allow, allow the connection and run the APK installation again.
+You might see the below message if using WSA Sideloader for the first time. Just tick the box to always allow, allow the connection and run the installation again.
 
 ![image](https://user-images.githubusercontent.com/44692189/226106838-20b34d01-3bd5-4fae-bc93-81f24b6d0139.png)
 
