@@ -54,6 +54,7 @@ ShowLanguageDialog=no
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
+Name: "hu"; MessagesFile: "compiler:Languages\Hungarian.isl"
 
 [Files]
 Source: "C:\Users\ahnafm\Documents\WSA-Sideloader\sideloader.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
