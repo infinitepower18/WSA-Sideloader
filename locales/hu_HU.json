@@ -23,7 +23,7 @@
     "adbEmpty": "Az ADB cím nem lehet üres",
     "blankApkField": "Válasszon egy fájlt.",
     "donateButton": "Adomány",
-    "instContinueinSeconds": "A telepítés {sec}mp múlva folytatódik.",
+    "instContinueinSeconds": "A telepítés {secs}mp múlva folytatódik.",
     "instContinueinOneSec": "A telepítés 1mp múlva folytatódik.",
     "waitWhileWsaStarts": "Kis türelmet, amíg a WSA elindul.",
     "installNowButton": "Telepítés most",
