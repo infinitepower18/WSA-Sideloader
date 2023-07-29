@@ -4,7 +4,7 @@ import platform
 import webbrowser
 import sys
 import ctypes
-from pkg_resources import parse_version
+from packaging.version import parse
 from button import RoundedButton
 import darkdetect
 from os.path import exists
@@ -36,7 +36,7 @@ else:
     with open(os.getcwd()+"\\locales\\en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.1" # Version number
+version = "1.4.2" # Version number
 adbVersion = "34.0.3"
 adbRunning = False
 startCode = 0
@@ -89,7 +89,7 @@ def start(filearg = ""): # For GitHub installs
         try:
             response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
             latestver = response.json()["tag_name"][1::]
-            if parse_version(latestver) > parse_version(version):
+            if parse(latestver) > parse(version):
                 layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
                     [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
                 window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False)
@@ -141,6 +141,17 @@ def getConfig():
         checkUpdates = True
     else:
         checkUpdates = False
+
+def openBundle(bundleLocation,format):
+    if format == "apkm" or format == "apks":
+        getpackage = subprocess.Popen('aapt d permissions "' +os.path.join(bundleLocation, "base.apk")+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+        pkgoutput = getpackage.stdout.readlines()
+        pkgname = str(pkgoutput[0])
+        webbrowser.open("wsa://"+pkgname[9:],2)
+    elif format == "xapk":
+         with open(os.path.join(bundleLocation, "manifest.json"), 'r',encoding="utf-8") as f:
+            data = json.load(f)
+            webbrowser.open("wsa://"+data["package_name"],2)
 
 def bundlePermissions(bundleLocation,format):
     if format == "apkm" or format == "apks":
@@ -495,20 +506,23 @@ def main():
         
         # Check if apk installed successfully
         if outLine.startswith("Success"):
-            if source_filename.endswith(".apk"):
-                layout = [[gui.Text(strings["appInstalled"],font=("Calibri",11))],
-                        [RoundedButton(strings["openAppButton"],0.3,font="Calibri 11"),RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
-            else:
-                layout = [[gui.Text(strings["appInstalledBundle"],font=("Calibri",11))],
-                        [RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
+            layout = [[gui.Text(strings["appInstalled"],font=("Calibri",11))],
+                    [RoundedButton(strings["openAppButton"],0.3,font="Calibri 11"),RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
             window = gui.Window(strings["infoTitle"], layout,icon=icon,debugger_enabled=False)
 
             event, values = window.Read()
-            if event == strings["openAppButton"]: # TODO: Get this working for bundles
-                getpackage = subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
-                pkgoutput = getpackage.stdout.readlines()
-                pkgname = str(pkgoutput[0])
-                webbrowser.open("wsa://"+pkgname[9:],2)
+            if event == strings["openAppButton"]:
+                if source_filename.endswith(".apk"):
+                    getpackage = subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
+                    pkgoutput = getpackage.stdout.readlines()
+                    pkgname = str(pkgoutput[0])
+                    webbrowser.open("wsa://"+pkgname[9:],2)
+                elif source_filename.endswith(".xapk"):
+                    openBundle(extractedBundle,"xapk")
+                elif source_filename.endswith(".apkm"):
+                    openBundle(extractedBundle,"apkm")
+                elif source_filename.endswith(".apks"):
+                    openBundle(extractedBundle,"apks")
                 stopAdb()
                 sys.exit(0)
             elif event == strings["installAnotherAppButton"]:
@@ -570,14 +584,6 @@ def main():
                 stopAdb()
                 sys.exit(0)
         main()
-         
-"""
-Which start function is called depends on how it will be deployed.
-startgit if launched from git repo
-start if it is being packaged into an installer
-startstore for Microsoft Store distribution
-Change below to appropriate function if necessary.
-"""
 
 if __name__ == '__main__':
     if len(sys.argv) >1:
