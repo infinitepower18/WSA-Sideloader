@@ -36,7 +36,6 @@
     "appInstalled": "The application has been successfully installed.",
     "openAppButton": "Open app",
     "installAnotherAppButton": "Install another app",
-    "appInstalledBundle": "The application has been successfully installed.\nYou can launch the installed app via the Start Menu.",
     "infoTitle": "Information",
     "allowAdb": "Please allow the ADB connection and run the installation again.",
     "okButton": "OK",

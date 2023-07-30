@@ -36,7 +36,6 @@
     "appInstalled": "Az alkalmazás telepítése sikeresen megtörtént.",
     "openAppButton": "App megnyitás",
     "installAnotherAppButton": "Egy másik app telepítése",
-    "appInstalledBundle": "Az alkalmazás telepítése sikeresen megtörtént.\nA telepített alkalmazást a Start menüből indíthatja el.",
     "infoTitle": "Információ",
     "allowAdb": "Engedélyezze az ADB kapcsolatot, és futtassa újra a telepítést.",
     "okButton": "Oké",

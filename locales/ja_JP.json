@@ -36,7 +36,6 @@
     "appInstalled": "アプリは正常にインストールされました｡",
     "openAppButton": "  アプリを開く  ",
     "installAnotherAppButton": "  戻る  ",
-    "appInstalledBundle": "アプリは正常にインストールされました｡\nインストールしたアプリはスタートメニューから起動できます｡ ",
     "infoTitle": " 情報 ",
     "allowAdb": "ADB デバッグを [常に許可] し､ インストールを続行してください｡",
     "okButton": " OK ",

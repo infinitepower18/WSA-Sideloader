@@ -36,7 +36,6 @@
     "appInstalled": "Aplicația a fost instalată cu succes.",
     "openAppButton": "Deschide Aplicația",
     "installAnotherAppButton": "Instalează o altă aplicație",
-    "appInstalledBundle": "Aplicația a fost instalată cu succes.\nO poți lansa folosind meniul start.",
     "infoTitle": "Informație",
     "allowAdb": "Te rog să permiți conexiunea ADB; apoi să rulezi chitul de instalare din nou.",
     "okButton": "OK",
