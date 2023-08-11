@@ -11,6 +11,8 @@ You can also install XAPK, APKM and APKS files using this tool.
 
 <img width="311" alt="image" src="https://github.com/infinitepower18/WSA-Sideloader/assets/44692189/ede49229-4667-47b1-ac2d-84f2d71b954f">
 
+**Stay updated on the latest WSA Sideloader updates via the [Telegram Channel](https://t.me/WSASideloader).**
+
 ## Download
 Operating System|Source
 |---------|---------|
