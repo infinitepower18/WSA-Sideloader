@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WSA Sideloader"
-#define MyAppVersion "1.4.2"
+#define MyAppVersion "1.4.3"
 #define MyAppPublisher "infinitepower18"
 #define MyAppURL "https://github.com/infinitepower18/WSA-Sideloader"
 #define MyAppUpdateURL "https://github.com/infinitepower18/WSA-Sideloader/releases/latest"
@@ -57,6 +57,8 @@ Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "hu"; MessagesFile: "compiler:Languages\Hungarian.isl"
 Name: "ro"; MessagesFile: "compiler:Languages\Romanian.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
+Name: "ar"; MessagesFile: "compiler:Languages\Arabic.isl"
+Name: "pt_br"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 
 [Files]
 Source: "C:\Users\ahnafm\Documents\WSA-Sideloader\sideloader.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
