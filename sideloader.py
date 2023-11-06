@@ -36,7 +36,7 @@ else:
     with open(os.getcwd()+"\\locales\\en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.3" # Version number
+version = "1.4.4" # Version number
 adbRunning = False
 startCode = 0
 icon = os.getcwd()+"\\icon.ico"
@@ -284,21 +284,29 @@ def main():
             if int(platform.win32_ver()[1].split('.')[2]) < 22000:
                 layout = [[gui.Text(strings["wsaNotDetectedWin10"],font=("Calibri",11))],
                         [RoundedButton(strings["exitButton"],0.3,font="Calibri 11")]]
-                window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False)
+                window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False, finalize=True)
+                window.bind("<Control-KeyPress-G>", "CTRL_G")
+                window.bind("<Control-KeyPress-g>", "CTRL_G")
                 event, values = window.Read()
                 if event == strings["exitButton"]:
                     sys.exit(0)
+                elif event == "CTRL_G":
+                    window.Close()
                 elif event is None:
                     sys.exit(0)
             else:
                 layout = [[gui.Text(strings["wsaNotDetectedWin11"],font=("Calibri",11))],
                         [RoundedButton(strings["installWsaButton"],0.3,font="Calibri 11")]]
-                window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False)
+                window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False, finalize=True)
+                window.bind("<Control-KeyPress-G>", "CTRL_G")
+                window.bind("<Control-KeyPress-g>", "CTRL_G")
                 event, values = window.Read()
                 if event == strings["installWsaButton"]:
                     window.Close()
                     webbrowser.open("ms-windows-store://pdp/?productid=9NJHK44TTKSX",2)
                     sys.exit(0)
+                elif event == "CTRL_G":
+                    window.Close()
                 elif event is None:
                     sys.exit(0)
                     
