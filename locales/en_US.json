@@ -66,5 +66,6 @@
     "message": "Message",
     "fatalError": "Sorry, an error has occured. Please submit a bug report.\n\n[Error Info]\n",
     "continueButton": "Continue",
-    "browseButton": "Browse"
+    "browseButton": "Browse",
+    "closeButton": "Close"
 }

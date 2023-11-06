@@ -66,5 +66,6 @@
     "message": "Mesaj",
     "fatalError": "Îmi pare rău, dar a apărut o eroare. Te rog să ne raportezi acestă eroare.\n\n[Informații eroare]\n",
     "continueButton": "Continuă",
-    "browseButton": "Răsfoiește"
+    "browseButton": "Răsfoiește",
+    "closeButton": "Închide"
 }

@@ -66,5 +66,6 @@
     "message": "Üzenet",
     "fatalError": "Elnézést, hiba történt. Kérjük, küldjön hibajelentést.\n\n[Hiba infó]\n",
     "continueButton": "Tovább",
-    "browseButton": "Tallóz"
+    "browseButton": "Tallóz",
+    "closeButton": "Bezárás"
 }

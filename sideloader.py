@@ -247,7 +247,7 @@ def settings(configpath,version,source):
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
             break
-        elif event == strings["cancelButton"]:
+        elif event == strings["cancelButton"] or event is None:
             window.Close()
             break
         elif event == strings["donateButton"]:
@@ -268,9 +268,6 @@ def settings(configpath,version,source):
                     subprocess.Popen('explorer "'+os.getcwd()+'\\Bundles"')
                 else:
                     window["_NOBUNDLES_"].Update(visible=True)
-        elif event is None:
-            stopAdb()
-            sys.exit(0)
 
 def main():
     try:
@@ -455,31 +452,30 @@ def main():
             if event == strings["helpButton"]:
                 window["_ERROR1_"].Update(visible=False)
                 window["_ERROR2_"].Update(visible=False)
-                window.Hide()
+                window.Disable()
                 helpLayout = [[gui.Text(strings["helpText"],font=("Calibri",11))],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["compatAppsButton"],0.3,font="Calibri 11")]]
                 helpWindow = gui.Window(strings["helpButton"],helpLayout,icon=icon,debugger_enabled=False)
                 while True:
                     event,values = helpWindow.Read()
-                    if event is None:
-                        stopAdb()
-                        sys.exit(0)
-                    elif event == strings["backButton"]:
-                        helpWindow.Close()
-                        window.UnHide()
-                        break
-                    elif event == strings["wsaSettingsButton"]:
+                    if event == strings["wsaSettingsButton"]:
                         webbrowser.open("wsa-settings://",2)
                     elif event == strings["ghButton"]:
                         webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader",2)
                     elif event == strings["compatAppsButton"]:
                         webbrowser.open("https://github.com/riverar/wsa-app-compatibility",2)
+                    else:
+                        helpWindow.Close()
+                        window.Enable()
+                        window.BringToFront()
+                        break
             if event == strings["settingsButton"]:
                 window["_ERROR1_"].Update(visible=False)
                 window["_ERROR2_"].Update(visible=False)
-                window.Hide()
+                window.Disable()
                 settings(configpath=configpath,version=version,source=installsource)
                 getConfig()
-                window.UnHide()
+                window.Enable()
+                window.BringToFront()
 
         window.Close()
         explorerfile = source_filename
