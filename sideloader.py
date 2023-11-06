@@ -159,7 +159,8 @@ def bundlePermissions(bundleLocation,format):
     if format == "xapk":
         with open(os.path.join(bundleLocation, "manifest.json"), 'r',encoding="utf-8") as f:
             data = json.load(f)
-            gui.popup_scrolled(data['permissions'],size=(100,10),icon=icon,title=strings["viewPerms"])
+            permsList = '\n'.join(map(str, data["permissions"]))
+            gui.popup_scrolled(permsList,size=(100,10),icon=icon,title=strings["viewPerms"])
 
 def installBundle(bundleLocation, address, window):
     global adbRunning
@@ -325,6 +326,7 @@ def main():
                 sys.exit(0)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
+                source_filename = fixPath(source_filename)
                 if os.path.exists(source_filename) == False:
                     window['_ERROR1_'].Update(strings["apkNotFound"])
                     window["_ERROR1_"].Update(visible=True)
@@ -397,6 +399,7 @@ def main():
                         window["_ERROR1_"].Update(visible=False)
             if event == strings["installButton"]:
                 source_filename = values[0]
+                source_filename = fixPath(source_filename)
                 address = adbAddress
                 address = address.replace(" ", "")
                 if source_filename == "":

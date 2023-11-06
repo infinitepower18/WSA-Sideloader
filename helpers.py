@@ -46,3 +46,11 @@ def extractBundle(fname,source,window):
             location = os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
     window.write_event_value(('-OUT-', location),"out")
     window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+
+def fixPath(path):
+    path = os.path.abspath(path)
+    if path.startswith(u"\\\\"):
+        path=u"\\\\?\\UNC\\"+path[2:]
+    else:
+        path=u"\\\\?\\"+path
+    return path
