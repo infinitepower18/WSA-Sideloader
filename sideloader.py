@@ -14,7 +14,9 @@ import textwrap
 import time
 import locale
 import json
-from helpers import *
+import subprocess
+import zipfile
+import hashlib
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
