@@ -93,8 +93,7 @@ def start(filearg = ""): # For GitHub installs
             if parse(latestver) > parse(version):
                 layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
                     [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
-                window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False,finalize=True)
-                window.BringToFront()
+                window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False)
                 event, values = window.Read()
                 if event is None:
                     sys.exit(0)
@@ -604,7 +603,6 @@ def main():
                     [RoundedButton(strings["openAppButton"],0.3,font="Calibri 11"),RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
             window = gui.Window(strings["infoTitle"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
-            window.BringToFront()
             event, values = window.Read()
             if event == strings["openAppButton"]:
                 if source_filename.endswith(".apk"):
@@ -632,7 +630,6 @@ def main():
                     [RoundedButton(strings["okButton"],0.3,font="Calibri 11")]]
             window = gui.Window(strings["message"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
-            window.BringToFront()
             event, values = window.Read()
             if event == strings["okButton"]:
                 window.Close()
@@ -652,7 +649,6 @@ def main():
             window = gui.Window(strings["errorTitle"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
             while True:
-                window.BringToFront()
                 event, values = window.Read()
                 if event == strings["okButton"]:
                     break
@@ -671,7 +667,6 @@ def main():
                     [RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11"),RoundedButton(strings["continueButton"],0.3,font="Calibri 11")]]
         errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon,finalize=True)
         while True:
-            window.BringToFront()
             event, values = errWindow.read()
             if event == strings["continueButton"]:
                 exception = None
