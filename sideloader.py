@@ -91,7 +91,7 @@ def start(filearg = ""): # For GitHub installs
             if parse(latestver) > parse(version):
                 layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
                     [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
-                window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False)
+                window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False,finalize=True)
                 window.BringToFront()
                 event, values = window.Read()
                 if event is None:
@@ -457,7 +457,7 @@ def main():
                 window["_ERROR1_"].Update(visible=False)
                 window["_ERROR2_"].Update(visible=False)
                 window.Disable()
-                helpLayout = [[gui.Text(strings["helpText"],font=("Calibri",11))],[RoundedButton(strings["backButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["compatAppsButton"],0.3,font="Calibri 11")]]
+                helpLayout = [[gui.Text(strings["helpText"],font=("Calibri",11))],[RoundedButton(strings["closeButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["ghButton"],0.3,font="Calibri 11"),RoundedButton(strings["compatAppsButton"],0.3,font="Calibri 11")]]
                 helpWindow = gui.Window(strings["helpButton"],helpLayout,icon=icon,debugger_enabled=False)
                 while True:
                     event,values = helpWindow.Read()
@@ -515,7 +515,7 @@ def main():
         if outLine.startswith("Success"):
             layout = [[gui.Text(strings["appInstalled"],font=("Calibri",11))],
                     [RoundedButton(strings["openAppButton"],0.3,font="Calibri 11"),RoundedButton(strings["installAnotherAppButton"],0.3,font="Calibri 11")]]
-            window = gui.Window(strings["infoTitle"], layout,icon=icon,debugger_enabled=False)
+            window = gui.Window(strings["infoTitle"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
             window.BringToFront()
             event, values = window.Read()
@@ -543,7 +543,7 @@ def main():
         elif outLine.startswith("failed to authenticate"):
             layout = [[gui.Text(strings["allowAdb"],font=("Calibri",11))],
                     [RoundedButton(strings["okButton"],0.3,font="Calibri 11")]]
-            window = gui.Window(strings["message"], layout,icon=icon,debugger_enabled=False)
+            window = gui.Window(strings["message"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
             window.BringToFront()
             event, values = window.Read()
@@ -562,7 +562,7 @@ def main():
                 errInfo = '\n'.join(map(str,textwrap.wrap(outLine,80)))+'\n'+'\n'.join(map(str,textwrap.wrap(errLine,80)))
             layout = [[gui.Text(strings["unableToInstall"]+'\n'+errInfo,font=("Calibri",11))],
                     [RoundedButton(strings["okButton"],0.3,font="Calibri 11"),RoundedButton(strings["wsaSettingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11")]]
-            window = gui.Window(strings["errorTitle"], layout,icon=icon,debugger_enabled=False)
+            window = gui.Window(strings["errorTitle"], layout,icon=icon,debugger_enabled=False,finalize=True)
 
             while True:
                 window.BringToFront()
@@ -582,7 +582,7 @@ def main():
         fatalErrorInfo = '\n'.join(map(str,textwrap.wrap(str(e),50)))
         errLayout = [[gui.Text(strings["fatalError"]+fatalErrorInfo,font=("Calibri",11))],
                     [RoundedButton(strings["reportBugButton"],0.3,font="Calibri 11"),RoundedButton(strings["continueButton"],0.3,font="Calibri 11")]]
-        errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon)
+        errWindow = gui.Window(strings["errorTitle"], errLayout,debugger_enabled=False,icon=icon,finalize=True)
         while True:
             window.BringToFront()
             event, values = errWindow.read()
