@@ -28,6 +28,8 @@ adbApp = os.getcwd() + "\\platform-tools\\adb.exe"
 lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
 strings = {}
 
+exception = None
+
 # Load translation file if available, otherwise fallback to English US
 if os.path.exists(os.getcwd()+"\\locales\\"+lang+".json"):
     with open(os.getcwd()+"\\locales\\"+lang+".json",encoding='utf-8') as json_file:
@@ -111,19 +113,24 @@ def start(filearg = ""): # For GitHub installs
         main()
 
 def startWSA(window):
-    global startCode
-    seconds = 30
-    while seconds > 0:
-        if startCode == 0:
-            if(seconds != 1):
-                window["_MESSAGE_"].Update(strings["instContinueinSeconds"].format(secs=seconds))
+    try:
+        global startCode
+        seconds = 30
+        while seconds > 0:
+            if startCode == 0:
+                if(seconds != 1):
+                    window["_MESSAGE_"].Update(strings["instContinueinSeconds"].format(secs=seconds))
+                else:
+                    window["_MESSAGE_"].Update(strings["instContinueinOneSec"])
+                seconds = seconds - 1
+                time.sleep(1)
             else:
-                window["_MESSAGE_"].Update(strings["instContinueinOneSec"])
-            seconds = seconds - 1
-            time.sleep(1)
-        else:
-            break
-    window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+                break
+        window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+    except Exception as e:
+        global exception
+        exception = e
+        window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
 def getConfig():
     global adbAddress
@@ -434,6 +441,9 @@ def main():
                             startingWindow.start_thread(lambda: startWSA(startingWindow), ('-THREAD-','-THREAD ENDED-'))
                             while True:
                                 event, values = startingWindow.Read()
+                                if exception is not None:
+                                    startingWindow.close()
+                                    raise exception
                                 if event[0] == '-THREAD ENDED-':
                                     startingWindow.close()
                                     break
@@ -587,6 +597,7 @@ def main():
             window.BringToFront()
             event, values = errWindow.read()
             if event == strings["continueButton"]:
+                exception = None
                 errWindow.Close()
                 break
             elif event == strings["reportBugButton"]: # Open WSA Sideloader issues page
