@@ -256,7 +256,6 @@ def installBundle(bundleLocation, address, window):
                     window["_PROGRESS_"].Update(strings["copyingObb"])
                     for dir in os.listdir(bundleLocation + "\\Android\\obb"):
                         subprocess.Popen(adbApp + " -s "+address+" shell mkdir /sdcard/Android/obb/"+dir,creationflags=0x08000000).wait()
-                        sPath = shortPath(bundleLocation+'\\android\\obb\\'+dir)
                         subprocess.Popen(adbApp + ' -s '+address+' push "'+sPath+'\." /sdcard/Android/obb/'+dir+'/',creationflags=0x08000000).wait()
         except IndexError:
             pass
@@ -414,11 +413,11 @@ def main():
                     source_filename = values[0]
                     window.Hide()
                     if source_filename.endswith(".apk"):
-                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +shortPath(source_filename)+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
                     else:
                         waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                         waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-                        waitWindow.start_thread(lambda: extractBundle(source_filename,installsource,waitWindow), ('-THREAD-','-THREAD ENDED-'))
+                        waitWindow.start_thread(lambda: extractBundle(shortPath(source_filename),installsource,waitWindow), ('-THREAD-','-THREAD ENDED-'))
                         while True:
                             event, values = waitWindow.read()
                             if exception is not None:
@@ -430,11 +429,11 @@ def main():
                                 extractedBundle = event[1]
                         waitWindow.close()
                         if source_filename.endswith(".apks"):
-                            bundlePermissions(extractedBundle,"apks")
+                            bundlePermissions(shortPath(extractedBundle),"apks")
                         elif source_filename.endswith(".apkm"):
-                            bundlePermissions(extractedBundle,"apkm")
+                            bundlePermissions(shortPath(extractedBundle),"apkm")
                         elif source_filename.endswith(".xapk"):
-                            bundlePermissions(extractedBundle,"xapk")
+                            bundlePermissions(shortPath(extractedBundle),"xapk")
                     window.UnHide()
             if event == strings["installedAppsButton"]: # Launch apps list of com.android.settings
                 autostart = os.popen('cmd /c "tasklist"')
@@ -565,12 +564,12 @@ def main():
             adbRunning = True
             layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-            window.start_thread(lambda: installAPK(address, source_filename, adbApp, window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: installAPK(address, shortPath(source_filename), adbApp, window), ('-THREAD-','-THREAD ENDED-'))
         else:
             layout = [[gui.Text(strings["bundleInstallPatient"],font=("Calibri",11))],
                     [gui.Text(strings["processingFile"],key='_PROGRESS_',font="Calibri 11")]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-            window.start_thread(lambda: extractBundle(source_filename,installsource,window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: extractBundle(shortPath(source_filename),installsource,window), ('-THREAD-','-THREAD ENDED-'))
             while True:
                 event, values = window.read()
                 if exception is not None:
@@ -580,7 +579,7 @@ def main():
                     break
                 elif event[0] == '-OUT-':
                     extractedBundle = event[1]
-            window.start_thread(lambda: installBundle(extractedBundle,address,window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: installBundle(shortPath(extractedBundle),address,window), ('-THREAD-','-THREAD ENDED-'))
         while True:
             event, values = window.read()
             if exception is not None:
