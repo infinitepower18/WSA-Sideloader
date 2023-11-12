@@ -195,9 +195,9 @@ def extractBundle(fname,source,window):
                 sha256_hash.update(byte_block)
         if source == "GitHub":
             with zipfile.ZipFile(fname,"r") as zip_ref:
-                if os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()) == False:
-                    zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
-                location = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
+                if os.path.exists(fixPath(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())) == False:
+                    zip_ref.extractall(fixPath(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()))
+                location = fixPath(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
         elif source == "Microsoft Store":
             with zipfile.ZipFile(fname,"r") as zip_ref:
                 if os.path.exists(fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Bundles\\"+sha256_hash.hexdigest())) == False:
@@ -402,8 +402,7 @@ def main():
                 sys.exit(0)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
-                source_filename = fixPath(source_filename)
-                if os.path.exists(source_filename) == False:
+                if os.path.exists(fixPath(source_filename)) == False:
                     window['_ERROR1_'].Update(strings["apkNotFound"])
                     window["_ERROR1_"].Update(visible=True)
                     window["_ERROR2_"].Update(visible=False)
@@ -417,11 +416,11 @@ def main():
                     source_filename = values[0]
                     window.Hide()
                     if source_filename.endswith(".apk"):
-                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +fixPath(source_filename)+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
                     else:
                         waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                         waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-                        waitWindow.start_thread(lambda: extractBundle(source_filename,installsource,waitWindow), ('-THREAD-','-THREAD ENDED-'))
+                        waitWindow.start_thread(lambda: extractBundle(fixPath(source_filename),installsource,waitWindow), ('-THREAD-','-THREAD ENDED-'))
                         while True:
                             event, values = waitWindow.read()
                             if exception is not None:
@@ -478,14 +477,13 @@ def main():
                         window["_ERROR1_"].Update(visible=False)
             if event == strings["installButton"]:
                 source_filename = values[0]
-                source_filename = fixPath(source_filename)
                 address = adbAddress
                 address = address.replace(" ", "")
                 if source_filename == "":
                     window['_ERROR2_'].Update(strings["blankApkField"])
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
-                elif exists(source_filename) == False:
+                elif exists(fixPath(source_filename)) == False:
                     window['_ERROR2_'].Update(strings["apkNotFound"])
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
@@ -569,12 +567,12 @@ def main():
             adbRunning = True
             layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-            window.start_thread(lambda: installAPK(address, source_filename, adbApp, window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: installAPK(address, fixPath(source_filename), adbApp, window), ('-THREAD-','-THREAD ENDED-'))
         else:
             layout = [[gui.Text(strings["bundleInstallPatient"],font=("Calibri",11))],
                     [gui.Text(strings["processingFile"],key='_PROGRESS_',font="Calibri 11")]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-            window.start_thread(lambda: extractBundle(source_filename,installsource,window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: extractBundle(fixPath(source_filename),installsource,window), ('-THREAD-','-THREAD ENDED-'))
             while True:
                 event, values = window.read()
                 if exception is not None:
