@@ -169,6 +169,7 @@ def installAPK(address,fname,app,window):
         stdout = stdout.splitlines()
         stderr = stderr.splitlines()
         if stdout[-1].startswith("connected") or stdout[-1].startswith("already connected"):
+            window["_PROGRESS_"].Update(strings["installingPlsWait"])
             command = subprocess.Popen(app + ' -s '+address+' install "'+fname+'"',stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
             stdout, stderr = command.communicate()
             stdout = stdout.splitlines()
@@ -248,12 +249,13 @@ def installBundle(bundleLocation, address, window):
                     files = files + '"'+fixPath(os.path.join(bundleLocation, file))+'"'
                 else:
                     files = files + " " + '"'+fixPath(os.path.join(bundleLocation, file))+'"'
-        window["_PROGRESS_"].Update(strings["installingBundleApks"])
+        window["_PROGRESS_"].Update(strings["connectingWSA"])
         connCommand = subprocess.Popen(adbApp + " connect "+address,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
         stdout, stderr = connCommand.communicate()
         stdout = stdout.splitlines()
         stderr = stderr.splitlines()
         if stdout[-1].startswith("connected") or stdout[-1].startswith("already connected"):
+            window["_PROGRESS_"].Update(strings["installingBundleApks"])
             command = subprocess.Popen(adbApp + ' -s '+address+' install-multiple '+files,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
             stdout, stderr = command.communicate()   
             stdout = stdout.splitlines()
@@ -571,7 +573,7 @@ def main():
         explorerfile = source_filename
         if source_filename.endswith(".apk"):
             adbRunning = True
-            layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
+            layout = [[gui.Text(strings["connectingWSA"],key='_PROGRESS_',font=("Calibri",11))]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
             window.start_thread(lambda: installAPK(address, fixPath(source_filename), adbApp, window), ('-THREAD-','-THREAD ENDED-'))
         else:

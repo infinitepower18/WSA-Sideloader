@@ -67,5 +67,6 @@
     "fatalError": "عذرا، لقد حدث خطأ. الرجاء فتح issue عبر مشروع البرنامج.\n\n[معلومات الخطأ]\n",
     "continueButton": "تابع",
     "browseButton": "تصفح",
-    "closeButton": "يغلق"
+    "closeButton": "يغلق",
+    "connectingWSA": "جارٍ الاتصال بـ WSA..."
 }

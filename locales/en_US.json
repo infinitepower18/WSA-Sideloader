@@ -67,5 +67,6 @@
     "fatalError": "Sorry, an error has occured. Please submit a bug report.\n\n[Error Info]\n",
     "continueButton": "Continue",
     "browseButton": "Browse",
-    "closeButton": "Close"
+    "closeButton": "Close",
+    "connectingWSA": "Connecting to WSA..."
 }

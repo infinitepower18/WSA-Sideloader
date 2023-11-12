@@ -67,5 +67,6 @@
     "fatalError": "Elnézést, hiba történt. Kérjük, küldjön hibajelentést.\n\n[Hiba infó]\n",
     "continueButton": "Tovább",
     "browseButton": "Tallóz",
-    "closeButton": "Bezárás"
+    "closeButton": "Bezárás",
+    "connectingWSA": "Csatlakozás a WSA-hoz..."
 }

@@ -67,5 +67,6 @@
     "fatalError": "申し訳ありませんが､ エラーが発生しました｡\nバグレポートを送信してください｡\n\n[エラー情報]\n",
     "continueButton": " 続行 ",
     "browseButton": "  参照  ",
-    "closeButton": "  近い  "
+    "closeButton": "  近い  ",
+    "connectingWSA": "WSA に接続しています..."
 }
