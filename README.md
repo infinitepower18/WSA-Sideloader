@@ -9,7 +9,7 @@ WSA Sideloader is a tool that is used to easily install APK files on Windows Sub
 
 You can also install XAPK, APKM and APKS files using this tool.
 
-<img width="311" alt="image" src="https://github.com/infinitepower18/WSA-Sideloader/assets/44692189/ede49229-4667-47b1-ac2d-84f2d71b954f">
+<img width="311" alt="image" src="https://github.com/infinitepower18/WSA-Sideloader/assets/44692189/8f0681b8-5597-4719-86d3-405e8d132722">
 
 **Stay updated on the latest WSA Sideloader updates via the [WhatsApp](https://whatsapp.com/channel/0029VaCO0xB8kyySQFoGW12x) and [Telegram](https://t.me/WSASideloader) channels.**
 
@@ -40,7 +40,7 @@ Choose the file you want to install and click the Install button. You can also i
 
 You might see the below message if using WSA Sideloader for the first time. Just tick the box to always allow, allow the connection and run the installation again.
 
-![image](https://user-images.githubusercontent.com/44692189/226106838-20b34d01-3bd5-4fae-bc93-81f24b6d0139.png)
+<img width="539" alt="image" src="https://github.com/infinitepower18/WSA-Sideloader/assets/44692189/b3e17d61-cd8e-4347-a674-4f738bc24fc1">
 
 ## Known issues
 ### APK installation failure in partially running mode
