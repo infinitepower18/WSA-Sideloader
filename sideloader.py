@@ -191,23 +191,23 @@ def extractBundle(fname,source,window):
     try:
         sha256_hash = hashlib.sha256() # Get hash to distinguish between multiple versions stored in Bundles folder
         location = ""
-        with open(shortPath(fname),"rb") as f:
+        with open(fname,"rb") as f:
             for byte_block in iter(lambda: f.read(4096),b""):
                 sha256_hash.update(byte_block)
         if source == "GitHub":
-            with zipfile.ZipFile(shortPath(fname),"r") as zip_ref:
-                if os.path.exists(shortPath(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())) == False:
-                    zip_ref.extractall(shortPath(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()))
+            with zipfile.ZipFile(fname,"r") as zip_ref:
+                if os.path.exists(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()) == False:
+                    zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
                 location = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
         elif source == "Microsoft Store":
-            with zipfile.ZipFile(shortPath(fname),"r") as zip_ref:
-                if os.path.exists(shortPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())) == False:
-                    zip_ref.extractall(shortPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()))
+            with zipfile.ZipFile(fname,"r") as zip_ref:
+                if os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()) == False:
+                    zip_ref.extractall(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
                 location = os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()
         else:
-            with zipfile.ZipFile(shortPath(fname),"r") as zip_ref:
-                if os.path.exists(shortPath("Bundles\\"+sha256_hash.hexdigest())) == False:
-                    zip_ref.extractall(shortPath("Bundles\\"+sha256_hash.hexdigest()))
+            with zipfile.ZipFile(fname,"r") as zip_ref:
+                if os.path.exists("Bundles\\"+sha256_hash.hexdigest()) == False:
+                    zip_ref.extractall("Bundles\\"+sha256_hash.hexdigest())
                 location = os.getcwd() + "\\Bundles\\"+sha256_hash.hexdigest()
         window.write_event_value(('-OUT-', location),"out")
         window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
@@ -234,12 +234,12 @@ def installBundle(bundleLocation, address, window):
         global adbRunning
         adbRunning = True
         files = ''
-        for file in os.listdir(shortPath(bundleLocation)):
+        for file in os.listdir(bundleLocation):
             if file.endswith(".apk"):
                 if files == '':
-                    files = files + '"'+shortPath(os.path.join(bundleLocation, file))+'"'
+                    files = files + '"'+os.path.join(bundleLocation, file)+'"'
                 else:
-                    files = files + " " + '"'+shortPath(os.path.join(bundleLocation, file))+'"'
+                    files = files + " " + '"'+os.path.join(bundleLocation, file)+'"'
         window["_PROGRESS_"].Update(strings["installingBundleApks"])
         connCommand = subprocess.Popen(adbApp + " connect "+address,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000)
         stdout, stderr = connCommand.communicate()
@@ -252,9 +252,9 @@ def installBundle(bundleLocation, address, window):
             stderr = stderr.splitlines()
         try:
             if str(stdout[len(stdout)-1]).startswith("Success"):
-                if os.path.exists(shortPath(bundleLocation + "\\Android\\obb")):
+                if os.path.exists(bundleLocation + "\\Android\\obb"):
                     window["_PROGRESS_"].Update(strings["copyingObb"])
-                    for dir in os.listdir(shortPath(bundleLocation + "\\Android\\obb")):
+                    for dir in os.listdir(bundleLocation + "\\Android\\obb"):
                         subprocess.Popen(adbApp + " -s "+address+" shell mkdir /sdcard/Android/obb/"+dir,creationflags=0x08000000).wait()
                         sPath = shortPath(bundleLocation+'\\android\\obb\\'+dir)
                         subprocess.Popen(adbApp + ' -s '+address+' push "'+sPath+'\." /sdcard/Android/obb/'+dir+'/',creationflags=0x08000000).wait()
@@ -400,7 +400,7 @@ def main():
                 sys.exit(0)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
-                if os.path.exists(shortPath(source_filename)) == False:
+                if os.path.exists(source_filename) == False:
                     window['_ERROR1_'].Update(strings["apkNotFound"])
                     window["_ERROR1_"].Update(visible=True)
                     window["_ERROR2_"].Update(visible=False)
@@ -414,7 +414,7 @@ def main():
                     source_filename = values[0]
                     window.Hide()
                     if source_filename.endswith(".apk"):
-                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +shortPath(source_filename)+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
+                        gui.popup_scrolled(subprocess.Popen('aapt d permissions "' +source_filename+'"',stdout=subprocess.PIPE,encoding='utf-8',creationflags=0x08000000).stdout.read(),size=(100,10),icon=icon,title=strings["viewPerms"])
                     else:
                         waitLayout = [[gui.Text(strings["retrievingPerms"],font=("Calibri",11))]]
                         waitWindow = gui.Window('Please wait...', waitLayout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
@@ -481,7 +481,7 @@ def main():
                     window['_ERROR2_'].Update(strings["blankApkField"])
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
-                elif exists(shortPath(source_filename)) == False:
+                elif exists(source_filename) == False:
                     window['_ERROR2_'].Update(strings["apkNotFound"])
                     window["_ERROR2_"].Update(visible=True)
                     window["_ERROR1_"].Update(visible=False)
@@ -565,12 +565,12 @@ def main():
             adbRunning = True
             layout = [[gui.Text(strings["installingPlsWait"],font=("Calibri",11))]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-            window.start_thread(lambda: installAPK(address, shortPath(source_filename), adbApp, window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: installAPK(address, source_filename, adbApp, window), ('-THREAD-','-THREAD ENDED-'))
         else:
             layout = [[gui.Text(strings["bundleInstallPatient"],font=("Calibri",11))],
                     [gui.Text(strings["processingFile"],key='_PROGRESS_',font="Calibri 11")]]
             window = gui.Window('Please wait...', layout,no_titlebar=True,keep_on_top=True,debugger_enabled=False,finalize=True)
-            window.start_thread(lambda: extractBundle(shortPath(source_filename),installsource,window), ('-THREAD-','-THREAD ENDED-'))
+            window.start_thread(lambda: extractBundle(source_filename,installsource,window), ('-THREAD-','-THREAD ENDED-'))
             while True:
                 event, values = window.read()
                 if exception is not None:
