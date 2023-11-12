@@ -201,9 +201,9 @@ def extractBundle(fname,source,window):
                 location = fixPath(os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())
         elif source == "Microsoft Store":
             with zipfile.ZipFile(fname,"r") as zip_ref:
-                if os.path.exists(fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Bundles\\"+sha256_hash.hexdigest())) == False:
-                    zip_ref.extractall(fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Bundles\\"+sha256_hash.hexdigest()))
-                location = fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Bundles\\"+sha256_hash.hexdigest())   
+                if os.path.exists(fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())) == False:
+                    zip_ref.extractall(fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest()))
+                location = fixPath(os.getenv('LOCALAPPDATA') + "\\Packages\\46954GamenologyMedia.WSASideloader-APKInstaller_cjpp7y4c11e3w\\LocalCache\\Local\\WSA Sideloader\\Bundles\\"+sha256_hash.hexdigest())   
         else:
             with zipfile.ZipFile(fname,"r") as zip_ref:
                 if os.path.exists("Bundles\\"+sha256_hash.hexdigest()) == False:
