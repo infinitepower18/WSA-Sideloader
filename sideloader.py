@@ -41,7 +41,7 @@ else:
     with open(os.getcwd()+"\\locales\\en_US.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.4" # Version number
+version = "1.4.5" # Version number
 adbRunning = False
 startCode = 0
 icon = os.getcwd()+"\\icon.ico"
@@ -410,7 +410,11 @@ def main():
                 sys.exit(0)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
-                if os.path.exists(fixPath(source_filename)) == False:
+                if source_filename == "":
+                    window['_ERROR1_'].Update(strings["blankApkField"])
+                    window["_ERROR1_"].Update(visible=True)
+                    window["_ERROR2_"].Update(visible=False)
+                elif os.path.exists(fixPath(source_filename)) == False:
                     window['_ERROR1_'].Update(strings["apkNotFound"])
                     window["_ERROR1_"].Update(visible=True)
                     window["_ERROR2_"].Update(visible=False)
