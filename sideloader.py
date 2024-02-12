@@ -89,30 +89,7 @@ def start(filearg = ""): # For GitHub installs
     global configpath
     configpath = os.getenv('LOCALAPPDATA') + "\\WSA Sideloader\\config.ini"
     getConfig()
-    if checkUpdates:
-        try:
-            response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
-            latestver = response.json()["tag_name"][1::]
-            if parse(latestver) > parse(version):
-                layout = [[gui.Text(strings["newUpdate"],font=("Calibri",11))],
-                    [RoundedButton(strings["yesButton"],0.3,font="Calibri 11"),RoundedButton(strings["noButton"],0.3,font="Calibri 11")]]
-                window = gui.Window(strings["updateAvailable"], layout,icon=icon,debugger_enabled=False)
-                event, values = window.Read()
-                if event is None:
-                    sys.exit(0)
-                elif event == strings["yesButton"]:
-                    window.Close()
-                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
-                    sys.exit(0)
-                elif event == strings["noButton"]:
-                    window.Close()
-                    main()
-            else:
-                main()
-        except requests.exceptions.RequestException as error: # Skip update check in case of network error
-            main()
-    else:
-        main()
+    main()
 
 def startWSA(window):
     try:
@@ -150,6 +127,16 @@ def getConfig():
         checkUpdates = True
     else:
         checkUpdates = False
+
+def checkForUpdates(window):
+    try:
+        response = requests.get("https://api.github.com/repos/infinitepower18/WSA-Sideloader/releases/latest")
+        latestver = response.json()["tag_name"][1::]
+        if parse(latestver) > parse(version):
+            window["_UPDATE_"].Update(visible=True)
+        window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
+    except requests.exceptions.RequestException as error: # Skip update check in case of network error
+        window.write_event_value(('-THREAD ENDED-', '** DONE **'), 'Done!')
 
 def openBundle(bundleLocation,format):
     if format == "apkm" or format == "apks":
@@ -398,16 +385,19 @@ def main():
                 [gui.Input(explorerfile,font="Calibri 11"),gui.FileBrowse(file_types=((strings["androidFiles"],"*.apk"),(strings["androidFiles"],"*.xapk"),(strings["androidFiles"],"*.apkm"),(strings["androidFiles"],"*.apks")),font="Calibri 11",button_text=strings["browseButton"])],
                 [RoundedButton(strings["installButton"],0.3,font="Calibri 11"),RoundedButton(strings["viewPerms"],0.3,font="Calibri 11")],
                 [gui.pin(gui.Text('Error message',key='_ERROR1_',visible=False,font="Calibri 11"))],
-                [RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["settingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11")],
+                [RoundedButton(strings["installedAppsButton"],0.3,font="Calibri 11"),RoundedButton(strings["settingsButton"],0.3,font="Calibri 11"),RoundedButton(strings["helpButton"],0.3,font="Calibri 11"),gui.pin(RoundedButton(strings["updateAvailable"],0.3,key='_UPDATE_',font="Calibri 11",visible=False))],
                 [gui.pin(gui.Text("Error message",key='_ERROR2_',visible=False,font="Calibri 11"))]]
 
-        window = gui.Window('WSA Sideloader', layout,icon=icon,debugger_enabled=False)
-
+        window = gui.Window('WSA Sideloader', layout,icon=icon,debugger_enabled=False,finalize=True)
+        if checkUpdates and installsource != "Microsoft Store":
+            window.start_thread(lambda: checkForUpdates(window), ('-THREAD-','-THREAD ENDED-'))
         while True:
             event, values = window.Read()
             if event is None:
                 stopAdb()
                 sys.exit(0)
+            if event == '_UPDATE_':
+                webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader/releases/latest",2)
             if event == strings["viewPerms"]:
                 source_filename = values[0]
                 if source_filename == "":
