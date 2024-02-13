@@ -79,13 +79,18 @@ Due to lack of nested virtualization, running WSA on these systems is currently 
 ### I would like to see [feature name] in your program. When can you implement it?
 I am open to suggestions and will try my best to add more relevant features to the program over time. If you have any suggestions you can open an issue with your suggestion. I usually fix bugs and maintain stability of the program before adding more stuff to it so it may take some time.
 
+While I do read all requests, I cannot guarantee that they will be implemented.
+
 ### Where can I see a list of installed WSA apps?
 You can press the "Installed apps" button to bring up a list of apps installed on the WSA. You can launch and uninstall apps through it as well as manage notifications, permissions etc. for each app. WSA apps are also present on the start menu and you can right click to uninstall just like any other Windows program.
 
 If you would like to launch a list of installed apps right from the start menu, I have made an app for that. You can download it [here](https://github.com/infinitepower18/WSA-InstalledApps).
 
+### How do I help translate WSA Sideloader into my language?
+Thank you for your help! You may refer to [this readme](https://github.com/infinitepower18/WSA-Sideloader/blob/main/locales/README.md) for further details.
+
 ### What are some good places to download APK files from?
-APKMirror and APKPure are two popular sites for downloading APK files. Alternatively, you can install Aurora Store, an open source Play Store client.
+APKMirror and APKPure are two popular sites for downloading APK files.
 
 ## Support
 
