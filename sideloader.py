@@ -28,7 +28,7 @@ os.chdir(os.path.dirname(__file__))
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True) # Make program DPI aware
 adbApp = os.getcwd() + "\\platform-tools\\adb.exe"
-lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ] # Get Windows display language
+lang = locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ][:2] # Get Windows display language
 strings = {}
 
 exception = None
@@ -38,7 +38,7 @@ if os.path.exists(os.getcwd()+"\\locales\\"+lang+".json"):
     with open(os.getcwd()+"\\locales\\"+lang+".json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
 else:
-    with open(os.getcwd()+"\\locales\\en_US.json",encoding='utf-8') as json_file:
+    with open(os.getcwd()+"\\locales\\en.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
 version = "1.4.5" # Version number
