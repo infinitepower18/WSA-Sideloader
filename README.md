@@ -24,7 +24,7 @@ Operating System|Source
                 
 ## Getting started
 
-Make sure you have Windows Subsystem for Android installed on your machine. If you don't already have it, download it from [here](https://aka.ms/AmazonAppstore). You don't need to use the Amazon Appstore, however don't uninstall it as it will remove the subsystem.
+Make sure you have Windows Subsystem for Android installed on your machine. If you don't already have it, download it from [here](https://apps.microsoft.com/detail/9P3395VX91NR).
 
 If you're not in a [supported country](https://support.microsoft.com/en-us/windows/countries-and-regions-that-support-amazon-appstore-on-windows-d8dd17c7-5994-4187-9527-ddb076f9493e), change your PC region setting to United States, you should then be able to download Amazon Appstore which contains the subsystem. You can change it back once you have installed it.
 
@@ -77,9 +77,9 @@ It is recommended you download from Microsoft Store to ensure you get the latest
 Due to lack of nested virtualization, running WSA on these systems is currently not possible.
 
 ### I would like to see [feature name] in your program. When can you implement it?
-I am open to suggestions and will try my best to add more relevant features to the program over time. If you have any suggestions you can open an issue with your suggestion. I usually fix bugs and maintain stability of the program before adding more stuff to it so it may take some time.
+I am no longer accepting feature requests. Please see [this post](https://github.com/infinitepower18/WSA-Sideloader/discussions/112) for more information.
 
-While I do read all requests, I cannot guarantee that they will be implemented.
+Bug reports will continue to be accepted.
 
 ### Where can I see a list of installed WSA apps?
 You can press the "Installed apps" button to bring up a list of apps installed on the WSA. You can launch and uninstall apps through it as well as manage notifications, permissions etc. for each app. WSA apps are also present on the start menu and you can right click to uninstall just like any other Windows program.
@@ -94,7 +94,7 @@ APKMirror and APKPure are two popular sites for downloading APK files.
 
 ## Support
 
-Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug or want to make a feature request? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
+Need help using WSA Sideloader? Post in the project's [discussions tab](https://github.com/infinitepower18/WSA-Sideloader/discussions). Found a bug? Visit the [issues page](https://github.com/infinitepower18/WSA-Sideloader/issues).
 
 ## Build Instructions
 
