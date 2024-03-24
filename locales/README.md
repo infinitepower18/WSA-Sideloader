@@ -1,13 +1,15 @@
 # Locales
-This folder contains all the locale files to support multiple languages. The language that is used by WSA Sideloader is dependent on your Windows display language. If your language isn't yet supported by WSA Sideloader, it will fallback to English (US).
+This folder contains all the locale files to support multiple languages. The language that is used by WSA Sideloader is dependent on your Windows display language. If your language isn't yet supported by WSA Sideloader, it will fallback to English.
 
-If you want to translate WSA Sideloader to a language which is not yet supported, use the `en_US.json` file as a base for the translation. Make sure that the json file is named with the same format e.g. Japanese `ja_JP.json`. If you have Python installed on your system, and want to check what display language is being reported to WSA Sideloader, you can run these commands using the Python shell:
+If you want to translate WSA Sideloader to a language which is not yet supported, use the `en.json` file as a base for the translation. Make sure that the json file is named with the same format e.g. Japanese `ja.json`. If you have Python installed on your system, and want to check what display language is being reported to WSA Sideloader, you can run these commands using the Python shell:
 
 ```
 import ctypes
 import locale
 locale.windows_locale[ ctypes.windll.kernel32.GetUserDefaultUILanguage() ]
 ```
+
+Use the first two letters for the file name.
 
 Future updates to strings will involve updating all translated language files using Google Translate or some other machine translation service. As you may know, these services are not always accurate, so if you see any inaccuracies, please make a pull request!
 
