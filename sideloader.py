@@ -364,7 +364,7 @@ def main():
                 event, values = window.Read()
                 if event == strings["installWsaButton"]:
                     window.Close()
-                    webbrowser.open("ms-windows-store://pdp/?productid=9NJHK44TTKSX",2)
+                    webbrowser.open("ms-windows-store://pdp/?productid=9P3395VX91NR",2)
                     sys.exit(0)
                 elif event == "CTRL_G":
                     window.Close()
