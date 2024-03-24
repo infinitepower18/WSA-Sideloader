@@ -50,7 +50,7 @@
     "wsaNotDetectedWin10": "WSA telepítés nem észlelhető.\nA Windows Subsystem for Android hivatalosan nem támogatott Windows 10-en.",
     "exitButton": "Kilépés",
     "wsaNotInstalled": "A WSA nincs telepítve",
-    "wsaNotDetectedWin11": "A program használatához telepítenie kell a Windows Subsystem for Android rendszert.\nTöltse le az Amazon Appstore alkalmazást a Microsoft Store áruházból, amely telepíti az alrendszert.\nMódosítsa a régió beállítását USA-ra, ha ez nem érhető el az Ön országában.",
+    "wsaNotDetectedWin11": "WSA telepítés nem észlelhető.\nA program használatához győződjön meg arról, hogy a Windows Subsystem for Android telepítve van a számítógépén.",
     "installWsaButton": "Telepítse a WSA-t",
     "noBundlesFound": "Nem találhatók kötegelt fájlok",
     "installingBundleApks": "Az alap APK és a támogató fájlok telepítése...",

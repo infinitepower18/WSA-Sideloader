@@ -50,7 +50,7 @@
     "wsaNotDetectedWin10": "WSA nu pare a fi instalat.\nTe rog să reții faptul că WSA nu este oficial suportat pe Windows 10.",
     "exitButton": "Ieșire",
     "wsaNotInstalled": "WSA nu este instalat",
-    "wsaNotDetectedWin11": "Trebuie să instalezi Windows Subsystem for Android înainte de a putea utiliza acest program.\nTe rog să descarci Amazon Appstore din Microsoft Store, care va instala subsystemul ulterior.\nModifică regiunea la US dacă nu este disponibil în țara ta.",
+    "wsaNotDetectedWin11": "WSA nu pare a fi instalat.\nPentru a utiliza acest program, asigurați-vă că aveți instalat Windows Subsystem pentru Android pe computer.",
     "installWsaButton": "Instalează WSA",
     "noBundlesFound": "Nu s-au găsit pachete",
     "installingBundleApks": "Se instalează APK-ul de bază alături de fișierele adiționale...",

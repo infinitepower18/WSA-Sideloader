@@ -50,7 +50,7 @@
     "wsaNotDetectedWin10": "Installation de WSA non détectée.\nLe sous-système Windows pour Android n'est pas officiellement pris en charge par Windows 10.",
     "exitButton": "Sortir",
     "wsaNotInstalled": "WSA non installé",
-    "wsaNotDetectedWin11": "Vous devez installer le sous-système Windows pour Android avant de pouvoir utiliser ce programme.\nVeuillez télécharger Amazon Appstore depuis le Microsoft Store, qui installera le sous-système.\nModifiez le paramètre de votre région sur les États-Unis s'il n'est pas disponible dans votre pays.",
+    "wsaNotDetectedWin11": "Installation de WSA non détectée.\nPour utiliser ce programme, assurez-vous que le sous-système Windows pour Android est installé sur votre PC.",
     "installWsaButton": "Installer WSA",
     "noBundlesFound": "Aucun ensemble trouvé",
     "installingBundleApks": "Installation de l'APK de base et des fichiers de prise en charge...",

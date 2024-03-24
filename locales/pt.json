@@ -50,7 +50,7 @@
     "wsaNotDetectedWin10": "Instalação do WSA não detectada.\nWindows Subsystem for Android não é oficialmente suportado no Windows 10.",
     "exitButton": "Sair",
     "wsaNotInstalled": "WSA não está instalado",
-    "wsaNotDetectedWin11": "Você precisa instalar o Windows Subsystem for Android antes de usar este programa.\nPor favor, baixe a Amazon Appstore da Microsoft Store, que irá instalar o subsistema.\nAltere a configuração de região para EUA se não estiver disponível em seu país.",
+    "wsaNotDetectedWin11": "Instalação do WSA não detectada.\nPara usar este programa, certifique-se de ter o Windows Subsystem para Android instalado em seu PC.",
     "installWsaButton": "Instalar WSA",
     "noBundlesFound": "Nenhum pacote encontrado",
     "installingBundleApks": "Instalando APK base e arquivos de suporte...",

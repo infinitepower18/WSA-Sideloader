@@ -50,7 +50,7 @@
     "wsaNotDetectedWin10": "WSA のインストールが検出されません｡\n｢Android 用 Windows サブシステム｣では､ Windows 10 を正式にサポートしていません｡",
     "exitButton": "  終了  ",
     "wsaNotInstalled": "WSA はインストールされていません",
-    "wsaNotDetectedWin11": "このプログラムを使用する前に､ ｢Android 用 Windows サブシステム｣をインストールする必要があります｡\nMicrosoft Storeから｢Amazonアプリストア｣をインストールしてください｡\nWSAがインストールされます｡\n\nお住まいの国で利用できない場合は､ 地域設定を[米国]に変更してみてください｡",
+    "wsaNotDetectedWin11": "WSA のインストールが検出されません｡\nこのプログラムを使用するには、PC に Android 用 Windows サブシステムがインストールされていることを確認してください。",
     "installWsaButton": "   WSA をインストール   ",
     "noBundlesFound": " バンドルが見つかりませんでした ",
     "installingBundleApks": "ベースパッケージ と 分割APK のインストール中...",
