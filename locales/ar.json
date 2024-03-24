@@ -50,7 +50,7 @@
     "wsaNotDetectedWin10": "لم يتم الكشف عن تثبيت WSA.\nنظام Windows الفرعي لنظام Android غير مدعوم رسميًا على Windows 10.",
     "exitButton": "إغلاق",
     "wsaNotInstalled": "WSA غير مثبت",
-    "wsaNotDetectedWin11": "لم يتم الكشف عن تثبيت WSA. لاستخدام هذا البرنامج، تأكد من تثبيت نظام Windows الفرعي لنظام Android على جهاز الكمبيوتر الخاص بك.",
+    "wsaNotDetectedWin11": "لم يتم الكشف عن تثبيت WSA.\nلاستخدام هذا البرنامج، تأكد من تثبيت نظام Windows الفرعي لنظام Android على جهاز الكمبيوتر الخاص بك.",
     "installWsaButton": "تثبيت WSA",
     "noBundlesFound": "لم يتم العثور على حزم",
     "installingBundleApks": "جاري تثبيت APK الأساسي ودعم الملفات...",
