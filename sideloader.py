@@ -41,7 +41,7 @@ else:
     with open(os.getcwd()+"\\locales\\en.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.5" # Version number
+version = "1.4.6" # Version number
 adbRunning = False
 startCode = 0
 icon = os.getcwd()+"\\icon.ico"
@@ -300,13 +300,7 @@ def settings(configpath,version,source):
         event, values = window.read()
         if event == strings["saveButton"]:
             window.Close()
-            if source == "Microsoft Store":
-                config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':"Enabled"}
-            else:
-                if values["-CHECKUPDATES-"] == strings["enabled"]:
-                    config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':"Enabled"}
-                else:
-                    config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':"Disabled"}
+            config['Application'] = {'adbAddress':values["-ADDRESS-"],'checkUpdates':"Enabled"}
             with open(configpath, 'w') as configfile:
                 config.write(configfile)
             break
