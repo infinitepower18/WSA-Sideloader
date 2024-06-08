@@ -1,6 +1,6 @@
 PySimpleGUI==4.60.5
 Pillow==10.3.0
 darkdetect==0.8.0
-requests==2.31.0
+requests==2.32.3
 packaging==24.0
 pywin32==306
