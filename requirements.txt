@@ -1,4 +1,4 @@
-PySimpleGUI==4.70.1
+FreeSimpleGUI==5.1.1
 Pillow==10.4.0
 darkdetect==0.8.0
 requests==2.32.3

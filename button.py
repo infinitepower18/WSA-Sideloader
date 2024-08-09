@@ -1,5 +1,5 @@
 from PIL import Image, ImageDraw
-from PySimpleGUI import Button, BUTTON_TYPE_READ_FORM, FILE_TYPES_ALL_FILES, theme_background_color, theme_button_color
+from FreeSimpleGUI import Button, BUTTON_TYPE_READ_FORM, FILE_TYPES_ALL_FILES, theme_background_color, theme_button_color
 import io
 import ctypes
 from base64 import b64encode

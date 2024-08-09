@@ -1,5 +1,5 @@
 import os
-import PySimpleGUI as gui
+import FreeSimpleGUI as gui
 import platform
 import webbrowser
 import sys
