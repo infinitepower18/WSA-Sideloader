@@ -18,6 +18,7 @@ import subprocess
 import zipfile
 import hashlib
 import win32api
+import winaccent
 
 # Block usage on non Windows OS
 if(platform.system() != "Windows"):
@@ -57,11 +58,12 @@ if darkdetect.isDark():
     gui.theme_background_color("#232020")
     gui.theme_text_element_background_color("#232020")
     gui.theme_text_color("White")
-    gui.theme_button_color(('#232020', '#ADD8E6'))
+    gui.theme_button_color(('#232020', winaccent.accent_dark))
     gui.theme_input_background_color('#ADD8E6')
     gui.theme_input_text_color('#000000')
 else:
     gui.theme("LightGrey")
+    gui.theme_button_color(("White", winaccent.accent_light))
 
 def startgit(filearg = ""):
     global installsource
