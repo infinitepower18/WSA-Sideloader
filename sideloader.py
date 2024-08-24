@@ -59,7 +59,7 @@ if darkdetect.isDark():
     gui.theme_text_element_background_color("#232020")
     gui.theme_text_color("White")
     gui.theme_button_color(('Black', winaccent.accent_dark))
-    gui.theme_input_background_color("#5d5656")
+    gui.theme_input_background_color("#3b3b3b")
     gui.theme_input_text_color('White')
 else:
     gui.theme("LightGrey")
@@ -258,7 +258,7 @@ def installBundle(bundleLocation, address, window):
                     for dir in os.listdir(fixPath(bundleLocation + "\\Android\\obb")):
                         subprocess.Popen(adbApp + " -s "+address+" shell mkdir /sdcard/Android/obb/"+dir,creationflags=0x08000000).wait()
                         sPath = shortPath(bundleLocation+'\\android\\obb\\'+dir)
-                        subprocess.Popen(adbApp + ' -s '+address+' push "'+sPath+'\." /sdcard/Android/obb/'+dir+'/',creationflags=0x08000000).wait()
+                        subprocess.Popen(adbApp + ' -s '+address+' push "'+sPath+r'\." /sdcard/Android/obb/'+dir+'/',creationflags=0x08000000).wait()
         except IndexError:
             pass
         try:
