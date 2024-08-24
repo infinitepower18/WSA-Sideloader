@@ -64,8 +64,8 @@ if darkdetect.isDark():
 else:
     gui.theme("LightGrey")
     gui.theme_button_color(("White", winaccent.accent_light))
-    gui.theme_input_background_color("#5d5656")
-    gui.theme_input_text_color('White')
+    gui.theme_input_background_color("#E1D9D1")
+    gui.theme_input_text_color('Black')
 
 def startgit(filearg = ""):
     global installsource
