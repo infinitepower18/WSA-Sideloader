@@ -1,6 +1,6 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
-![Python](https://img.shields.io/badge/python-3.11-yellow)
+![Python](https://img.shields.io/badge/python-3.12-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
 
 # WSA Sideloader
@@ -73,7 +73,7 @@ The Microsoft Store version is packaged as MSIX, allowing for clean installs/uni
 It is recommended you download from Microsoft Store to ensure you get the latest features and bug fixes. Please note that the MS Store version is not available on Windows 10.
 
 ### Does Windows Subsystem for Android and WSA Sideloader work on my Windows VM running on my Apple Silicon Mac?
-Due to lack of nested virtualization, running WSA on these systems is currently not possible.
+You may be able to use it on M3 systems running macOS 15 or higher, however I cannot guarantee it will work.
 
 ### I would like to see [feature name] in your program. When can you implement it?
 I am no longer accepting feature requests. Please see [this post](https://github.com/infinitepower18/WSA-Sideloader/discussions/112) for more information.
@@ -100,10 +100,10 @@ Need help using WSA Sideloader? Post in the project's [discussions tab](https://
 To compile from source, follow the below instructions:
 
 1. Install [Git](https://gitforwindows.org/) if you haven't already. Then clone the repo using the command `git clone https://github.com/infinitepower18/WSA-Sideloader`
-2. Download the latest version of [Python 3.11 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.11 instead.
+2. Download the latest version of [Python 3.12 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.12 instead.
 3. Install Nuitka via pip using the command `pip install nuitka`.
 4. Install the required dependencies for WSA Sideloader using the command `pip install -r requirements.txt` in the root directory.
-5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-disable-console --windows-company-name=infinitepower18 --windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-product-version=<version> --windows-file-version=<version> --windows-file-description="WSA Sideloader"`. (replace `<version>` with the current version number) This may take some time depending on your computer.
+5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-console-mode=disable --windows-company-name=infinitepower18 --windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-product-version=<version> --windows-file-version=<version> --windows-file-description="WSA Sideloader"`. (replace `<version>` with the current version number) This may take some time depending on your computer.
 6. Copy the icon.ico, apk.ico, aapt.exe files as well as the locales and platform-tools folders to the sideloader.dist folder.
 
 ## Privacy Policy
