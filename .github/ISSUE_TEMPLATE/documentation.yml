@@ -1,6 +1,5 @@
 name: Documentation
 description: Report an issue with the project's documentation
-title: "[DOC]"
 labels: documentation
 body:
   - type: textarea
