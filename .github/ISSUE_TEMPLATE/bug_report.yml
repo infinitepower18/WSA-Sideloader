@@ -1,6 +1,5 @@
 name: Bug report
 description: Create a report to help improve WSA Sideloader
-title: "[BUG]"
 labels: bug
 
 body:
