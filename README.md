@@ -10,8 +10,6 @@ You can also install XAPK, APKM and APKS files using this tool.
 
 <img width="311" alt="image" src="https://github.com/user-attachments/assets/eacb5cdf-e3f0-4f49-8290-8bd4d099e920">
 
-**Stay updated on the latest WSA Sideloader updates via the [WhatsApp](https://whatsapp.com/channel/0029VaCO0xB8kyySQFoGW12x) and [Telegram](https://t.me/WSASideloader) channels.**
-
 ## Download
 Operating System|Source
 |---------|---------|
