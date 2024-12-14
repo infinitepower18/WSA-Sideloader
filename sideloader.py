@@ -58,12 +58,12 @@ if darkdetect.isDark():
     gui.theme_background_color("#232020")
     gui.theme_text_element_background_color("#232020")
     gui.theme_text_color("White")
-    gui.theme_button_color(('Black', winaccent.accent_dark))
+    gui.theme_button_color(('Black', winaccent.accent_dark_mode))
     gui.theme_input_background_color("#3b3b3b")
     gui.theme_input_text_color('White')
 else:
     gui.theme("LightGrey")
-    gui.theme_button_color(("White", winaccent.accent_light))
+    gui.theme_button_color(("White", winaccent.accent_light_mode))
     gui.theme_input_background_color("#E1D9D1")
     gui.theme_input_text_color('Black')
 
