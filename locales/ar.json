@@ -47,7 +47,7 @@
     "newUpdate": "يتوفر إصدار أحدث من WSA Sideloader.\nهل ترغب في التحديث الآن؟",
     "yesButton": "نعم",
     "noButton": "لا",
-    "wsaNotDetectedWin10": "لم يتم الكشف عن تثبيت WSA.\nنظام Windows الفرعي لنظام Android غير مدعوم رسميًا على Windows 10.",
+    "wsaNotDetectedWin10": "لم يتم الكشف عن تثبيت WSA.\nلاستخدام هذا البرنامج، تأكد من تثبيت نظام Windows الفرعي لنظام Android على جهاز الكمبيوتر الخاص بك.",
     "exitButton": "إغلاق",
     "wsaNotInstalled": "WSA غير مثبت",
     "wsaNotDetectedWin11": "لم يتم الكشف عن تثبيت WSA.\nلاستخدام هذا البرنامج، تأكد من تثبيت نظام Windows الفرعي لنظام Android على جهاز الكمبيوتر الخاص بك.",

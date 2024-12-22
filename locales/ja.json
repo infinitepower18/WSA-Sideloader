@@ -47,7 +47,7 @@
     "newUpdate": "WSA Sideloader の新しいバージョンが利用可能です｡\n今すぐ更新しますか？",
     "yesButton": "  はい  ",
     "noButton": "  いいえ  ",
-    "wsaNotDetectedWin10": "WSA のインストールが検出されません｡\n｢Android 用 Windows サブシステム｣では､ Windows 10 を正式にサポートしていません｡",
+    "wsaNotDetectedWin10": "WSA のインストールが検出されません｡\nこのプログラムを使用するには、PC に Android 用 Windows サブシステムがインストールされていることを確認してください。",
     "exitButton": "  終了  ",
     "wsaNotInstalled": "WSA はインストールされていません",
     "wsaNotDetectedWin11": "WSA のインストールが検出されません｡\nこのプログラムを使用するには、PC に Android 用 Windows サブシステムがインストールされていることを確認してください。",
