@@ -1,6 +1,6 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/infinitepower18/wsa-sideloader)
 ![GitHub all releases](https://img.shields.io/github/downloads/infinitepower18/WSA-Sideloader/total?label=github%20downloads)
-![Python](https://img.shields.io/badge/python-3.12-yellow)
+![Python](https://img.shields.io/badge/python-3.13-yellow)
 ![GitHub](https://img.shields.io/github/license/infinitepower18/wsa-sideloader)
 
 # WSA Sideloader
@@ -98,7 +98,7 @@ Need help using WSA Sideloader? Post in the project's [discussions tab](https://
 To compile from source, follow the below instructions:
 
 1. Install [Git](https://gitforwindows.org/) if you haven't already. Then clone the repo using the command `git clone https://github.com/infinitepower18/WSA-Sideloader`
-2. Download the latest version of [Python 3.12 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.12 instead.
+2. Download the latest version of [Python 3.13 64 bit](https://www.python.org/downloads/windows/). If you are compiling for ARM64, install the ARM64 version of Python 3.13 instead.
 3. Install Nuitka via pip using the command `pip install nuitka`.
 4. Install the required dependencies for WSA Sideloader using the command `pip install -r requirements.txt` in the root directory.
 5. In the root directory run the command `nuitka --standalone sideloader.py --enable-plugin=tk-inter --windows-console-mode=disable --windows-company-name=infinitepower18 --windows-product-name="WSA Sideloader" --windows-icon-from-ico=icon.ico --windows-product-version=<version> --windows-file-version=<version> --windows-file-description="WSA Sideloader"`. (replace `<version>` with the current version number) This may take some time depending on your computer.
