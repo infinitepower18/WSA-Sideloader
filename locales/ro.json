@@ -20,7 +20,7 @@
     "startingWait": "WSA este în curs de pornire. Te rog să aștepți 30 de secunde înainte de a instala aplicația",
     "instAppsAdbAllow": "Te rog să permiți conexiunea ADB, apoi să încerci din nou",
     "instAppsError": "Te rog să verifici dacă WSA rulează, ai permis conexiunea \nADB și că adresa corectă a fost introdusă.\nDacă ai anulat din greșeală conexiunea ADB, repornește WSA\nSideloader.",
-    "adbEmpty": "Adresa ADB nu poate fi goală.\nPuteți remedia acest lucru în setări.",
+    "adbEmpty": "Adresa ADB nu poate fi goală. Puteți remedia acest lucru în setări.",
     "blankApkField": "Te rog să selectezi un fișier.",
     "donateButton": "Donează",
     "instContinueinSeconds": "Instalarea va continua în {secs} secunde.",
