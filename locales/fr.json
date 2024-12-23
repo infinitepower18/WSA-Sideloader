@@ -20,7 +20,7 @@
     "startingWait": "Démarrage de WSA, veuillez attendre 30 secondes avant de réessayer.",
     "instAppsAdbAllow": "Veuillez autoriser la connexion ADB et réessayer.",
     "instAppsError": "Veuillez vérifiez que WSA est en cours d'exécution, vous avez autorisé la connexion ADB et que l'adresse ADB a été saisie correctement saisie.\nSi vous avez refusé la connexion ADB, fermez et rouvrez WSA\nSideloader.",
-    "adbEmpty": "L'adresse ADB ne peut pas être vide. Vous pouvez résoudre ce problème dans les paramètres.",
+    "adbEmpty": "L'adresse ADB ne peut pas être vide.\nVous pouvez résoudre ce problème dans les paramètres.",
     "blankApkField": "Veuillez sélectionner un fichier.",
     "donateButton": "Donation",
     "instContinueinSeconds": "L'installation continuera dans {secs} secondes.",

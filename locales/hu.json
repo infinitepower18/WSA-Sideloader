@@ -20,7 +20,7 @@
     "startingWait": "A WSA indítása után várjon 30mp-et, mielőtt újra próbálkozna.",
     "instAppsAdbAllow": "Engedélyezze az ADB kapcsolatot és próbálja újra.",
     "instAppsError": "Ellenőrizze, hogy fut-e a WSA, engedélyezte-e az ADB\nkapcsolatot, és a megfelelő ADB címet adta-e meg.\nHa megtagadta az ADB kapcsolatot, zárja be, majd nyissa meg újra a WSA.\nSideloader-t.",
-    "adbEmpty": "Az ADB cím nem lehet üres. Ezt a beállításokban tudod javítani.",
+    "adbEmpty": "Az ADB cím nem lehet üres.\nEzt a beállításokban tudod javítani.",
     "blankApkField": "Válasszon egy fájlt.",
     "donateButton": "Adomány",
     "instContinueinSeconds": "A telepítés {secs}mp múlva folytatódik.",
