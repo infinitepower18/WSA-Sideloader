@@ -19,7 +19,7 @@
     "onlyApkSupported": "Only APK, XAPK, APKM and APKS files are supported",
     "startingWait": "Starting WSA, please wait 30 seconds before trying again.",
     "instAppsAdbAllow": "Please allow the ADB connection and try again.",
-    "instAppsError": "Please check that WSA is running, you allowed the ADB connection\nand the correct ADB address has been entered in settings.\nIf you denied the ADB connection, close and reopen WSA\nSideloader.",
+    "instAppsError": "Please check that WSA is running, the correct ADB address has\nbeen entered in settings and you allowed the ADB connection.\nIf you denied the ADB connection, close and reopen WSA\nSideloader.",
     "adbEmpty": "ADB address cannot be empty. You can fix this in settings.",
     "blankApkField": "Please select a file.",
     "donateButton": "Donate",
