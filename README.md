@@ -47,6 +47,9 @@ For now, you can open any app to wake up the subsystem before running WSA Sidelo
 
 ## FAQ
 
+### Windows Subsystem for Android is no longer available on Microsoft Store. How can I install it?
+Microsoft has discontinued Windows Subsystem for Android, however you can find archives of the official builds [here](https://github.com/MustardChef/WSAPackages/releases).
+
 ### The APK installation fails with the error message "No connection could be made because the target machine actively refused it"
 This is a [bug](https://github.com/microsoft/WSA/issues/136) with the subsystem itself, restarting the PC will usually fix it.
 
