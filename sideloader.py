@@ -342,7 +342,7 @@ def main():
         if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
             if int(platform.win32_ver()[1].split('.')[2]) < 22000:
                 layout = [[gui.Text(strings["wsaNotDetectedWin10"],font=("Calibri",11))],
-                        [RoundedButton(strings["learnMoreButton"],0.3,font="Calibri 11")]]
+                        [RoundedButton(strings["learnMoreButton"],0.3,font="Calibri 11"), RoundedButton(strings["closeButton"],0.3,font="Calibri 11")]]
                 window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False, finalize=True)
                 window.bind("<Control-KeyPress-G>", "CTRL_G")
                 window.bind("<Control-KeyPress-g>", "CTRL_G")
@@ -350,6 +350,8 @@ def main():
                 if event == strings["learnMoreButton"]:
                     window.Close()
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader#getting-started",2)
+                    sys.exit(0)
+                elif event == strings["closeButton"]:
                     sys.exit(0)
                 elif event == "CTRL_G":
                     window.Close()
@@ -357,7 +359,7 @@ def main():
                     sys.exit(0)
             else:
                 layout = [[gui.Text(strings["wsaNotDetectedWin11"],font=("Calibri",11))],
-                        [RoundedButton(strings["learnMoreButton"],0.3,font="Calibri 11")]]
+                        [RoundedButton(strings["learnMoreButton"],0.3,font="Calibri 11"), RoundedButton(strings["closeButton"],0.3,font="Calibri 11")]]
                 window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False, finalize=True)
                 window.bind("<Control-KeyPress-G>", "CTRL_G")
                 window.bind("<Control-KeyPress-g>", "CTRL_G")
@@ -365,6 +367,8 @@ def main():
                 if event == strings["learnMoreButton"]:
                     window.Close()
                     webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader#getting-started",2)
+                    sys.exit(0)
+                elif event == strings["closeButton"]:
                     sys.exit(0)
                 elif event == "CTRL_G":
                     window.Close()
