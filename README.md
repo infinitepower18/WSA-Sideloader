@@ -23,7 +23,7 @@ Operating System|Source
 
 Make sure you have Windows Subsystem for Android installed on your machine.
 
-While Microsoft has discontinued Windows Subsystem for Android, however you can find archives of the official builds [here](https://github.com/MustardChef/WSAPackages/releases).
+Microsoft has discontinued Windows Subsystem for Android, however you can find archives of the official builds [here](https://github.com/MustardChef/WSAPackages/releases).
 
 As it's no longer being updated by Microsoft there's no guarantee it will work properly on future versions of the OS.
 
