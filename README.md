@@ -29,8 +29,6 @@ As it's no longer being updated by Microsoft there's no guarantee it will work p
 
 **Windows 10 users:** You can obtain community builds of WSA for Windows 10 from repositories like [WSABuilds](https://github.com/MustardChef/WSABuilds) and [WSAPatch](https://github.com/cinit/WSAPatch). Please note that the MS Store version of WSA Sideloader is not available on Windows 10. You can install it from the [releases page](https://github.com/infinitepower18/WSA-Sideloader/releases).
 
-![image](https://user-images.githubusercontent.com/44692189/173249543-1a96679f-0773-4e41-8ddc-10e71ae189c2.png)
-
 Enable developer mode in WSA settings. The subsystem will need to be running in order to install apps, however WSA Sideloader will attempt to start the subsystem for you if it's not running.
 
 ![image](https://user-images.githubusercontent.com/44692189/182655019-5cd310c6-8bbd-43b6-a60b-ebd35c12748c.png)
