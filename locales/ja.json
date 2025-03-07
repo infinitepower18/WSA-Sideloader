@@ -68,5 +68,6 @@
     "continueButton": " 続行 ",
     "browseButton": "  参照  ",
     "closeButton": "  近い  ",
-    "connectingWSA": "WSA に接続しています..."
+    "connectingWSA": "WSA に接続しています...",
+    "learnMoreButton": "  もっと詳しく知る  "
 }

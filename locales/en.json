@@ -68,5 +68,6 @@
     "continueButton": "Continue",
     "browseButton": "Browse",
     "closeButton": "Close",
-    "connectingWSA": "Connecting to WSA..."
+    "connectingWSA": "Connecting to WSA...",
+    "learnMoreButton": "Learn more"
 }

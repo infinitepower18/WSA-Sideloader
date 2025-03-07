@@ -68,5 +68,6 @@
     "continueButton": "Tovább",
     "browseButton": "Tallóz",
     "closeButton": "Bezárás",
-    "connectingWSA": "Csatlakozás a WSA-hoz..."
+    "connectingWSA": "Csatlakozás a WSA-hoz...",
+    "learnMoreButton": "További információ"
 }

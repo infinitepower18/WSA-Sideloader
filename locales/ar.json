@@ -68,5 +68,6 @@
     "continueButton": "تابع",
     "browseButton": "تصفح",
     "closeButton": "يغلق",
-    "connectingWSA": "جارٍ الاتصال بـ WSA..."
+    "connectingWSA": "جارٍ الاتصال بـ WSA...",
+    "learnMoreButton": "يتعلم أكثر"
 }

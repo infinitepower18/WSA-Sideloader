@@ -42,7 +42,7 @@ else:
     with open(os.getcwd()+"\\locales\\en.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.8" # Version number
+version = "1.4.9" # Version number
 adbRunning = False
 startCode = 0
 icon = os.getcwd()+"\\icon.ico"
@@ -342,12 +342,14 @@ def main():
         if not os.path.exists(os.getenv('LOCALAPPDATA') + "\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe"):
             if int(platform.win32_ver()[1].split('.')[2]) < 22000:
                 layout = [[gui.Text(strings["wsaNotDetectedWin10"],font=("Calibri",11))],
-                        [RoundedButton(strings["exitButton"],0.3,font="Calibri 11")]]
+                        [RoundedButton(strings["learnMoreButton"],0.3,font="Calibri 11")]]
                 window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False, finalize=True)
                 window.bind("<Control-KeyPress-G>", "CTRL_G")
                 window.bind("<Control-KeyPress-g>", "CTRL_G")
                 event, values = window.Read()
-                if event == strings["exitButton"]:
+                if event == strings["learnMoreButton"]:
+                    window.Close()
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader#getting-started",2)
                     sys.exit(0)
                 elif event == "CTRL_G":
                     window.Close()
@@ -355,14 +357,14 @@ def main():
                     sys.exit(0)
             else:
                 layout = [[gui.Text(strings["wsaNotDetectedWin11"],font=("Calibri",11))],
-                        [RoundedButton(strings["installWsaButton"],0.3,font="Calibri 11")]]
+                        [RoundedButton(strings["learnMoreButton"],0.3,font="Calibri 11")]]
                 window = gui.Window(strings["wsaNotInstalled"], layout,icon=icon,debugger_enabled=False, finalize=True)
                 window.bind("<Control-KeyPress-G>", "CTRL_G")
                 window.bind("<Control-KeyPress-g>", "CTRL_G")
                 event, values = window.Read()
-                if event == strings["installWsaButton"]:
+                if event == strings["learnMoreButton"]:
                     window.Close()
-                    webbrowser.open("ms-windows-store://pdp/?productid=9P3395VX91NR",2)
+                    webbrowser.open("https://github.com/infinitepower18/WSA-Sideloader#getting-started",2)
                     sys.exit(0)
                 elif event == "CTRL_G":
                     window.Close()
