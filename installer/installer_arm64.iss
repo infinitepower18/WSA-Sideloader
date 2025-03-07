@@ -34,13 +34,13 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableDirPage=no
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\ahnafm\Documents\WSA-Sideloader\license.txt
+LicenseFile=C:\Users\Ahnaf\Documents\WSA-Sideloader\license.txt
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=C:\Users\ahnafm\Desktop\Installer
+OutputDir=C:\Users\Ahnaf\Desktop\Installer
 OutputBaseFilename=WSASideloader_{#MyAppVersion}_arm64
-SetupIconFile=C:\Users\ahnafm\Documents\WSA-Sideloader\icon.ico
+SetupIconFile=C:\Users\Ahnaf\Documents\WSA-Sideloader\icon.ico
 UninstallDisplayIcon={app}\icon.ico
 Compression=lzma
 SolidCompression=yes
@@ -61,8 +61,8 @@ Name: "ar"; MessagesFile: "compiler:Languages\Arabic.isl"
 Name: "pt_br"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 
 [Files]
-Source: "C:\Users\ahnafm\Documents\WSA-Sideloader\sideloader.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\ahnafm\Documents\WSA-Sideloader\sideloader.dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Ahnaf\Documents\WSA-Sideloader\sideloader.dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Ahnaf\Documents\WSA-Sideloader\sideloader.dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
