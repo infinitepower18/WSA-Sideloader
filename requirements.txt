@@ -1,4 +1,4 @@
-FreeSimpleGUI==5.1.1
+FreeSimpleGUI==5.2.0
 Pillow==11.1.0
 darkdetect==0.8.0
 requests==2.32.3
