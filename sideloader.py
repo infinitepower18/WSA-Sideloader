@@ -42,7 +42,7 @@ else:
     with open(os.getcwd()+"\\locales\\en.json",encoding='utf-8') as json_file:
         strings = json.load(json_file)
         
-version = "1.4.9" # Version number
+version = "1.4.10" # Version number
 adbRunning = False
 startCode = 0
 icon = os.getcwd()+"\\icon.ico"
