@@ -2,6 +2,6 @@ FreeSimpleGUI==5.1.1
 Pillow==11.1.0
 darkdetect==0.8.0
 requests==2.32.3
-packaging==24.2
+packaging==25.0
 pywin32==308
 winaccent==2.0.1
